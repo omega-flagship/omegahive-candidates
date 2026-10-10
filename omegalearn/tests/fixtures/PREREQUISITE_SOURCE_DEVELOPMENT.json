@@ -1,0 +1,90 @@
+{
+  "status": "simulated",
+  "identity": "unauthenticated fixture",
+  "episodes": [
+    {
+      "action": "publish",
+      "required": [
+        "review",
+        "approval"
+      ],
+      "available": [
+        "review"
+      ],
+      "missing": [
+        "approval"
+      ]
+    },
+    {
+      "action": "publish",
+      "required": [
+        "review",
+        "approval"
+      ],
+      "available": [],
+      "missing": [
+        "review",
+        "approval"
+      ]
+    }
+  ],
+  "event": {
+    "schema": "omegalearn/event/1",
+    "id": "learn/prerequisite-development-1",
+    "owner": "source-owner",
+    "scope": "swarm-a",
+    "subject": {
+      "id": "synthetic-prerequisite-export",
+      "revision": "1",
+      "digest": "cd3599252ef151ca3148a4706e935c5d74af92c3e953690bc0334aaa1eb64567"
+    },
+    "evidence_refs": [
+      "ev:source-owner:1"
+    ],
+    "predictions": [],
+    "assumptions": [],
+    "review_findings": [],
+    "outcome_refs": [],
+    "corrections": [],
+    "permissions": {
+      "audiences": [
+        "learn",
+        "recipient"
+      ],
+      "derive": true,
+      "redistribute": true
+    },
+    "payload": {
+      "kind": "experience",
+      "data": {
+        "episodes": [
+          {
+            "action": "publish",
+            "required": [
+              "review",
+              "approval"
+            ],
+            "available": [
+              "review"
+            ],
+            "missing": [
+              "approval"
+            ]
+          },
+          {
+            "action": "publish",
+            "required": [
+              "review",
+              "approval"
+            ],
+            "available": [],
+            "missing": [
+              "review",
+              "approval"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

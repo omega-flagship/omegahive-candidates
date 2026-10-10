@@ -1,0 +1,150 @@
+{
+  "schema": "hiveconnect.field-coverage/0.1",
+  "utc": "2026-10-04T15:20:24.050681+00:00",
+  "source": "an owner workspace record (not included)",
+  "source_sha256": "a768bea4f1566695a8632e720ddd80b624720a796456968544c637fb6ee75a94",
+  "contract_answers": "all nine resolved in r2.4",
+  "host_cases_executed": 0,
+  "client_acceptance": "L0 only; 41 checks in draft-r26 receipt",
+  "fields": [
+    {
+      "question": 1,
+      "topic": "Schema marker/version",
+      "client_coverage": "implemented prototype",
+      "offline_check_names": [
+        "test_version_and_schema_mismatch",
+        "test_input_schema_mismatch"
+      ],
+      "planned_host_cases": [
+        "HC29"
+      ],
+      "remaining_build_evidence": "Full build schemas; host negotiation response"
+    },
+    {
+      "question": 2,
+      "topic": "Unknown truth",
+      "client_coverage": "pure Atom validation only",
+      "offline_check_names": [
+        "test_authoritative_atom_validator_unknown_and_executable"
+      ],
+      "planned_host_cases": [
+        "HC20"
+      ],
+      "remaining_build_evidence": "Host publish omit-vs-null and contradiction refusal; atomic admission"
+    },
+    {
+      "question": 3,
+      "topic": "Query projection",
+      "client_coverage": "explicit snapshot/page validation; wire projection pending",
+      "offline_check_names": [
+        "test_complete_closure_can_be_incomplete_result",
+        "test_partial_lineage_refused_by_atom",
+        "test_r26_projection_preserves_withdrawal",
+        "test_r26_projection_preserves_controls_on_controls",
+        "test_r26_oversized_control_group_refuses_partial_page",
+        "test_r26_missing_control_is_not_detectable_from_page_alone"
+      ],
+      "planned_host_cases": [
+        "HC08"
+      ],
+      "remaining_build_evidence": "Exact query response container; real host premise closure; host must establish withdrawal-control completeness over authenticated source snapshot"
+    },
+    {
+      "question": 4,
+      "topic": "Scopes/cursors",
+      "client_coverage": "tagged input and page-end checks; no grant proof",
+      "offline_check_names": [
+        "test_tagged_scope_requests_preserve_host_filters",
+        "test_terminal_cursor_consistency"
+      ],
+      "planned_host_cases": [
+        "HC07",
+        "HC08",
+        "HC18"
+      ],
+      "remaining_build_evidence": "Query cursor input schema; host union filtering and expiry"
+    },
+    {
+      "question": 5,
+      "topic": "S2 read bindings",
+      "client_coverage": "digest echo and retained-revision defense",
+      "offline_check_names": [
+        "test_artifact_exact_binding_and_retained_revision",
+        "test_digest_required_and_mismatch_content_not_returned",
+        "test_revocation_on_next_page_not_cached"
+      ],
+      "planned_host_cases": [
+        "HC16",
+        "HC17",
+        "HC18"
+      ],
+      "remaining_build_evidence": "Canonical content digest; host grant recheck; expected_revision/require_current schemas"
+    },
+    {
+      "question": 6,
+      "topic": "No boot receipt",
+      "client_coverage": "partial inventory validation",
+      "offline_check_names": [
+        "test_missing_boot_receipt_not_inferred",
+        "test_inventory_wire_hash_and_snapshot_clock"
+      ],
+      "planned_host_cases": [
+        "HC04",
+        "HC05",
+        "HC06"
+      ],
+      "remaining_build_evidence": "Full inventory schema and real boot/source/process freshness"
+    },
+    {
+      "question": 7,
+      "topic": "Typed requests",
+      "client_coverage": "planned; mutating requests refused",
+      "offline_check_names": [
+        "test_no_mutations_or_unfrozen_scope_shape"
+      ],
+      "planned_host_cases": [
+        "HC22",
+        "HC23",
+        "HC24"
+      ],
+      "remaining_build_evidence": "Typed request and Planner schemas; findings and revision alias schemas; r2.6 from_goal/title/idempotency_key required, contract optional"
+    },
+    {
+      "question": 8,
+      "topic": "Structured errors",
+      "client_coverage": "implemented prototype",
+      "offline_check_names": [
+        "test_hive_error_codes_preserved_without_messages",
+        "test_unknown_error_not_invented",
+        "test_legacy_payload_not_silently_accepted"
+      ],
+      "planned_host_cases": [
+        "HC02",
+        "HC11",
+        "HC14",
+        "HC18",
+        "HC28",
+        "HC29"
+      ],
+      "remaining_build_evidence": "Host migration of all existing tools and status/code mapping"
+    },
+    {
+      "question": 9,
+      "topic": "Idempotency/policy",
+      "client_coverage": "planned host coverage; no mutation implementation",
+      "offline_check_names": [
+        "test_no_mutations_or_unfrozen_scope_shape"
+      ],
+      "planned_host_cases": [
+        "HC10",
+        "HC11",
+        "HC12",
+        "HC21",
+        "HC25",
+        "HC26",
+        "HC30"
+      ],
+      "remaining_build_evidence": "Durable host idempotency and full-context policy parity"
+    }
+  ]
+}

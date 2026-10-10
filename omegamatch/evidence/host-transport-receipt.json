@@ -1,0 +1,18 @@
+{
+  "classification": "invented-disposable-ASGI-fake-supervisor",
+  "host_pin": "d7dc7dc33a9bd62418fe2e58ac25a90bd234ae75",
+  "probes_passed": 4,
+  "native_minds_started": 0,
+  "network_listener": false,
+  "semantic_admission_installed": false,
+  "diagnostic_gap": "Schema-only host accepts evidence tier promotion rejected by Match semantic admission.",
+  "request_binding": "actual host-allocated request id checked by offline admission; host goal digest echoed on submission",
+  "pins": {
+    "swarm.py": "9d270ae606ead651cc48376a8a56d6eaf4f803ee3622755a3c0a708e6422028e",
+    "swarm-blueprint.json": "7f6578359aa65875616d1ab171f3ae925596837b245e0f0547487633054d3574",
+    "tests/host_transport_probes.py": "200a29ac896c92e045affba8fef6eea38c0bb57333be574f74d1ff36ee3a201e",
+    "schema.py": "53cfaf9f3e230b8c58cbde0352f65a35bc488702f1aebd5fcc5d805294fc1a2a",
+    "protocol.py": "a36db1f7d9cbb7954690d71bdcb33fc94df0414ac8f228122bd3b11f54021b60",
+    "evidence/host-transport-d7dc7dc.txt": "e51231c405d46c6ce5d07348a58193bbc81ace8dafbd4449423d2d975bae73c7"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "hiveconnect.receipt/0.1",
+  "utc": "2026-10-04T15:19:02.867655+00:00",
+  "acceptance_level": "L0",
+  "scope": "offline synthetic transport and direct owner OmegaAtom pure library checks",
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s hiveconnect/tests -v",
+  "exit_code": 0,
+  "tests_passed": 37,
+  "baseline_checks": 13,
+  "draft_checks": 24,
+  "draft_schema_status": "unfrozen prose-derived prototype through r2.4; r2.5 acknowledged",
+  "draft_sha256": "dbd557ecbe34ff0f52f24afa13b746f8fa4400ad039c1f98c5114378e95077bf",
+  "file_sha256": {
+    "client.py": "9c8ba23d269a9988f0064124c27cf3ae8ec9683c0ee8574af20374d04a7dac5f",
+    "draft_client.py": "fd60e44cad7b77c4d1be28ccba2fd63617c7946f1070ea6293b2c54b3e2d5bfe",
+    "tests/test_client.py": "337231887c1d12539d1062d72199c7b1604e4dbfbc4a78609cbb339b0c4ee49d",
+    "tests/test_draft_client.py": "f31c3b7f1f1d6c9876c4f0c78d17e2a959d9ef1d9e7961545401455347b933e8",
+    "baseline_schema.json": "9f51d2554e0ad4f87354d933fbfee361ce519b6396261ba16b58bbe5d349bee6",
+    "conformance_cases.json": "2b9df51932a051a8c9b2eadf54b2d3eee57681093ef92c310113fb7c51388bc1"
+  },
+  "owner_validator": {
+    "path": "omegaatom/envelope.py",
+    "sha256_at_receipt": "5d76fc77a53eab11f3e31014e1543032c3ee1f1d8c63b31d9d65957509db2a17",
+    "spec_sha256": "fab596febe812213a104bd8a4789a0accfb1ddc5305e751cb338404bd5e3e010",
+    "scope": "pure validation and lineage checks; no authenticated host projection"
+  },
+  "host_S3_cases_executed": 0,
+  "L1": false,
+  "L2": false,
+  "L3": false,
+  "activation_performed": false
+}

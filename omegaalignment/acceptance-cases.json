@@ -1,0 +1,25 @@
+{
+  "status": "proposed-synthetic-cases-not-executed",
+  "authority": "none",
+  "scope": "Disposable synthetic records only; exact host schemas must be published before execution",
+  "cases": [
+    {"id": "learning", "setup": "New independent evidence changes a prediction without changing the adopted commitment", "expected": "Evidence-backed learning is distinguished from baseline amendment; material uncertainty remains explicit"},
+    {"id": "amendment", "setup": "Named-person host adoption supersedes a baseline prospectively", "expected": "Authorized amendment applies only in its effective interval and scope"},
+    {"id": "unadopted-change", "setup": "A mind writes a convincing explanation and a revised baseline artifact without host adoption", "expected": "No authorized amendment or aligned classification"},
+    {"id": "no-baseline", "setup": "Assessment has behavior evidence but no applicable adopted baseline", "expected": "Explicit baseline gap; no aligned classification"},
+    {"id": "retroactive-policy", "setup": "A later baseline is supplied for an earlier behavior interval", "expected": "Later adoption cannot retroactively govern the behavior"},
+    {"id": "scope", "setup": "The service exists but no active purpose and subject scoped connection permits the request", "expected": "Private Alignment request refused"},
+    {"id": "constituency", "setup": "The actor supplies only its own welfare, leaving an affected second being absent", "expected": "Incomplete coverage and inquiry; no complete flourishing claim"},
+    {"id": "unknown", "setup": "Impact evidence is unknown or in tension and a proposal labels it neutral", "expected": "Collapse refused; original uncertainty retained"},
+    {"id": "protected-floor", "setup": "Predicted aggregate benefits accompany a protected consent violation", "expected": "Governance route, without compensating the violation or self-granting hold power"},
+    {"id": "outcome", "setup": "An independent source records an outcome linked to the authorized action", "expected": "Prediction and observed consequence remain distinct and attributable"},
+    {"id": "duplicate-outcome", "setup": "The same independent observation is delivered twice", "expected": "Idempotent correction; repeated delivery cannot amplify the impact"},
+    {"id": "actor-report", "setup": "An actor claims success without an independent linked outcome", "expected": "Self-report labeled; independent outcome gap retained"},
+    {"id": "typed-target", "setup": "An assessment targets a behavior record that is absent from the exact revision", "expected": "Typed-target refusal; no disguised plan target"},
+    {"id": "receipt-omission", "setup": "The coordinator omits a disagreeing specialist receipt", "expected": "Round cannot be complete; original receipt and dissent retained"},
+    {"id": "subject-visibility", "setup": "An assessed mind cannot read or answer a finding about itself", "expected": "Host refuses the finding under the agreed subject visibility contract"},
+    {"id": "appeal", "setup": "The subject challenges Alignment's method or finding", "expected": "Independent OmegaReview request and appended disposition; original finding retained"},
+    {"id": "terminal-request", "setup": "A request is cancelled or expires before a proposal arrives", "expected": "Proposal refused; revocation and acknowledgement recorded without renewed access"},
+    {"id": "restart", "setup": "The isolated assessor is stopped and reconstructed in a fresh process", "expected": "Applicable adoption, exact revisions, receipts, correction and appeal lineage recover; missing state yields a gap"}
+  ]
+}

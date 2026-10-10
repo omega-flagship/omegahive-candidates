@@ -1,0 +1,47 @@
+{
+  "scope": "synthetic-demo",
+  "revision": "r1",
+  "premises": [
+    {
+      "id": "e1",
+      "subject": "alpha",
+      "relation": "isa",
+      "object": "beta",
+      "f": 0.8,
+      "c": 0.7,
+      "stamp": [
+        "s1"
+      ],
+      "status": "simulated"
+    },
+    {
+      "id": "e2",
+      "subject": "beta",
+      "relation": "isa",
+      "object": "gamma",
+      "f": 0.8,
+      "c": 0.7,
+      "stamp": [
+        "s2"
+      ],
+      "status": "simulated"
+    }
+  ],
+  "priors": {
+    "alpha": {
+      "id": "prior-alpha",
+      "positive": 50,
+      "total": 100
+    },
+    "beta": {
+      "id": "prior-beta",
+      "positive": 50,
+      "total": 100
+    },
+    "gamma": {
+      "id": "prior-gamma",
+      "positive": 50,
+      "total": 100
+    }
+  }
+}

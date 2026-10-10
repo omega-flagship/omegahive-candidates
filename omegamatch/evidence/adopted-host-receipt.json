@@ -1,0 +1,20 @@
+{
+  "classification": "committed-source-disposable-ASGI-fake-supervisor",
+  "source_pin": "eafd78913f762030f9a8c9304c4c29efc71f62e9",
+  "adopted_correction": "be6e0e5",
+  "selected_checks_passed": 21,
+  "lifecycle_finding": "resolved in source",
+  "runtime_deployment": "reported by platform owner; not independently verified",
+  "catalogue": "absent; success admission unqualified",
+  "host_files": {
+    "hive/core/goals.py": "d347f5531fb3ca31109f23a4ef56623c5081c6d34acee0b2a2801999835d06b6",
+    "hive/core/programs.py": "120e912ab4819f43a944b784af4e62f5c82d9acc9bfa340543907017277782fa",
+    "hive/core/boards.py": "baefff97030a2ff1cb61b9b4afa616f97df5fe96ccb9a521786fe4dd3029b9e8"
+  },
+  "output_sha256": "2168479eb3c4bf978a078c0777ec2364850ab1e2f555ab9510fc0fc1ee6bbabd",
+  "probe_pins": {
+    "tests/host_semantic_probes.py": "67b1fc43d7961b8596757a45dd199c7000e9f1423a9c632fb1bc67999ca55ddd",
+    "tests/host_lifecycle_probe.py": "7349815a072dfff8fcc7e4de0f9c29ab51a477d72f89fa14bfa8d9a2a2b9a458",
+    "tests/host_transport_probes.py": "099b9ead0d8d40c6ea9760cca8adfe2d4628651310b6dca0da647853965133dc"
+  }
+}

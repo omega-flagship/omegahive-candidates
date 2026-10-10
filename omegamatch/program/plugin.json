@@ -1,0 +1,10 @@
+{
+  "id": "omegamatch",
+  "name": "OmegaMatch Admission",
+  "version": "0.1.0",
+  "contract": "0.1",
+  "description": "Semantic admission companion for the OmegaMatch native swarm. Host Match context required; no independent catalogue or matcher.",
+  "module": "program.py",
+  "capabilities": [],
+  "icon": "link"
+}

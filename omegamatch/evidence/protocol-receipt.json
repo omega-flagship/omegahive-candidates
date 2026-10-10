@@ -1,0 +1,27 @@
+{
+  "status": "offline-candidate",
+  "classification": "invented-synthetic",
+  "tests_passed": 41,
+  "host_identity": "supplied trusted fixture inputs; no authentication implemented",
+  "host_matcher": "supplied candidate witnesses; no ranking implementation",
+  "limitations": [
+    "no live mind",
+    "no host integration",
+    "typed-need/no-candidate contracts not implemented",
+    "no persistent registry",
+    "no grants, dispatch or deployment"
+  ],
+  "pins": {
+    "protocol.py": "a36db1f7d9cbb7954690d71bdcb33fc94df0414ac8f228122bd3b11f54021b60",
+    "tests/test_protocol.py": "62555c9ba8a024fb9bb67574e8a2f4b7d31cb2324f2afa5c54cef8aa9d62b191",
+    "HYPERON_THEORY.md": "93f186ed460d9b8cb8e4d93f4a34df4e2a10fbea0a588a6cbab0a85fb5176755",
+    "CONTRACTS.md": "538a053a18fe7f8fd22eba1001270a2e6949e7df20b324fdf7319782282519a3",
+    "examples/reuse.metta": "252a8fee92b1f9e80461c58f4cad30998a6f5afed6c3066474edc969452fc267",
+    "evidence/protocol-tests-20261004.txt": "d2c92a2f40669b6d02f99b783fc8377ba04cd6e8958ad3b4ec6eb90baef8266c",
+    "README.md": "b8329e4c0869820e2d2382fc4cefdc19ca0d61020cbfe5f65dfccfbb606b6679",
+    "schema.py": "53cfaf9f3e230b8c58cbde0352f65a35bc488702f1aebd5fcc5d805294fc1a2a",
+    "reuse-alert.schema.json": "210c5f162a44f9590fe589dfa759659abb2a7ad52eae9b6534dbd5bf27157b0a",
+    "tests/test_schema.py": "cdac23436b0ea3258b7bd5077220ae329bc3566673b57741332d62e37e9fe09c"
+  },
+  "host_validator_sha256": "11faa5c5f05f18ce70489efe8a076b91c80ccff9d6d0e8e641a020238e3f4a10"
+}

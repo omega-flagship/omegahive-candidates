@@ -1,0 +1,28 @@
+{
+  "schema": "hiveconnect.receipt/0.1",
+  "utc": "2026-10-04T15:05:53.649362+00:00",
+  "acceptance_level": "L0",
+  "scope": "offline client core with injected synthetic transport; no actual host, network or provider",
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s hiveconnect/tests -v",
+  "exit_code": 0,
+  "tests_passed": 13,
+  "source_snapshot": {
+    "platform_head": "99c2d740322b5c14f728dc2a8a4c5b99c5f84633",
+    "source": "platform/hive/core/mcp.py",
+    "source_sha256": "673dc4d245c8fcbf4ff09bbc25cc060e71f8bd80544e9e0a47f3d9f5ad9cac3b",
+    "protocol": "2025-06-18"
+  },
+  "file_sha256": {
+    "client.py": "8a76f9b45d749a9a8e8ec020198635934c8a00db5e7d77be007e1f8e7e0ac811",
+    "baseline_schema.json": "9f51d2554e0ad4f87354d933fbfee361ce519b6396261ba16b58bbe5d349bee6",
+    "tests/test_client.py": "337231887c1d12539d1062d72199c7b1604e4dbfbc4a78609cbb339b0c4ee49d",
+    "IMPLEMENTATION_STATUS.md": "6c5ba99cc4eb3123d2e7cf5c957e7b6a5db0cb7698e31ea9cca2730fc3cfd44e"
+  },
+  "S3_conformance_cases_executed": 0,
+  "L1": false,
+  "L2": false,
+  "L3": false,
+  "host_authorization_verified": false,
+  "activation_performed": false,
+  "credential_accessed": false
+}

@@ -1,0 +1,44 @@
+...F                                                                     [100%]
+=================================== FAILURES ===================================
+_________ test_cancellation_during_validation_must_not_be_overwritten __________
+
+client = <starlette.testclient.TestClient object at 0x10ae30860>
+
+    def test_cancellation_during_validation_must_not_be_overwritten(client):
+        asker,mind,request,bound,inputs,output=setup(client,validate='program:synthetic-gate')
+        hive=client.app.state.hive
+        entered, cancelled = Event(),Event()
+    
+        def cancel():
+            assert entered.wait(5),'validator was not entered'
+            state=hive.goals.update(bound['id'],{'status':'cancelled'})
+            assert state['status']=='cancelled'
+            cancelled.set()
+    
+        def synthetic_gate(program_id,goal,proposal):
+            assert program_id=='synthetic-gate'
+            entered.set()
+            assert cancelled.wait(5),'cancellation did not complete'
+            return []  # synthetic decision accepted; catalogue not simulated
+    
+        original=hive.programs.validate_goal_result
+        hive.programs.validate_goal_result=synthetic_gate
+        try:
+            with ThreadPoolExecutor(max_workers=1) as pool:
+                task=pool.submit(cancel)
+                response=submit(client,mind,bound,output)
+                task.result(timeout=5)
+        finally:
+            hive.programs.validate_goal_result=original
+        state=client.get(f"/api/agent/goals/{bound['id']}",headers=agent_headers(mind)).json()
+>       assert state['status']=='cancelled',{'response_status':response.status_code,'persisted_status':state['status']}
+E       AssertionError: {'response_status': 200, 'persisted_status': 'submitted'}
+E       assert 'submitted' == 'cancelled'
+E         
+E         - cancelled
+E         + submitted
+
+omegamatch/tests/host_lifecycle_probe.py:40: AssertionError
+=========================== short test summary info ============================
+FAILED omegamatch/tests/host_lifecycle_probe.py::test_cancellation_during_validation_must_not_be_overwritten
+1 failed, 3 passed in 6.60s

@@ -1,0 +1,8 @@
+{
+  "id": "omegachill", "version": "0.1.0",
+  "provides": ["advisory-trace-findings", "advisory-resource-findings", "finding-cooldown"],
+  "consumes": ["owner-supplied-scoped-traces", "owner-supplied-resource-samples", "omegaatom-envelope-0.1"],
+  "effects": [], "entrypoints": {"library": "omegachill"},
+  "qualification": "L0-candidate",
+  "source_pins": "an owner workspace record (not included)"
+}

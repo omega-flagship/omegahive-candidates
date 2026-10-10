@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "id": "symbolic-repair",
+      "kind": "component",
+      "label": "Declarative repair learner",
+      "text": "L0: induces one delimiter suffix rule from two exported synthetic pairs. Not a general parser or native mind."
+    },
+    {
+      "id": "prerequisite-check",
+      "kind": "component",
+      "label": "Prerequisite-checking skill for Planner",
+      "text": "Development: extracts explicit action requirements from consistent labeled episodes; returns sorted missing prerequisites. Unseen actions refuse. Planner consumer and Bench worker qualified offline; sealed task benefit remains pending."
+    },
+    {
+      "id": "experiment",
+      "kind": "experiment",
+      "label": "L0 unseen repair and abstention comparison",
+      "text": "FULL 7/7; typed-memory, SHAM and SEVERED 4/7. Seven synthetic cases; all arms zero model calls. No claim of cost advantage or native transfer."
+    },
+    {
+      "id": "envelope",
+      "kind": "component",
+      "label": "Learning envelope and improvement lineage",
+      "text": "Owner library; trusted source callbacks required; OmegaAtom evidence referenced, not redefined."
+    },
+    {
+      "id": "pc",
+      "kind": "gap",
+      "label": "PC/FabricPC runtime qualification deferred",
+      "text": "Opus reports dependency absent; adapter source does not establish a working predictive runtime."
+    },
+    {
+      "id": "host",
+      "kind": "gap",
+      "label": "Host evidence/retraction and recipient qualification pending",
+      "text": "Disposable-host artifact publication/readback qualified. S6 binding helpers accepted; actual host attachment, authenticated acknowledgment, sealed evaluation and measured task benefit remain pending."
+    }
+  ]
+}

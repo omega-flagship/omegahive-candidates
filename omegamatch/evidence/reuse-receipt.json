@@ -1,0 +1,23 @@
+{
+  "classification": "invented-offline-pattern-query",
+  "runtime": "PeTTa with local swipl-patched",
+  "petta_head": "ae66fa8e41dcd5539d614706bd4e5cfb34f9608d",
+  "sample_sha256": "252a8fee92b1f9e80461c58f4cad30998a6f5afed6c3066474edc969452fc267",
+  "output_sha256": "9299723b624c760ce46701f5bf5e8f46c20d7db3f8977e582414e00a6d68e7ad",
+  "checks_reported_passed": 4,
+  "error_lines": [],
+  "proves": [
+    "literal code/service reuse binding",
+    "output mismatch yields no candidate",
+    "missing need yields no candidate"
+  ],
+  "does_not_prove": [
+    "live mind reasoning",
+    "host visibility",
+    "authorization",
+    "freshness",
+    "production catalogue",
+    "ranking",
+    "behavioral correctness"
+  ]
+}

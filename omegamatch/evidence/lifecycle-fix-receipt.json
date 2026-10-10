@@ -1,0 +1,21 @@
+{
+  "classification": "invented-disposable-ASGI-fake-supervisor",
+  "host_base": "4fcd9c9384bd70d662b65fd938bdea31ba6194d5",
+  "baseline_regressions_failed": 2,
+  "candidate_focused_passed": 5,
+  "candidate_existing_host_checks_passed": 12,
+  "host_adopted": false,
+  "deployed": false,
+  "scope": "conditional final result write preserves changed goal lifecycle; not full catalogue transaction",
+  "patch_sha256": "3e5d9c6410332a9f70ecb93faa5e63629db42de730e3c9dfdff50832c504c3bc",
+  "original_goals_sha256": "b8d15ca153dacc9818cb45abf331cb34975a47a7b7da032c44955d520b55cfd6",
+  "candidate_goals_sha256": "ef9a0add012318dad736ade1424604c4502cee812d72d363380bbd059d0c58ba",
+  "pins": {
+    "tests/host_lifecycle_probe.py": "7349815a072dfff8fcc7e4de0f9c29ab51a477d72f89fa14bfa8d9a2a2b9a458",
+    "tests/host_semantic_probes.py": "67b1fc43d7961b8596757a45dd199c7000e9f1423a9c632fb1bc67999ca55ddd",
+    "tests/host_transport_probes.py": "099b9ead0d8d40c6ea9760cca8adfe2d4628651310b6dca0da647853965133dc",
+    "evidence/host-lifecycle-before-final-4fcd9c9.txt": "92f21f9f9d95fdeb5d0e6770d49f3add04bcdf2d6e8b278a2a6a4cb939c42d41",
+    "evidence/host-lifecycle-fixed-4fcd9c9.txt": "c34bd7de2ac5650d0b63fb9252eb35f7c123b986333fd2b35b81ea125586f9db",
+    "evidence/host-lifecycle-regressions-4fcd9c9.txt": "481f821126888677d8dff9d55d41623122f0dd74b7c8c5c87f57735c6f4cb8e4"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "classification": "invented-native-relational-queries",
+  "checks_reported_passed": 6,
+  "reported_errors": [],
+  "petta_head": "ae66fa8e41dcd5539d614706bd4e5cfb34f9608d",
+  "runtime": "local swipl-patched",
+  "sample_sha256": "799d83923a833d91680043cbe0a73c290483701ade87b33752d151ccab868d66",
+  "output_sha256": "4ab04dc6f13676fee394e5242481998cd78d2cdaca06f924e502b10b0d796c48",
+  "limitations": [
+    "literal fixture only",
+    "host visibility not proven",
+    "no scoring or probabilities",
+    "no general paraconsistent logic",
+    "no grants or execution"
+  ]
+}

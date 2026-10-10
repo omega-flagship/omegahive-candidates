@@ -1,0 +1,26 @@
+{
+  "classification": "invented-offline-three-result-kinds",
+  "tests_passed": 73,
+  "host_derived_context": "fixture inputs; final catalogue contract pending",
+  "host_adoption": false,
+  "live_mind": false,
+  "semantics": [
+    "source constraints preserved; interpretation remains proposed",
+    "no-candidate scoped to exact search receipt",
+    "union shape requires semantic companion"
+  ],
+  "pins": {
+    "program/program.py": "af38400692fa3dd60ee1bad8c3019e4abc83e15552feeae9a0d626816716585f",
+    "program/protocol.py": "30bc1609dcdced69bf857a19e8e18153a69485dda19cbdc87eaca090b9196a8a",
+    "program/HOST_CONTEXT_CONTRACT.md": "9754445188e7c5d04b9c6e768f8f818ab88873be3e1571078f7d310f763489b3",
+    "protocol.py": "65d4081ede288622296e1abce5ff25a0bd9ccbf90d36a32854db504f2b25d1a6",
+    "schema.py": "29f0707bf12a16088547a4bbbedd03cd278a0bfaeb31615e92aba4ff8b3ef2bc",
+    "typed-need.schema.json": "3f9dbd765f29d72484245f6ba05a2d38d0ea0cc688540e062925a208673a1548",
+    "no-candidate.schema.json": "52bd2a5af995873a730d1707f69f285547f73aa4932d51f3022471add6b51cd5",
+    "match-result.schema.json": "901a70015be3b3f4f4782a75646ad2372be25ac2ff58f0b41faa45e89bc63b92",
+    "tests/test_interpretation.py": "059dbe48405cd82c5ed28cb66e6da3a0ed55a5d1c12ffa9235dde4a208178df8",
+    "evidence/result-kinds-tests-20261004.txt": "f1e09f78efa436e793ca6fcc05bb26c5b9c8b9b955cdb7606f1659d16aec659e",
+    "README.md": "f5ebb5500eb6d138b09a1663e35f72fa87578afdecc497552b3146583ccee3fe",
+    "CONTRACTS.md": "b1a0faa408a582cb2689fd0a81db4de0ef9fee305422dfeddb7a0d9a68b26000"
+  }
+}

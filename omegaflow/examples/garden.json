@@ -1,0 +1,267 @@
+{
+  "schema": "omegaflow/1",
+  "id": "synthetic:garden-signup",
+  "entry": "visitor",
+  "elements": [
+    {
+      "id": "visitor",
+      "kind": "node",
+      "props": {
+        "control_step": true
+      },
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "type": "step",
+      "ref": null
+    },
+    {
+      "id": "signup",
+      "kind": "node",
+      "props": {
+        "control_step": true
+      },
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "type": "step",
+      "ref": null
+    },
+    {
+      "id": "review",
+      "kind": "node",
+      "props": {
+        "control_step": true
+      },
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "type": "step",
+      "ref": null
+    },
+    {
+      "id": "welcome",
+      "kind": "node",
+      "props": {
+        "control_step": true
+      },
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "type": "step",
+      "ref": null
+    },
+    {
+      "id": "person",
+      "kind": "node",
+      "props": {},
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "type": "person",
+      "ref": "synthetic:operator"
+    },
+    {
+      "id": "garden",
+      "kind": "node",
+      "props": {},
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "type": "garden",
+      "ref": null
+    },
+    {
+      "id": "role",
+      "kind": "node",
+      "props": {},
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "type": "volunteer-role",
+      "ref": null
+    },
+    {
+      "id": "submitted",
+      "kind": "event",
+      "props": {},
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "type": "synthetic.submitted"
+    },
+    {
+      "id": "accepted",
+      "kind": "event",
+      "props": {},
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "type": "synthetic.accepted"
+    },
+    {
+      "id": "t0",
+      "kind": "transition",
+      "props": {
+        "requires_approval": false
+      },
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "from": "visitor",
+      "to": "signup",
+      "trigger": "submitted",
+      "guards": [],
+      "approver": null,
+      "action": {
+        "kind": "goal",
+        "target": "synthetic:garden-service",
+        "params": {
+          "step": "signup"
+        }
+      }
+    },
+    {
+      "id": "t1",
+      "kind": "transition",
+      "props": {
+        "requires_approval": false
+      },
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "from": "signup",
+      "to": "review",
+      "trigger": "submitted",
+      "guards": [],
+      "approver": null,
+      "action": {
+        "kind": "goal",
+        "target": "synthetic:garden-service",
+        "params": {
+          "step": "review"
+        }
+      }
+    },
+    {
+      "id": "t2",
+      "kind": "transition",
+      "props": {
+        "requires_approval": true
+      },
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "from": "review",
+      "to": "welcome",
+      "trigger": "accepted",
+      "guards": [],
+      "approver": "person",
+      "action": {
+        "kind": "goal",
+        "target": "synthetic:garden-service",
+        "params": {
+          "step": "welcome"
+        }
+      }
+    },
+    {
+      "id": "volunteers",
+      "kind": "relation",
+      "props": {},
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "type": "volunteers-for",
+      "roles": [
+        {
+          "name": "volunteer",
+          "member": "visitor"
+        },
+        {
+          "name": "garden",
+          "member": "garden"
+        },
+        {
+          "name": "role",
+          "member": "role"
+        }
+      ]
+    },
+    {
+      "id": "attests",
+      "kind": "relation",
+      "props": {},
+      "meta": {
+        "origin": "asserted",
+        "confidence": null,
+        "evidence": [],
+        "revision_state": "draft",
+        "runtime_state": "idle"
+      },
+      "type": "attestation",
+      "roles": [
+        {
+          "name": "subject",
+          "member": "volunteers"
+        },
+        {
+          "name": "author",
+          "member": "person"
+        }
+      ]
+    }
+  ]
+}

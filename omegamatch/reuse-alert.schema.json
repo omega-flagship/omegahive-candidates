@@ -1,0 +1,237 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "artifact_digest": {
+      "maxLength": 512,
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "authority": {
+      "const": "recommendation-only",
+      "type": "string"
+    },
+    "binding": {
+      "additionalProperties": false,
+      "properties": {
+        "catalogue_digest": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "need_digest": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "need_revision": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "policy_revision": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "request_id": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "rule_version": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        }
+      },
+      "required": [
+        "catalogue_digest",
+        "need_digest",
+        "need_revision",
+        "policy_revision",
+        "request_id",
+        "rule_version"
+      ],
+      "type": "object"
+    },
+    "contract_fit": {
+      "enum": [
+        "supported",
+        "possible",
+        "conflicting"
+      ],
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "basis": {
+            "enum": [
+              "accepted-performance",
+              "advertisement",
+              "declaration",
+              "review-verdict",
+              "schema-valid-completion"
+            ],
+            "type": "string"
+          },
+          "context": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "digest": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "id": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "mandate": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "observed_at": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "origin_id": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "verdict": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "digest",
+          "basis",
+          "context",
+          "observed_at"
+        ],
+        "type": "object"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "type": "array"
+    },
+    "kind": {
+      "const": "reuse-alert",
+      "type": "string"
+    },
+    "locator": {
+      "additionalProperties": false,
+      "properties": {
+        "service": {
+          "maxLength": 2048,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "symbol": {
+          "maxLength": 2048,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "workspace": {
+          "maxLength": 2048,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "need_id": {
+      "maxLength": 512,
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "offer_id": {
+      "maxLength": 512,
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "provider_id": {
+      "maxLength": 512,
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "rationale": {
+      "maxLength": 4000,
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "suggested_next_step": {
+      "enum": [
+        "inspect-existing-code",
+        "ask-existing-service",
+        "consider-connection"
+      ],
+      "type": "string"
+    },
+    "target_kind": {
+      "enum": [
+        "code",
+        "service"
+      ],
+      "type": "string"
+    },
+    "unresolved_conditions": {
+      "items": {
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "maxItems": 64,
+      "type": "array"
+    }
+  },
+  "required": [
+    "kind",
+    "binding",
+    "need_id",
+    "offer_id",
+    "provider_id",
+    "target_kind",
+    "locator",
+    "artifact_digest",
+    "contract_fit",
+    "evidence_refs",
+    "unresolved_conditions",
+    "rationale",
+    "suggested_next_step",
+    "authority"
+  ],
+  "title": "OmegaMatch reuse alert v0.1",
+  "type": "object"
+}

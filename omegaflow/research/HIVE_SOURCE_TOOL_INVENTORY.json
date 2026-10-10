@@ -1,0 +1,1574 @@
+{
+  "scope": "source inventory, not live entitlement",
+  "modules": [
+    {
+      "module": "agentverse",
+      "source": "platform/modules/agentverse/catalog.metta",
+      "source_sha256": "e9033df40421c7f37bca148a9a032dc901fb4af226322878b747cfa5afdd9a94",
+      "catalogues": [
+        "Agentverse remote agents: agentverse-status, agentverse-listener-status, agentverse-listener-start, agentverse-listener-stop, agentverse-discover query optional-limit, agentverse-remote-agents, agentverse-register-agent name address schema capability, agentverse-call name payload, agentverse-ask destination schema payload, agentverse-trace, agentverse-inbox"
+      ],
+      "help": [
+        {
+          "name": "agentverse",
+          "description": "Agentverse remote-agent affordances:"
+        },
+        {
+          "name": "agentverse",
+          "description": "agentverse-status - inspect uAgents availability, configured endpoints, and trace path without exposing secrets"
+        },
+        {
+          "name": "agentverse",
+          "description": "agentverse-listener-status - inspect the local uAgent listener that receives async AgentChatProtocol replies"
+        },
+        {
+          "name": "agentverse",
+          "description": "agentverse-listener-start - start the local uAgent listener; needs OMEGACLAW_AGENTVERSE_ENDPOINT or a configured Agentverse mailbox"
+        },
+        {
+          "name": "agentverse",
+          "description": "agentverse-listener-stop - stop the local uAgent listener process"
+        },
+        {
+          "name": "agentverse",
+          "description": "agentverse-discover query optional-limit - search Agentverse/Almanac for relevant agents and store candidate atoms in &agentverse"
+        },
+        {
+          "name": "agentverse",
+          "description": "agentverse-remote-agents - list configured Agentverse endpoint handles and addresses"
+        },
+        {
+          "name": "agentverse",
+          "description": "agentverse-register-agent name address schema capability - add or update a known remote agent in &agentverse; exact repeats are no-ops"
+        },
+        {
+          "name": "agentverse",
+          "description": "agentverse-call name payload - call a known RemoteAgent atom by name; AgentChatProtocol sends an official ChatMessage and returns AGENTVERSE-ACK on delivery"
+        },
+        {
+          "name": "agentverse",
+          "description": "agentverse-ask destination schema payload - send a generic typed request to a remote Agentverse/uAgents address; use AgentChatProtocol for agents advertising AgentChatProtocol"
+        },
+        {
+          "name": "agentverse",
+          "description": "agentverse-inbox - inspect listener outbound sends, acknowledgements, and inbound AgentChatProtocol replies"
+        },
+        {
+          "name": "agentverse",
+          "description": "AgentChatProtocol acknowledgement proves delivery/acceptance, not necessarily the final async chat answer; full replies may require a listening local uAgent endpoint"
+        },
+        {
+          "name": "agentverse",
+          "description": "agentverse-trace - inspect recent Agentverse request/response/error trace records"
+        },
+        {
+          "name": "agentverse",
+          "description": "Agentverse is an external organ: useful for remote specialist agents, not a replacement for the agent's reasoning."
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "assume",
+      "source": "platform/modules/assume/catalog.metta",
+      "source_sha256": "a6d3cbce86962e59f60c40de926237385a51e0d9f799acb6ca4de39fa763477a",
+      "catalogues": [
+        "Assume prediction: assume-status, assume-situation-status domain situation, assume-load domain situation, assume-predict domain situation, assume-audit domain situation action"
+      ],
+      "help": [
+        {
+          "name": "assume",
+          "description": "Assume predictive organ:"
+        },
+        {
+          "name": "assume",
+          "description": "assume-status - inspect warm predictive organ"
+        },
+        {
+          "name": "assume",
+          "description": "assume-situation-status domain situation - readiness and coverage"
+        },
+        {
+          "name": "assume",
+          "description": "assume-init-situation domain situation reason - birth a new prediction situation"
+        },
+        {
+          "name": "assume",
+          "description": "assume-add-context-feature domain situation feature strength confidence source"
+        },
+        {
+          "name": "assume",
+          "description": "assume-add-action domain action kind"
+        },
+        {
+          "name": "assume",
+          "description": "assume-add-feature-edge domain feature action weight confidence evidence"
+        },
+        {
+          "name": "assume",
+          "description": "assume-load domain situation, assume-reload domain situation, assume-reload-situation domain situation, assume-predict domain situation"
+        },
+        {
+          "name": "assume",
+          "description": "assume-state domain situation - inspect canonical graph state; assume-clear-work and assume-work inspect the working membrane"
+        },
+        {
+          "name": "assume",
+          "description": "assume-observe-predict domain situation, assume-observe-audit domain situation action"
+        },
+        {
+          "name": "assume",
+          "description": "assume-audit domain situation action - support, confidence, evidence, error pressure, NAL truth"
+        },
+        {
+          "name": "assume",
+          "description": "assume-outcome / assume-error - explicit evidence for later chosen learning; assume-evidence-summary and assume-observe-evidence-summary inspect it"
+        },
+        {
+          "name": "assume",
+          "description": "assume-learn-from-atoms, assume-growth-pressure, assume-observe-growth-pressure, assume-growth-proposals, assume-observe-growth-proposals"
+        },
+        {
+          "name": "assume",
+          "description": "assume-adjustment-pressure, assume-observe-adjustment-pressure, assume-review-growth, assume-observe-growth-review"
+        },
+        {
+          "name": "assume",
+          "description": "assume-review-adjustment, assume-review-adjustment-detail, assume-writeback, assume-observe-writeback, assume-review-mutation, assume-apply-writeback"
+        },
+        {
+          "name": "assume",
+          "description": "assume-accept-growth / assume-accept-adjustment only after explicit review; assume-trace count inspects mutation/writeback traces"
+        },
+        {
+          "name": "assume",
+          "description": "Demo graphs: assume-demo-list, assume-demo-load, assume-demo-predict, assume-demo-audit, assume-demo-learn, assume-demo-writeback, assume-import-demo"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "body_container",
+      "source": "platform/modules/body_container/catalog.metta",
+      "source_sha256": "e62a0c745f02b259a00538e4d2a9427c702c51253e25570f237a56bd0b9d7484",
+      "catalogues": [
+        "Body container: body-container-status, body-container-self, body-container-launcher, body-container-last-trace"
+      ],
+      "help": [
+        {
+          "name": "body",
+          "description": "Body-container affordances:"
+        },
+        {
+          "name": "body",
+          "description": "body-container-status - observe the VM body the agent is currently running inside"
+        },
+        {
+          "name": "body",
+          "description": "body-container-self - return the MeTTa body-container atoms for self body reasoning"
+        },
+        {
+          "name": "body",
+          "description": "body-container-launcher - inspect the host launcher descriptor written by the agent.app or another platform runner"
+        },
+        {
+          "name": "body",
+          "description": "body-container-last-trace - inspect recent body-container observation traces"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "channel_irc",
+      "source": "platform/modules/channel_irc/catalog.metta",
+      "source_sha256": "a0cb3606dae1bf3dbf558d779fb18488834f5b99ed0a17fdf859e99f419c9be8",
+      "catalogues": [
+        "Irc channel: available through generic receive/send when commchannel is irc"
+      ],
+      "help": [],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "channel_mattermost",
+      "source": "platform/modules/channel_mattermost/catalog.metta",
+      "source_sha256": "78c3e0f049988be737de4fe495bb2dae2227af1360a3100fb772d30bd84c88f6",
+      "catalogues": [
+        "Mattermost channel: available through generic receive/send when commchannel is mattermost"
+      ],
+      "help": [],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "channel_mock",
+      "source": "platform/modules/channel_mock/catalog.metta",
+      "source_sha256": "2abacfe3110f64f9df67ea0884cac43804fcbc9905d36bc0f62ec8b2bcc6861e",
+      "catalogues": [
+        "Mock channel: available through generic receive/send when commchannel is mock"
+      ],
+      "help": [],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "channel_router",
+      "source": "platform/modules/channel_router/catalog.metta",
+      "source_sha256": "76cf8531114c32f0d848dcd8e318f5244ae91e3ca74cc56c80136dcf55e834fc",
+      "catalogues": [
+        "Channels: receive, send, send-control, send-file path, send-file-caption path caption, list-inbox, channel-status"
+      ],
+      "help": [
+        {
+          "name": "channels",
+          "description": "Channel router affordances:"
+        },
+        {
+          "name": "channels",
+          "description": "receive returns typed CHANNEL_EVENT context views; text is utterance content, route/conversation/message ids are metadata"
+        },
+        {
+          "name": "channels",
+          "description": "send-control message - send to the current control route chosen from symbolic channel state"
+        },
+        {
+          "name": "channels",
+          "description": "send-control-base64 payload - multiline/formatted control send"
+        },
+        {
+          "name": "channels",
+          "description": "send-file path - send a file/image to the latest control channel"
+        },
+        {
+          "name": "channels",
+          "description": "list-inbox - inspect recently received files/media for active channel"
+        },
+        {
+          "name": "channels",
+          "description": "channel-status - inspect selected channel, bind mode, and transport state"
+        },
+        {
+          "name": "channels",
+          "description": "ChannelEvent contract: primary/control route uses send message; explicit routes expose conversation_id for send-to/reply-to commands"
+        },
+        {
+          "name": "channels",
+          "description": "Legacy notice parsing is compatibility only; new channel modules should emit structured ChannelEvent payloads"
+        },
+        {
+          "name": "channels",
+          "description": "initChannels - initialize configured communication membranes"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "channel_slack",
+      "source": "platform/modules/channel_slack/catalog.metta",
+      "source_sha256": "d15c19725a48ccc82bc2515e076449abac777fe1706ec3f96910a56fca9c74b5",
+      "catalogues": [
+        "Slack channel: available through generic receive/send when commchannel is slack"
+      ],
+      "help": [],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "channel_telegram",
+      "source": "platform/modules/channel_telegram/catalog.metta",
+      "source_sha256": "60ac64d2d5f7f063ca26cfe13072727bec96b70f26011ea5b58d620caaa3c64c",
+      "catalogues": [
+        "Telegram channel: send-telegram message, send-telegram-base64 payload, telegram-status"
+      ],
+      "help": [
+        {
+          "name": "channels",
+          "description": "send-telegram message - send to configured Telegram control chat; message body only, no TELEGRAM:/chat_id/target prefix"
+        },
+        {
+          "name": "telegram",
+          "description": "send-telegram message; send-telegram-base64 payload - configured chat only; routing comes from Telegram config/auth state, not the message body"
+        },
+        {
+          "name": "telegram",
+          "description": "telegram-status - inspect Telegram running/connected state, bind mode, last update kind, and ignored update counters"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "channel_web_control",
+      "source": "platform/modules/channel_web_control/catalog.metta",
+      "source_sha256": "310e7b92606a73a76c0961bcc86a540ad294ff6b147173d8309c560b6735aedd",
+      "catalogues": [
+        "Web control channel: send-web-control message, send-web-control-base64 payload"
+      ],
+      "help": [
+        {
+          "name": "channels",
+          "description": "send-web-control message - send explicitly to the agent OS web chat window"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "channel_whatsapp",
+      "source": "platform/modules/channel_whatsapp/catalog.metta",
+      "source_sha256": "f49bdb668f5048c9891d22e3440690f93f5ecf5c9a5dd0128c23b91d4b673cc5",
+      "catalogues": [
+        "WhatsApp: whatsapp-inbox, whatsapp-status, read-whatsapp-chat jid, send-whatsapp message with no jid/WHATSAPP: prefix in body, send-whatsapp-to raw-known-jid message for explicit routing, send-primary-operator message, reply/react/edit/delete by known message id"
+      ],
+      "help": [
+        {
+          "name": "channels",
+          "description": "whatsapp-inbox, whatsapp-chats, whatsapp-status - list chats, unread/delivered/seen counts, and current primary route; use status/inbox as route authority"
+        },
+        {
+          "name": "channels",
+          "description": "read-whatsapp-chat jid - inspect a bounded current chat view deliberately; returns message ids and exact reply command; raw trace remains preserved"
+        },
+        {
+          "name": "channels",
+          "description": "read-whatsapp-chat-recent jid - same bounded current chat view with a forgiving one-arg name"
+        },
+        {
+          "name": "channels",
+          "description": "send-whatsapp message - send to current primary WhatsApp route; message body only, no jid/id/WHATSAPP: prefix"
+        },
+        {
+          "name": "channels",
+          "description": "send-primary-operator message - send to the configured primary operator override route; message body only, no jid/id/WHATSAPP: prefix"
+        },
+        {
+          "name": "channels",
+          "description": "reply-whatsapp-to-message jid message-id message - quoted reply to a specific message id from read-whatsapp-chat"
+        },
+        {
+          "name": "channels",
+          "description": "react-whatsapp-message jid message-id emoji, unreact-whatsapp-message jid message-id"
+        },
+        {
+          "name": "channels",
+          "description": "edit-whatsapp-message message-id message, delete-whatsapp-message message-id - guarded: Omega-sent messages only"
+        },
+        {
+          "name": "whatsapp",
+          "description": "Use read-whatsapp-chat before replying/reacting/editing/deleting so message ids are known and checked."
+        },
+        {
+          "name": "channels",
+          "description": "send-family message - alias for current primary WhatsApp route"
+        },
+        {
+          "name": "channels",
+          "description": "send-whatsapp-base64 payload, send-primary-operator-base64 payload - robust multiline sends"
+        },
+        {
+          "name": "channels",
+          "description": "send-whatsapp-to jid message and send-whatsapp-to-base64 jid payload require a raw known/current jid; stale primary aliases fail closed"
+        },
+        {
+          "name": "channels",
+          "description": "send-file-caption path caption sends a file/image to the current primary/control route; use the exact generated path returned by IMAGE-GENERATED"
+        },
+        {
+          "name": "channels",
+          "description": "reply-whatsapp-to-message-base64 jid message-id payload - robust multiline specific sends"
+        },
+        {
+          "name": "channels",
+          "description": "edit-whatsapp-message-base64 message-id payload - robust multiline edit for Omega-sent messages only"
+        },
+        {
+          "name": "channels",
+          "description": "send-family-file path, send-whatsapp-file-caption path caption - current WhatsApp route file sends"
+        },
+        {
+          "name": "channels",
+          "description": "send-whatsapp-file-caption-to jid path caption sends a file/image to a specific different WhatsApp chat; jid is route metadata only, never caption/body text"
+        },
+        {
+          "name": "channels",
+          "description": "mark-whatsapp-read jid, mark-whatsapp-unread jid, set-whatsapp-primary jid"
+        },
+        {
+          "name": "channels",
+          "description": "read-whatsapp-chat-full jid - expanded debugging/recovery read; prefer bounded read-whatsapp-chat first"
+        },
+        {
+          "name": "channels",
+          "description": "send-whatsapp-mention phone message, send-whatsapp-mention-to jid phone message"
+        },
+        {
+          "name": "channels",
+          "description": "send-whatsapp-file-to jid path; reply-whatsapp-file-to jid path; reply-whatsapp-file-caption-to jid path caption"
+        },
+        {
+          "name": "channels",
+          "description": "reply-whatsapp-to-base64 jid payload - robust multiline deliberate reply gesture"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "code",
+      "source": "platform/modules/code/catalog.metta",
+      "source_sha256": "4085461952d09e81a78e08ec33c54ce54845a45ea366abfcc606ede49f9ab9f7",
+      "catalogues": [
+        "Code (on a goal you hold): code-repos | code-open g_id repo | code-read path | code-search text | code-replace path old ==> new | code-exec command | code-changes | code-check | code-runs - | code-verifications - | code-output run_id 0 | code-diagnostics path | code-create path content | code-move from to | code-remove path"
+      ],
+      "help": [
+        {
+          "name": "code-repos",
+          "description": "code-repos - the code repositories you can open"
+        },
+        {
+          "name": "code-open",
+          "description": "code-open g_id synthetic - open an isolated workspace of a repository for a goal you have claimed"
+        },
+        {
+          "name": "code-tools",
+          "description": "code-tools - the runtimes (python, PeTTa) available to run in your workspace"
+        },
+        {
+          "name": "code-read",
+          "description": "code-read calculator.py - read a file in your workspace; edits are made against what you last read"
+        },
+        {
+          "name": "code-search",
+          "description": "code-search def add - find text across the workspace"
+        },
+        {
+          "name": "code-replace",
+          "description": "code-replace calculator.py return a - b ==> return a + b - replace exact text in a file you have read; needs a person's approval"
+        },
+        {
+          "name": "code-exec",
+          "description": "code-exec /usr/bin/python3 test_calculator.py - run a command on exactly your current version; needs approval"
+        },
+        {
+          "name": "code-status",
+          "description": "code-status - your workspace version and your last run"
+        },
+        {
+          "name": "code-changes",
+          "description": "code-changes - the diff of your workspace against where it started"
+        },
+        {
+          "name": "code-check",
+          "description": "code-check - record your last run as evidence for the goal; needs approval"
+        },
+        {
+          "name": "code-runs",
+          "description": "code-runs - : five runs on your open workspace; continue with exact next_cursor; history is not liveness"
+        },
+        {
+          "name": "code-verifications",
+          "description": "code-verifications - : five verification records with current/stale currency; continue with next_cursor"
+        },
+        {
+          "name": "code-output",
+          "description": "code-output run_id 0 : at most 1024 bytes; base64 is exact; follow byte cursor; live eof is not complete; stop at readable_bytes if truncated"
+        },
+        {
+          "name": "code-diagnostics",
+          "description": "code-diagnostics file.metta : structural delimiter warnings for the version last read; no evaluation or semantic validation"
+        },
+        {
+          "name": "code-create",
+          "description": "code-create path content - create a new candidate file if absent; needs exact approval"
+        },
+        {
+          "name": "code-move",
+          "description": "code-move source target - atomically move a text file you have read to an absent destination; needs approval"
+        },
+        {
+          "name": "code-remove",
+          "description": "code-remove path - remove a file you have read from the candidate; needs approval"
+        },
+        {
+          "name": "code-git",
+          "description": "code-git observe registered-source branch and pinned snapshot base; no checkout or staging"
+        },
+        {
+          "name": "code-review",
+          "description": "code-review base or checkpoint ID: freeze current saved source to target restore hunks"
+        },
+        {
+          "name": "code-hunks",
+          "description": "code-hunks review_id 0: five hunk IDs, exact cursor and current or stale currency"
+        },
+        {
+          "name": "code-hunk-bytes",
+          "description": "code-hunk-bytes review_id hunk_id before|after 0: at most1024 raw bytes as base64, follow byte cursor"
+        },
+        {
+          "name": "code-select",
+          "description": "code-select review_id hunk_id ...: restore only these frozen hunks; exact edit approval required, retry same command"
+        },
+        {
+          "name": "code-git-export",
+          "description": "code-git-export review/repair Commit message - export a reconstructed snapshot review branch, commit, bundle and patch; exact approval; no publication"
+        },
+        {
+          "name": "code-git-export-state",
+          "description": "code-git-export-state gx_id - inspect exact preserved artifacts and source currency; original history is not included"
+        },
+        {
+          "name": "code-git-patch",
+          "description": "code-git-patch gx_id 0 - page at most1024 patch bytes, base64 and cursor preserved"
+        },
+        {
+          "name": "code-merge-preview",
+          "description": "Preview saved-source three-way merge from base and incoming checkpoint IDs"
+        },
+        {
+          "name": "code-merge-files",
+          "description": "Inspect five frozen merge file/conflict records from cursor"
+        },
+        {
+          "name": "code-merge-bytes",
+          "description": "Inspect at most1024 exact bytes from base, ours, incoming or merged side"
+        },
+        {
+          "name": "code-merge-apply",
+          "description": "Apply frozen merge with explicit JSON conflict choices and exact approval"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "codex_code",
+      "source": "platform/modules/codex_code/catalog.metta",
+      "source_sha256": "991eb46ec8d4752aa2bb64264db2b551a71b496217f992daf96f8e6362935c06",
+      "catalogues": [
+        "Codex coding organ: codex-code-status, codex-code-atoms, codex-code-containment-check, codex-code task, codex-code-readonly task, async codex-code-start task, codex-code-readonly-start task, codex-code-jobs, codex-code-job-status job-id, codex-code-result job-id, codex-code-cancel job-id, codex-code-events, codex-code-last-trace"
+      ],
+      "help": [
+        {
+          "name": "codex-code",
+          "description": "codex-code task - ask Codex CLI with OpenRouter/Qwen3-Coder-Next to work in the OmegaClaw-Core repo; it may edit files in the repo and returns a traced final message"
+        },
+        {
+          "name": "codex-code",
+          "description": "codex-code-readonly task - ask the same coding organ to inspect/review without writing; use before edits when uncertainty is high"
+        },
+        {
+          "name": "codex-code",
+          "description": "codex-code-start task - start an edit-mode Codex job asynchronously; returns a job id immediately so the loop can continue"
+        },
+        {
+          "name": "codex-code",
+          "description": "codex-code-readonly-start task - start a readonly Codex inspection asynchronously; returns a job id immediately so the loop can continue"
+        },
+        {
+          "name": "codex-code",
+          "description": "codex-code-jobs - list recent async Codex jobs and their states"
+        },
+        {
+          "name": "codex-code",
+          "description": "codex-code-job-status job-id - inspect one async Codex job state"
+        },
+        {
+          "name": "codex-code",
+          "description": "codex-code-result job-id - read the exact result file for a completed async Codex job"
+        },
+        {
+          "name": "codex-code",
+          "description": "codex-code-cancel job-id - ask the membrane to terminate a running async Codex job"
+        },
+        {
+          "name": "codex-code",
+          "description": "codex-code-events - read recent CodexJobStarted/CodexJobComplete event atoms"
+        },
+        {
+          "name": "codex-code",
+          "description": "codex-code-status - check CLI/profile/key readiness without exposing secrets"
+        },
+        {
+          "name": "codex-code",
+          "description": "codex-code-atoms - return symbolic atoms for containment mode, sandbox state, model, profile, working directory, and trace path"
+        },
+        {
+          "name": "codex-code",
+          "description": "codex-code-containment-check - report whether Codex is currently relying on the Codex CLI sandbox or the surrounding VM boundary"
+        },
+        {
+          "name": "codex-code",
+          "description": "codex-code-last-trace - read the most recent coding organ trace"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "gameboy",
+      "source": "platform/modules/gameboy/catalog.metta",
+      "source_sha256": "2bc3f2478bbe07940aa5b6a11ba1770f99cc87d63d8ed80d2fac54a6091255ad",
+      "catalogues": [
+        "Game Boy simulation: gb-status, gb-load game, gb-observe, gb-step buttons frames, gb-screenshot, gb-save-state name, gb-load-state name, gb-stop, gb-last-trace"
+      ],
+      "help": [
+        {
+          "name": "gameboy",
+          "description": "gb-status, gb-load game, gb-observe, gb-step buttons frames, gb-screenshot, gb-save-state name, gb-load-state name, gb-stop, gb-last-trace"
+        },
+        {
+          "name": "gameboy",
+          "description": "ROMs are private runtime artifacts. Put your own dump at memory/runtime/gameboy/roms/pokemon-yellow.gb or use gb-load demo for the bundled PyBoy demo ROM."
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "health_glucose",
+      "source": "platform/modules/health_glucose/catalog.metta",
+      "source_sha256": "981f7d7f428ae8214145ab697d267b560b823745c3b68a3da42c7cccc153de65",
+      "catalogues": [
+        "Health app: glucose-app-status, observe-glucose person, glucose-history person count, glucose-rings person"
+      ],
+      "help": [
+        {
+          "name": "health",
+          "description": "Health data is high-stakes; preserve uncertainty and privacy."
+        },
+        {
+          "name": "health",
+          "description": "glucose-app-status; observe-glucose person; glucose-history person count; set-glucose-watch person low high stale_minutes channel note"
+        },
+        {
+          "name": "health",
+          "description": "glucose-watch-status person; clear-glucose-watch person; glucose-rings person"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "hive",
+      "source": "platform/modules/hive/catalog.metta",
+      "source_sha256": "ab1fc09adba9fe675e05c76e972975d20bd634ff001016f8a5f175125447b431",
+      "catalogues": [
+        "Hive commons: hive-publish statement f c | hive-query pattern | hive-belief statement",
+        "Hive sharing: hive-share-request dot space minutes reason | hive-share-grant sh_id | hive-shared sh_id filter | hive-exhibit dots minutes title | text"
+      ],
+      "help": [
+        {
+          "name": "hive-publish",
+          "description": "hive-publish (--> sky blue) 0.9 0.8 - share a belief with your swarm (f = how true, 0 < c < 1 = how confident)"
+        },
+        {
+          "name": "hive-query",
+          "description": "hive-query (Current (--> sky $x) $tv $stamp) - search your swarm's shared beliefs"
+        },
+        {
+          "name": "hive-belief",
+          "description": "hive-belief (--> sky blue) - a shared belief with its truth value and sources"
+        },
+        {
+          "name": "hive-goals",
+          "description": "hive-goals - open goals in your swarm, highest priority first"
+        },
+        {
+          "name": "hive-goal-claim",
+          "description": "hive-goal-claim g_id - take a goal so others do not duplicate the work"
+        },
+        {
+          "name": "hive-goal-done",
+          "description": "hive-goal-done g_id result - finish a goal you claimed and report what you did"
+        },
+        {
+          "name": "hive-goal-fail",
+          "description": "hive-goal-fail g_id reason - give up a goal you claimed and say why"
+        },
+        {
+          "name": "hive-goal-create",
+          "description": "hive-goal-create parent_or_none title - post a goal; use a parent id to split work into subgoals"
+        },
+        {
+          "name": "hive-shares",
+          "description": "hive-shares - list shares you own or can read, with when they expire"
+        },
+        {
+          "name": "hive-share-request",
+          "description": "hive-share-request Lyra world 30 checking your orbit notes - ask a dot to let you read one of its spaces for a while"
+        },
+        {
+          "name": "hive-share-grant",
+          "description": "hive-share-grant sh_id - grant a share request; access ends by itself when the time is up"
+        },
+        {
+          "name": "hive-share-deny",
+          "description": "hive-share-deny sh_id reason - decline a share request and say why"
+        },
+        {
+          "name": "hive-share-offer",
+          "description": "hive-share-offer Lyra world 30 - let a dot read one of your spaces for a while without being asked"
+        },
+        {
+          "name": "hive-shared",
+          "description": "hive-shared sh_id orbit - read a space or exhibit shared with you; * for everything"
+        },
+        {
+          "name": "hive-exhibit",
+          "description": "hive-exhibit Lyra,Orion 60 Orbit theory | the text and atoms - show a large piece of work to dots (or swarm) for a while instead of long messages"
+        },
+        {
+          "name": "hive-exhibit-space",
+          "description": "hive-exhibit-space swarm world 60 orbit - show the matching atoms of one of your spaces as a snapshot"
+        },
+        {
+          "name": "hive-lifecycle-start",
+          "description": "hive-lifecycle-start lease - start the member a person leased to you for its assigned task (once)"
+        },
+        {
+          "name": "hive-lifecycle-stop",
+          "description": "hive-lifecycle-stop lease - stop that member; says whether the stop was observed"
+        },
+        {
+          "name": "hive-lifecycle-status",
+          "description": "hive-lifecycle-status lease - the leased member's task status, budget and lease validity"
+        },
+        {
+          "name": "hive-request",
+          "description": "hive-request {json} - ask another swarm for work (kind, to_swarm, title, from_goal, subject, constraints, budget_usd)"
+        },
+        {
+          "name": "hive-artifact-create",
+          "description": "hive-artifact-create {\\\"kind\\\":\\\"plan\\\",\\\"title\\\":\\\"...\\\"} - start a versioned artifact your swarm owns"
+        },
+        {
+          "name": "hive-revision",
+          "description": "hive-revision ar_id {\\\"body\\\":\\\"...\\\",\\\"parent\\\":1} - add an immutable revision (parent = the latest number, or null); body may be a JSON object, stored as its JSON text"
+        },
+        {
+          "name": "hive-revision-read",
+          "description": "hive-revision-read ar_id 2 - read exactly that revision (owners, or reviewers holding a request on it)"
+        },
+        {
+          "name": "hive-finding",
+          "description": "hive-finding {request_id, mandate: {id, version}, target: {step: s1}, severity: blocker|major|minor|note, recommendation} - ONE JSON object with double-quoted keys; one finding per issue; cite evidence ids in the recommendation text (evidence_refs only if the request exhibited references); returns f_... for hive-review-complete"
+        },
+        {
+          "name": "hive-review-complete",
+          "description": "hive-review-complete rq_id {recommendation: proceed|revise|hold|unresolved, rationale: text up to 4000 chars, finding_ids:[...], coverage?:[up to 50 texts]} - the only way to finish a review. The request id is its own first argument, NOT inside the JSON; then ONE JSON object with double-quoted keys; finding_ids lists every finding you raised on THIS request ([] if none). Example: hive-review-complete rq_x {\\\"recommendation\\\":\\\"revise\\\",\\\"rationale\\\":\\\"...\\\",\\\"finding_ids\\\":[\\\"f_a\\\"]}"
+        },
+        {
+          "name": "hive-asset-put",
+          "description": "hive-asset-put path-in-files name - upload a file from your files/ folder to the hive as yourself; returns its sha256 for a manifest"
+        },
+        {
+          "name": "hive-asset-get",
+          "description": "hive-asset-get sha256 - | ar_id revision - fetch a file you may read (your swarm, or listed in a revision you can read) into files/assets/"
+        },
+        {
+          "name": "hive-review-receipts",
+          "description": "hive-review-receipts sha256:digest - coordinator: every specialist receipt on that exact subject, with QC decisions; keep dissent, never average it away"
+        },
+        {
+          "name": "hive-goal-review",
+          "description": "hive-goal-review g_id accept|return notes - accept work submitted to you for review (it becomes done) or return it with what to change; you can never review your own work"
+        },
+        {
+          "name": "hive-rooms",
+          "description": "hive-rooms - the rooms (DMs, groups, channels) you are in"
+        },
+        {
+          "name": "hive-room-post",
+          "description": "hive-room-post r_id text - speak in one of your rooms; a plain reply already goes to the room you were addressed from; @Name reaches another mind"
+        },
+        {
+          "name": "hive-health",
+          "description": "hive-health - (health mind only) which minds have current problems, worst first, with the failing skill and result"
+        },
+        {
+          "name": "hive-shared-body",
+          "description": "hive-shared-body sh_id 1 - read a long share text in parts; each part says the next command; read one part per step; the text is complete only when you hold every part and the joined decoded text matches the sha256; %XX are escaped characters (%0A newline, %22 quote, %25 percent)"
+        },
+        {
+          "name": "hive-shared-page",
+          "description": "hive-shared-page sh_id 120 * - continue a share that was too long to show at once, from that atom"
+        },
+        {
+          "name": "hive-goal-get",
+          "description": "hive-goal-get g_id - read a goal, its assignee and the request it is bound to"
+        },
+        {
+          "name": "hive-goal-propose",
+          "description": "hive-goal-propose g_id {json} - finish a goal you claimed with a proposal bound to its request"
+        },
+        {
+          "name": "hive-goal-cancel-ack",
+          "description": "hive-goal-cancel-ack g_id - acknowledge that a cancelled goal has stopped"
+        },
+        {
+          "name": "hive-plan-return",
+          "description": "hive-plan-return rq_id ar_id n - holding planner: submit that stored revision with canonical findings and review receipts; preserves dissent, requires host validation and requester judgment"
+        },
+        {
+          "name": "hive-findings-read",
+          "description": "hive-findings-read - Read scoped canonical findings on an artifact, including responses, dispositions and history. Over 16000 characters is refused without partial output."
+        },
+        {
+          "name": "hive-plan-review-context",
+          "description": "hive-plan-review-context - Holding planner: read canonical review family and findings for this stored revision. Over 16000 characters is refused without partial output."
+        },
+        {
+          "name": "hive-finding-response",
+          "description": "hive-finding-response - Planner records its claim: {revision, stance, note}. This never closes the finding."
+        },
+        {
+          "name": "hive-finding-disposition",
+          "description": "hive-finding-disposition - Independent reviewer holding the matching live review records {request_id, revision, verdict?, applicability?}. Host checks identity and mandate."
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "home_assistant",
+      "source": "platform/modules/home_assistant/catalog.metta",
+      "source_sha256": "a0496780c26aa2fb63ba605f520d6e2626b65bb79c930486e6f2ba5cdd417f5f",
+      "catalogues": [
+        "Home Assistant body app: observe-house, observe-house-full, observe-room room, observe-device target, observe-house-affordances, use-house-affordance affordance target context, record-house-outcome action outcome note, house-action-log count"
+      ],
+      "help": [
+        {
+          "name": "house",
+          "description": "Home Assistant house affordances:"
+        },
+        {
+          "name": "house",
+          "description": "observe-house - compact whole-house summary with counts and small active sample"
+        },
+        {
+          "name": "house",
+          "description": "observe-house-full - full device dump when the compact view is insufficient"
+        },
+        {
+          "name": "house",
+          "description": "observe-room room - compact state for one room or area"
+        },
+        {
+          "name": "house",
+          "description": "observe-device target - inspect one device/entity"
+        },
+        {
+          "name": "house",
+          "description": "observe-house-affordances - list available house targets and actions"
+        },
+        {
+          "name": "house",
+          "description": "use-house-affordance affordance target context - change house state after sensing and reasoning"
+        },
+        {
+          "name": "house",
+          "description": "record-house-outcome action outcome note - record whether a physical action worked"
+        },
+        {
+          "name": "house",
+          "description": "house-action-log count - inspect recent full house action traces"
+        },
+        {
+          "name": "house",
+          "description": "Room-level affordances are efficient but affect the whole room; use only when room-wide intent is clear."
+        },
+        {
+          "name": "lights",
+          "description": "Light control is via Home Assistant house affordances."
+        },
+        {
+          "name": "lights",
+          "description": "Before action: observe-room room or observe-device entity, then use-house-affordance."
+        },
+        {
+          "name": "lights",
+          "description": "Kelvin/color temperature: use set-color-temperature, warm-light, cool-light, room-warm, room-cool, or room-set-color-temperature. Do not use turn-on to pass kelvin."
+        },
+        {
+          "name": "home",
+          "description": "Home control uses observe-house/observe-room/observe-device and use-house-affordance."
+        },
+        {
+          "name": "home-assistant",
+          "description": "Home Assistant control requires HOME_ASSISTANT_URL and HOME_ASSISTANT_TOKEN at runtime."
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "media_imagegen",
+      "source": "platform/modules/media_imagegen/catalog.metta",
+      "source_sha256": "b28fbf2eba239f7023a323f69d69d47fd0e074884c141c14d1e0c40d05f35fd1",
+      "catalogues": [
+        "Image generation: generate-image prompt, generate-image-quality prompt. Natural topics: imagegen, draw, make-image, generate-picture, picture, art."
+      ],
+      "help": [
+        {
+          "name": "media",
+          "description": "generate-image prompt; generate-image-quality prompt - use the configured media provider and return IMAGE-GENERATED path=... artifact_id=..."
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "media_videogen",
+      "source": "platform/modules/media_videogen/catalog.metta",
+      "source_sha256": "c1186befd8407e4d6b82b511571f1d5c7d75f1126b89a6aad8f9e0190b19ec3a",
+      "catalogues": [
+        "Video generation: generate-video prompt, video-config-status"
+      ],
+      "help": [
+        {
+          "name": "media",
+          "description": "generate-video prompt; video-config-status"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "omega_vm",
+      "source": "platform/modules/omega_vm/catalog.metta",
+      "source_sha256": "6919eff865ecffe36892d42bcdafe0b5aa4f3a9c062ac378c06ea38f2996fbb2",
+      "catalogues": [
+        "the agent VM: vm-status, vm-boot, vm-shell command, vm-last-trace"
+      ],
+      "help": [
+        {
+          "name": "vm",
+          "description": "vm-status, vm-boot, vm-shell command, vm-last-trace"
+        },
+        {
+          "name": "vm",
+          "description": "the agent VM is an ephemeral tiny Linux workspace-device. It is a tool/body surface, not the agent's mind."
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "publishing",
+      "source": "platform/modules/publishing/catalog.metta",
+      "source_sha256": "decce9b3652dc814d150a8d08f0c7c08959c7c03a292addf28e9d309833e0272",
+      "catalogues": [
+        "Publishing and web: artifact-id path, publish-artifact artifact shelf title, list-published-artifacts, write-web-page slug html, public-web-url slug"
+      ],
+      "help": [
+        {
+          "name": "web",
+          "description": "Web and publishing affordances:"
+        },
+        {
+          "name": "web",
+          "description": "write-web-page slug html, list-web-pages, public-web-url slug, webhost-status"
+        },
+        {
+          "name": "web",
+          "description": "artifact-id path, publish-artifact artifact_id_or_path shelf title, unpublish-artifact slug, list-published-artifacts"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "scheduler_reminders",
+      "source": "platform/modules/scheduler_reminders/catalog.metta",
+      "source_sha256": "7a9f1adf2bdf0c006302d75a1ee2830850ee4d0557309a9746e3c9858c61262d",
+      "catalogues": [
+        "Reminders: reminder-add name when note, reminder-list, reminder-cancel name reason, reminder-due"
+      ],
+      "help": [
+        {
+          "name": "reminders",
+          "description": "Reminder atoms are inspectable continuity hints, not hidden autonomy logic."
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "scratch_space",
+      "source": "platform/modules/scratch_space/catalog.metta",
+      "source_sha256": "7783b0ef33a4a2bb68e2fb2e6c537fcb78d8efffbb3b223f3bd494043b607c7a",
+      "catalogues": [
+        "Scratch working memory: scratch-status, scratch-add atom, scratch-add atom ttl, scratch-remove atom, scratch-touch atom, scratch-find pattern, scratch-examples pattern limit, scratch-all-with-ttl, scratch-count, scratch-pressure, scratch-gc, scratch-promote atom reason, promote-scratch atom reason"
+      ],
+      "help": [
+        {
+          "name": "scratch",
+          "description": "scratch-status - inspect whether the scratch working-memory organ is registered and how many draft atoms/TTL entries exist"
+        },
+        {
+          "name": "scratch",
+          "description": "scratch-add atom - put a provisional MeTTa atom in &scratch with default TTL"
+        },
+        {
+          "name": "scratch",
+          "description": "scratch-add atom ttl - put a provisional MeTTa atom in &scratch with explicit loop TTL"
+        },
+        {
+          "name": "scratch",
+          "description": "scratch-remove atom - remove a draft atom and its TTL/index entry"
+        },
+        {
+          "name": "scratch",
+          "description": "scratch-touch atom - reset a draft atom's TTL when it remains useful"
+        },
+        {
+          "name": "scratch",
+          "description": "scratch-find pattern - match provisional atoms in &scratch"
+        },
+        {
+          "name": "scratch",
+          "description": "scratch-examples pattern limit - inspect up to limit provisional atoms"
+        },
+        {
+          "name": "scratch",
+          "description": "scratch-all-with-ttl - list draft atoms together with remaining loop TTL"
+        },
+        {
+          "name": "scratch",
+          "description": "scratch-pressure - inspect scratch character pressure against the loop bound"
+        },
+        {
+          "name": "scratch",
+          "description": "scratch-gc - manually run one TTL decay/expiry pass"
+        },
+        {
+          "name": "scratch",
+          "description": "scratch-promote atom reason - deliberately copy a verified draft atom into &beliefs, remove it from &scratch, and trace the event"
+        },
+        {
+          "name": "scratch",
+          "description": "promote-scratch atom reason - alias for scratch-promote"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "sense_audio",
+      "source": "platform/modules/sense_audio/catalog.metta",
+      "source_sha256": "e6b92fd58ade2628448a0b44d55bc8cd3e22f4785b1035f2ba69eae23f87d1f5",
+      "catalogues": [
+        "Audio sense: observe-audio audio_id, inspect-audio audio_id question"
+      ],
+      "help": [
+        {
+          "name": "audio",
+          "description": "Audio affordances: observe-audio audio_id; inspect-audio audio_id question; audio-observation-log count"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "sense_router",
+      "source": "platform/modules/sense_router/catalog.metta",
+      "source_sha256": "5951b894bebc199f256d992bd895ec72eaad3dfd34b1b7c7c9ea58b6d4471b34",
+      "catalogues": [
+        "General observation: observe target routes to the chosen sense/app, e.g. gameboy, glucose Patient, whatsapp, webcam, house, image IMAGE_ID, or audio AUDIO_ID"
+      ],
+      "help": [
+        {
+          "name": "observe",
+          "description": "observe target - route to the appropriate sense/app without acting"
+        },
+        {
+          "name": "observe",
+          "description": "Ambiguous targets return OBSERVE-UNKNOWN-TARGET instead of guessing."
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "sense_vision",
+      "source": "platform/modules/sense_vision/catalog.metta",
+      "source_sha256": "b5d75378bf6412e82c91b6afcd7f742bb09f5219ea3d20b41744c79b8d06e766",
+      "catalogues": [
+        "Vision sense: observe-image image_id, inspect-image image_id question"
+      ],
+      "help": [
+        {
+          "name": "vision",
+          "description": "Vision affordances: inspect-image image_id question; observe-image image_id"
+        },
+        {
+          "name": "image",
+          "description": "Use inspect-image/observe-image for JPG/PNG/WebP/GIF instead of read-file"
+        },
+        {
+          "name": "vision",
+          "description": "media-observation-log count - inspect recent visual media observations"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "sense_webcam",
+      "source": "platform/modules/sense_webcam/catalog.metta",
+      "source_sha256": "43bb2fef440e0ed3a7ea15d2a524703906c1daf3fa15fd62864f0373f6121e6c",
+      "catalogues": [
+        "Webcam sense: webcam-status, capture-webcam camera, inspect-webcam question"
+      ],
+      "help": [
+        {
+          "name": "webcam",
+          "description": "Webcam affordances: inspect-webcam question; capture-webcam camera; webcam-status"
+        },
+        {
+          "name": "webcam",
+          "description": "webcam-observation-log count - inspect recent webcam observation traces"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "vm_policy",
+      "source": "platform/modules/vm_policy/catalog.metta",
+      "source_sha256": "61d7169ce3e6117846f13cb770d4722ef2956b6f87677fdf565753dfc6ea882a",
+      "catalogues": [
+        "VM policy immune organ: vm-policy-status, vm-policy-exits, vm-policy-atoms, vm-policy-connections, vm-policy-metrics, vm-policy-audit, vm-policy-enforcement-plan, vm-policy-maintenance-window, vm-policy-record-exit, vm-policy-exit-history, vm-policy-exit-summary, vm-policy-last-trace"
+      ],
+      "help": [
+        {
+          "name": "vm-policy",
+          "description": "vm-policy-status - inspect the VM containment boundary: mounts, privileged groups, firewall tools, active listeners, and enforcement mode"
+        },
+        {
+          "name": "vm-policy",
+          "description": "vm-policy-exits - list named external exits the agent may need: model, messaging, house, webhost, github, packages, search"
+        },
+        {
+          "name": "vm-policy",
+          "description": "vm-policy-atoms - return clean MeTTa atoms for VM exits, risks, mode, and boundary facts"
+        },
+        {
+          "name": "vm-policy",
+          "description": "vm-policy-connections - observe live VM network connections as MeTTa atoms"
+        },
+        {
+          "name": "vm-policy",
+          "description": "vm-policy-metrics - expose VM runtime metrics as MeTTa atoms"
+        },
+        {
+          "name": "vm-policy",
+          "description": "vm-policy-audit - return critical boundary risks and suggested next hardening steps without changing the system"
+        },
+        {
+          "name": "vm-policy",
+          "description": "vm-policy-enforcement-plan - generate a cautious deny-by-default egress plan; review before applying outside this skill"
+        },
+        {
+          "name": "vm-policy",
+          "description": "vm-policy-maintenance-window service reason duration=10m - trace a requested temporary exit window without changing firewall state"
+        },
+        {
+          "name": "vm-policy",
+          "description": "vm-policy-record-exit service decision reason - record allowed/blocked/approved/rejected/temporary/observed exit evidence without changing firewall state"
+        },
+        {
+          "name": "vm-policy",
+          "description": "vm-policy-exit-history - return recent exit decisions and maintenance windows as MeTTa atoms"
+        },
+        {
+          "name": "vm-policy",
+          "description": "vm-policy-exit-summary - summarize recent exit decision evidence as MeTTa atoms"
+        },
+        {
+          "name": "vm-policy",
+          "description": "vm-policy-last-trace - read recent typed VM policy trace records"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    },
+    {
+      "module": "web_search",
+      "source": "platform/modules/web_search/catalog.metta",
+      "source_sha256": "46155eef4a51448e28e8cf7ea59a5f8fe2882324a5615cd5e4e9e2718ff8b6a6",
+      "catalogues": [
+        "Web search: web-search query for current external information"
+      ],
+      "help": [
+        {
+          "name": "web-search",
+          "description": "web-search query - ask the configured external search membrane for current information"
+        },
+        {
+          "name": "search",
+          "description": "search query - legacy alias for web-search query"
+        }
+      ],
+      "availability": "source-defined; runtime registration and authority unverified"
+    }
+  ],
+  "app_routes": [
+    {
+      "method": "POST",
+      "path": "/api/agent/code/capability",
+      "handler": "code_capability_agent",
+      "line": 335
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/approvals/{approval_id}",
+      "handler": "agent_approval",
+      "line": 349
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/approvals/{approval_id}/redeem",
+      "handler": "agent_approval_redeem",
+      "line": 364
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/code/repositories",
+      "handler": "code_repositories_for_minds",
+      "line": 481
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/updates",
+      "handler": "agent_updates",
+      "line": 950
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/updates/apply",
+      "handler": "agent_updates_apply",
+      "line": 958
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/rooms",
+      "handler": "agent_rooms",
+      "line": 1130
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/rooms/{room_id}/messages",
+      "handler": "agent_room_post",
+      "line": 1134
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/publish",
+      "handler": "agent_publish",
+      "line": 1326
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/query",
+      "handler": "agent_query",
+      "line": 1334
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/belief",
+      "handler": "agent_belief",
+      "line": 1340
+    },
+    {
+      "method": "GET",
+      "path": "/api/flows/example",
+      "handler": "flow_example",
+      "line": 1450
+    },
+    {
+      "method": "GET",
+      "path": "/api/flows/templates",
+      "handler": "flow_templates",
+      "line": 1456
+    },
+    {
+      "method": "POST",
+      "path": "/api/flows/validate",
+      "handler": "flow_validate",
+      "line": 1462
+    },
+    {
+      "method": "GET",
+      "path": "/api/flows/{artifact_id}/revisions/{n}",
+      "handler": "flow_read",
+      "line": 1483
+    },
+    {
+      "method": "PUT",
+      "path": "/api/flows/{artifact_id}/revisions/{n}/layout",
+      "handler": "flow_layout",
+      "line": 1487
+    },
+    {
+      "method": "POST",
+      "path": "/api/flows/{artifact_id}/revisions/{n}/adopt",
+      "handler": "flow_adopt",
+      "line": 1491
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/flows/{artifact_id}/revisions/{n}/adoption",
+      "handler": "flow_revoke",
+      "line": 1495
+    },
+    {
+      "method": "POST",
+      "path": "/api/flows/{artifact_id}/revisions/{n}/runs",
+      "handler": "flow_start",
+      "line": 1502
+    },
+    {
+      "method": "GET",
+      "path": "/api/flow-runs/{run_id}",
+      "handler": "flow_run",
+      "line": 1509
+    },
+    {
+      "method": "POST",
+      "path": "/api/flow-runs/{run_id}/cancel",
+      "handler": "flow_cancel",
+      "line": 1513
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/goals/{goal_id}/review",
+      "handler": "agent_review_goal",
+      "line": 1549
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/health",
+      "handler": "agent_health_overview",
+      "line": 1657
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/authorize",
+      "handler": "authorize",
+      "line": 1670
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/trace",
+      "handler": "agent_trace",
+      "line": 1676
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/control",
+      "handler": "agent_control",
+      "line": 1681
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/inbox",
+      "handler": "agent_inbox",
+      "line": 1686
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/messages",
+      "handler": "agent_message",
+      "line": 1691
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/goals",
+      "handler": "agent_goals",
+      "line": 1697
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/goals",
+      "handler": "agent_create_goal",
+      "line": 1704
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/goals/{goal_id}/claim",
+      "handler": "agent_claim",
+      "line": 1713
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/goals/{goal_id}/heartbeat",
+      "handler": "agent_goal_heartbeat",
+      "line": 1718
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/goals/{goal_id}/result",
+      "handler": "agent_result",
+      "line": 1722
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/goals/{goal_id}",
+      "handler": "agent_goal",
+      "line": 1730
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/goals/{goal_id}/cancel-ack",
+      "handler": "agent_goal_cancel_ack",
+      "line": 1734
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/shares",
+      "handler": "agent_shares",
+      "line": 1740
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/shares/request",
+      "handler": "agent_share_request",
+      "line": 1744
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/shares/offer",
+      "handler": "agent_share_offer",
+      "line": 1750
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/shares/{share_id}/grant",
+      "handler": "agent_share_grant",
+      "line": 1756
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/shares/{share_id}/deny",
+      "handler": "agent_share_deny",
+      "line": 1761
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/shares/{share_id}/revoke",
+      "handler": "agent_share_revoke",
+      "line": 1766
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/shares/{share_id}/atoms",
+      "handler": "agent_share_read",
+      "line": 1770
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/exhibits",
+      "handler": "agent_exhibit",
+      "line": 1775
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/service-catalogue",
+      "handler": "agent_service_catalogue",
+      "line": 1937
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/services/{swarm_id}",
+      "handler": "agent_swarm_services",
+      "line": 1944
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/assets",
+      "handler": "agent_upload_asset",
+      "line": 2007
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/assets/{sha}",
+      "handler": "agent_download_asset",
+      "line": 2015
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/lifecycle/{action}",
+      "handler": "agent_lifecycle",
+      "line": 2039
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/connections",
+      "handler": "agent_connections",
+      "line": 2080
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/review-receipts",
+      "handler": "agent_review_receipts",
+      "line": 2085
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/requests",
+      "handler": "agent_create_request",
+      "line": 2090
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/requests/{request_id}",
+      "handler": "agent_read_request",
+      "line": 2094
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/requests/{request_id}/review-context",
+      "handler": "agent_plan_review_context",
+      "line": 2098
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/requests/{request_id}/cancel",
+      "handler": "agent_cancel_request",
+      "line": 2102
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/artifacts",
+      "handler": "agent_create_artifact",
+      "line": 2116
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/artifacts/{artifact_id}/revisions",
+      "handler": "agent_add_revision",
+      "line": 2120
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/artifacts/{artifact_id}/revisions/{n}",
+      "handler": "agent_read_revision",
+      "line": 2124
+    },
+    {
+      "method": "GET",
+      "path": "/api/agent/artifacts/{artifact_id}/findings",
+      "handler": "agent_findings",
+      "line": 2128
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/requests/{request_id}/review-complete",
+      "handler": "agent_review_complete",
+      "line": 2132
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/findings",
+      "handler": "agent_raise_finding",
+      "line": 2136
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/findings/{finding_id}/response",
+      "handler": "agent_finding_response",
+      "line": 2140
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/findings/{finding_id}/disposition",
+      "handler": "agent_finding_disposition",
+      "line": 2144
+    },
+    {
+      "method": "POST",
+      "path": "/api/agent/programs/{program_id}/act",
+      "handler": "agent_program_act",
+      "line": 2148
+    }
+  ],
+  "source_commit": null
+}

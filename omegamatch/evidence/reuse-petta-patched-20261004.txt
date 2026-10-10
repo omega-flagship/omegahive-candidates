@@ -1,0 +1,119 @@
+[33m--> metta sexpr -->
+[36m(Need need-code csv-to-table Csv Table)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Need need-planner planning Goal Plan)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Need incompatible csv-to-table Csv Database)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Offer offer-code code:synthetic csv-to-table Csv Table (Workspace synthetic/csv.py tree-v1 parse_rows))
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Offer offer-planner swarm:synthetic-planner planning Goal Plan (Service planning service-v1))
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta function -->
+[36m(= (reuse $need)
+   (match &self (Need $need $cap $in $out)
+      (match &self (Offer $offer $provider $cap $in $out $location)
+         (ReuseCandidate $need $offer $provider $location))))
+[33m--> prolog clause -->
+[32mreuse(A, ['ReuseCandidate', A, B, C, D]) :-
+    match('&self',
+          ['Need', A, E, F, G],
+          ['ReuseCandidate', A, B, C, D],
+          ['ReuseCandidate', A, B, C, D]),
+    match('&self',
+          ['Offer', B, C, E, F, G, D],
+          ['ReuseCandidate', A, B, C, D],
+          ['ReuseCandidate', A, B, C, D]).
+[33m^^^^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta runnable  -->
+[36m!(test (collapse (reuse need-code))
+       ((ReuseCandidate need-code offer-code code:synthetic
+          (Workspace synthetic/csv.py tree-v1 parse_rows))))
+[33m-->  prolog goal  -->[35m 
+:- findall(A,
+           ( findall(B,
+                     findall(C, reuse('need-code', C), B),
+                     D),
+             (   D=[E]
+             ->  true
+             ;   E=D
+             ),
+             test(E,
+                  [ [ 'ReuseCandidate',
+                      'need-code',
+                      'offer-code',
+                      'code:synthetic',
+                      ['Workspace', 'synthetic/csv.py', 'tree-v1', parse_rows]
+                    ]
+                  ],
+                  A)
+           ),
+           _).
+[33m^^^^^^^^^^^^^^^^^^^^^^^
+[0mis ((ReuseCandidate need-code offer-code code:synthetic (Workspace synthetic/csv.py tree-v1 parse_rows))), should ((ReuseCandidate need-code offer-code code:synthetic (Workspace synthetic/csv.py tree-v1 parse_rows))). ✅ 
+[33m--> metta runnable  -->
+[36m!(test (collapse (reuse need-planner))
+       ((ReuseCandidate need-planner offer-planner swarm:synthetic-planner
+          (Service planning service-v1))))
+[33m-->  prolog goal  -->[35m 
+:- findall(A,
+           ( findall(B,
+                     findall(C, reuse('need-planner', C), B),
+                     D),
+             (   D=[E]
+             ->  true
+             ;   E=D
+             ),
+             test(E,
+                  [ [ 'ReuseCandidate',
+                      'need-planner',
+                      'offer-planner',
+                      'swarm:synthetic-planner',
+                      ['Service', planning, 'service-v1']
+                    ]
+                  ],
+                  A)
+           ),
+           _).
+[33m^^^^^^^^^^^^^^^^^^^^^^^
+[0mis ((ReuseCandidate need-planner offer-planner swarm:synthetic-planner (Service planning service-v1))), should ((ReuseCandidate need-planner offer-planner swarm:synthetic-planner (Service planning service-v1))). ✅ 
+[33m--> metta runnable  -->
+[36m!(test (collapse (reuse incompatible)) ())
+[33m-->  prolog goal  -->[35m 
+:- findall(A,
+           ( findall(B,
+                     findall(C, reuse(incompatible, C), B),
+                     D),
+             (   D=[E]
+             ->  true
+             ;   E=D
+             ),
+             test(E, [], A)
+           ),
+           _).
+[33m^^^^^^^^^^^^^^^^^^^^^^^
+[0mis (), should (). ✅ 
+[33m--> metta runnable  -->
+[36m!(test (collapse (reuse absent)) ())
+[33m-->  prolog goal  -->[35m 
+:- findall(A,
+           ( findall(B,
+                     findall(C, reuse(absent, C), B),
+                     D),
+             (   D=[E]
+             ->  true
+             ;   E=D
+             ),
+             test(E, [], A)
+           ),
+           _).
+[33m^^^^^^^^^^^^^^^^^^^^^^^
+[0mis (), should (). ✅ 
+true
+true
+true
+true

@@ -1,0 +1,23 @@
+{
+  "id": "omegaatom",
+  "version": "0.1.0",
+  "provides": [
+    "evidence-envelope-validation",
+    "lineage-staleness",
+    "maintenance-proposals",
+    "append-staging",
+    "lineage-transition-deltas",
+    "lineage-query-projection",
+    "closed-query-page-packing"
+  ],
+  "consumes": [
+    "lib_hive-evidence-shapes",
+    "owner-supplied-scoped-snapshot"
+  ],
+  "effects": [],
+  "entrypoints": {
+    "library": "omegaatom"
+  },
+  "qualification": "L0-candidate",
+  "source_pins": "an owner workspace record (not included)"
+}

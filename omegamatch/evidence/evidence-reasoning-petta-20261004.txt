@@ -1,0 +1,276 @@
+[33m--> metta sexpr -->
+[36m(Need request-clean csv-to-table)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Need request-conflict csv-to-table)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Need request-unknown csv-to-table)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Need request-changed csv-to-table)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Requires request-clean offline)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Requires request-conflict header-handling)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Requires request-unknown capacity)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Requires request-changed offline)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Offer visible-code csv-to-table tree-v1)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Offer changed-code csv-to-table tree-v2)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Condition visible-code tree-v1 offline supported evidence-offline)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Condition visible-code tree-v1 header-handling supported evidence-success)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Condition visible-code tree-v1 header-handling contradicted evidence-adverse)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Condition changed-code tree-v1 offline supported old-tree-verification)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta sexpr -->
+[36m(Condition hidden-code tree-v1 offline supported hidden-evidence)
+[33m^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta function -->
+[36m(= (assess-condition $need $offer $tree $condition)
+   (let $facts
+      (collapse (match &self (Condition $offer $tree $condition $status $ref)
+         (ConditionAssessment $need $offer $tree $condition $status $ref)))
+      (if (== $facts ())
+          (ConditionAssessment $need $offer $tree $condition unknown no-record)
+          (superpose $facts))))
+[33m--> prolog clause -->
+[32m'assess-condition'(A, B, C, D, E) :-
+    F=G,
+    findall([ 'ConditionAssessment',
+              A,
+              B,
+              C,
+              D,
+              H,
+              I
+            ],
+            match('&self',
+                  ['Condition', B, C, D, H, I],
+                  [ 'ConditionAssessment',
+                    A,
+                    B,
+                    C,
+                    D,
+                    H,
+                    I
+                  ],
+                  [ 'ConditionAssessment',
+                    A,
+                    B,
+                    C,
+                    D,
+                    H,
+                    I
+                  ]),
+            G),
+    ==(F, [], J),
+    (   J==true
+    ->  E=['ConditionAssessment', A, B, C, D, unknown, 'no-record']
+    ;   superpose(F, E)
+    ).
+[33m^^^^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta function -->
+[36m(= (assess $need $offer)
+   (match &self (Need $need $capability)
+      (match &self (Offer $offer $capability $tree)
+         (match &self (Requires $need $condition)
+            (assess-condition $need $offer $tree $condition)))))
+[33m--> prolog clause -->
+[32massess(A, B, C) :-
+    match('&self', ['Need', A, D], C, C),
+    match('&self', ['Offer', B, D, E], C, C),
+    match('&self', ['Requires', A, F], C, C),
+    'assess-condition'(A, B, E, F, C).
+[33m^^^^^^^^^^^^^^^^^^^^^^
+[0m[33m--> metta runnable  -->
+[36m!(test (collapse (assess request-clean visible-code))
+       ((ConditionAssessment request-clean visible-code tree-v1 offline supported evidence-offline)))
+[33m-->  prolog goal  -->[35m 
+:- findall(A,
+           ( findall(B,
+                     findall(C,
+                             assess('request-clean', 'visible-code', C),
+                             B),
+                     D),
+             (   D=[E]
+             ->  true
+             ;   E=D
+             ),
+             test(E,
+                  [ [ 'ConditionAssessment',
+                      'request-clean',
+                      'visible-code',
+                      'tree-v1',
+                      offline,
+                      supported,
+                      'evidence-offline'
+                    ]
+                  ],
+                  A)
+           ),
+           _).
+[33m^^^^^^^^^^^^^^^^^^^^^^^
+[0mis ((ConditionAssessment request-clean visible-code tree-v1 offline supported evidence-offline)), should ((ConditionAssessment request-clean visible-code tree-v1 offline supported evidence-offline)). ✅ 
+[33m--> metta runnable  -->
+[36m!(test (collapse (assess request-conflict visible-code))
+       ((ConditionAssessment request-conflict visible-code tree-v1 header-handling supported evidence-success)
+        (ConditionAssessment request-conflict visible-code tree-v1 header-handling contradicted evidence-adverse)))
+[33m-->  prolog goal  -->[35m 
+:- findall(A,
+           ( findall(B,
+                     findall(C,
+                             assess('request-conflict', 'visible-code', C),
+                             B),
+                     D),
+             (   D=[E]
+             ->  true
+             ;   E=D
+             ),
+             test(E,
+                  [ [ 'ConditionAssessment',
+                      'request-conflict',
+                      'visible-code',
+                      'tree-v1',
+                      'header-handling',
+                      supported,
+                      'evidence-success'
+                    ],
+                    [ 'ConditionAssessment',
+                      'request-conflict',
+                      'visible-code',
+                      'tree-v1',
+                      'header-handling',
+                      contradicted,
+                      'evidence-adverse'
+                    ]
+                  ],
+                  A)
+           ),
+           _).
+[33m^^^^^^^^^^^^^^^^^^^^^^^
+[0mis ((ConditionAssessment request-conflict visible-code tree-v1 header-handling supported evidence-success) (ConditionAssessment request-conflict visible-code tree-v1 header-handling contradicted evidence-adverse)), should ((ConditionAssessment request-conflict visible-code tree-v1 header-handling supported evidence-success) (ConditionAssessment request-conflict visible-code tree-v1 header-handling contradicted evidence-adverse)). ✅ 
+[33m--> metta runnable  -->
+[36m!(test (collapse (assess request-unknown visible-code))
+       ((ConditionAssessment request-unknown visible-code tree-v1 capacity unknown no-record)))
+[33m-->  prolog goal  -->[35m 
+:- findall(A,
+           ( findall(B,
+                     findall(C,
+                             assess('request-unknown', 'visible-code', C),
+                             B),
+                     D),
+             (   D=[E]
+             ->  true
+             ;   E=D
+             ),
+             test(E,
+                  [ [ 'ConditionAssessment',
+                      'request-unknown',
+                      'visible-code',
+                      'tree-v1',
+                      capacity,
+                      unknown,
+                      'no-record'
+                    ]
+                  ],
+                  A)
+           ),
+           _).
+[33m^^^^^^^^^^^^^^^^^^^^^^^
+[0mis ((ConditionAssessment request-unknown visible-code tree-v1 capacity unknown no-record)), should ((ConditionAssessment request-unknown visible-code tree-v1 capacity unknown no-record)). ✅ 
+[33m--> metta runnable  -->
+[36m!(test (collapse (assess request-changed changed-code))
+       ((ConditionAssessment request-changed changed-code tree-v2 offline unknown no-record)))
+[33m-->  prolog goal  -->[35m 
+:- findall(A,
+           ( findall(B,
+                     findall(C,
+                             assess('request-changed', 'changed-code', C),
+                             B),
+                     D),
+             (   D=[E]
+             ->  true
+             ;   E=D
+             ),
+             test(E,
+                  [ [ 'ConditionAssessment',
+                      'request-changed',
+                      'changed-code',
+                      'tree-v2',
+                      offline,
+                      unknown,
+                      'no-record'
+                    ]
+                  ],
+                  A)
+           ),
+           _).
+[33m^^^^^^^^^^^^^^^^^^^^^^^
+[0mis ((ConditionAssessment request-changed changed-code tree-v2 offline unknown no-record)), should ((ConditionAssessment request-changed changed-code tree-v2 offline unknown no-record)). ✅ 
+[33m--> metta runnable  -->
+[36m!(test (collapse (assess request-clean hidden-code)) ())
+[33m-->  prolog goal  -->[35m 
+:- findall(A,
+           ( findall(B,
+                     findall(C,
+                             assess('request-clean', 'hidden-code', C),
+                             B),
+                     D),
+             (   D=[E]
+             ->  true
+             ;   E=D
+             ),
+             test(E, [], A)
+           ),
+           _).
+[33m^^^^^^^^^^^^^^^^^^^^^^^
+[0mis (), should (). ✅ 
+[33m--> metta runnable  -->
+[36m!(test (collapse (match &self (Offer visible-code database-migration $tree) $tree)) ())
+[33m-->  prolog goal  -->[35m 
+:- findall(A,
+           ( findall(B,
+                     findall(C,
+                             match('&self',
+                                   [ 'Offer',
+                                     'visible-code',
+                                     'database-migration',
+                                     C
+                                   ],
+                                   C,
+                                   C),
+                             B),
+                     D),
+             (   D=[E]
+             ->  true
+             ;   E=D
+             ),
+             test(E, [], A)
+           ),
+           _).
+[33m^^^^^^^^^^^^^^^^^^^^^^^
+[0mis (), should (). ✅ 
+true
+true
+true
+true
+true
+true

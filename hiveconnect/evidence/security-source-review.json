@@ -1,0 +1,17 @@
+{
+  "schema": "hiveconnect.source-review/0.1",
+  "utc": "2026-10-04T16:11:49.562919+00:00",
+  "scope": "read-only local source and owner deployment report; no live probe",
+  "local_platform_head": "b35b052ec8056fe5728646c094b46efc30eb23d4",
+  "owner_reported_live_commit": "4aad53d",
+  "deployment_report": "an owner workspace record (not included)",
+  "deployment_report_sha256": "978fc780eca849d8c2a8a4c197bc9ee6716d17bc3f0a62565904069cf6f1158b",
+  "mcp_source_sha256": "673dc4d245c8fcbf4ff09bbc25cc060e71f8bd80544e9e0a47f3d9f5ad9cac3b",
+  "mcp_matches_original_baseline": true,
+  "build_schema_present": false,
+  "seam_draft_sha256": "0c0409daf73edfe0ce5bb58d0c86ba31e048c37edff7db58b0dd4d558eef2806",
+  "case_spec_sha256": "d5b75dddd9d1e07dbc8e1c41c713cb31c8d659214345fa9e10645eab1ec787d3",
+  "host_cases_executed": 0,
+  "live_probe_performed": false,
+  "previous_client_receipt": "draft-r26-client-l0.json"
+}

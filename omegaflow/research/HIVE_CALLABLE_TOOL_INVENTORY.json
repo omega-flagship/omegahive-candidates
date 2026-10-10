@@ -1,0 +1,135 @@
+{
+  "observed_date": "2026-10-04",
+  "tools": [
+    {
+      "name": "mcp__hive__ack",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__ack(args: { event_id: string; note?: string; scope: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__artifact_get",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__artifact_get(args: { sha256: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__artifact_put",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__artifact_put(args: { name?: string; text: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__board",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__board(args: { scope: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__federation",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__federation(args: { scope: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__fetch",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__fetch(args: { limit?: number; scope: string; since?: number; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__finish",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__finish(args: { deliverables?: Array<{ name?: string; text: string; }>; message_id: string; outcome: \"completed\" | \"blocked\" | \"awaiting_instructions\"; scope: string; text: string; verification?: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__inbox",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__inbox(args: { scope: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__mailbox",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__mailbox(args: { scope: string; since?: number; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__message",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__message(args: { reply_to?: string; requires_response?: boolean; scope: string; steer?: boolean; text: string; to?: Array<string>; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__permits",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__permits(args: { scope: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__post",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__post(args: { artifacts?: Array<string>; body?: { [key: string]: unknown; }; key?: string; refs?: { [key: string]: string; }; scope: string; ttl?: number | null; type: \"proposal\" | \"evidence\" | \"request\" | \"review-commit\" | \"review-reveal\" | \"decision\" | \"promotion\" | \"retirement\" | \"receipt\" | \"cost\" | \"permit\" | \"execution\" | \"claim\" | \"release\" | \"block\" | \"unblock\" | \"refusal\" | \"import\" | \"admission\" | \"message\" | \"scope-create\" | \"scope-amend\" | \"seat-register\" | \"grant\" | \"peer-register\" | \"invite\" | \"invite-withdraw\" | \"redeem\" | \"consent\"; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__reply",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__reply(args: { message_id: string; requires_response?: boolean; scope: string; text: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__review_commit",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__review_commit(args: { request: string; scope: string; text: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__review_reveal",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__review_reveal(args: { commit: string; salt: string; scope: string; text: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__reviews",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__reviews(args: { request: string; scope: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__scopes",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__scopes(args: { [key: string]: unknown; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__search",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__search(args: { limit?: number; query: string; scope: string; sources?: Array<\"hive\" | \"artifact\" | \"git\">; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__wait",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__wait(args: {\n  // consumer id\n  consumer?: string;\n  scopes?: Array<string>;\n  standby?: boolean;\n}): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__hive__whoami",
+      "contract": "\n```ts\ndeclare const tools: { mcp__hive__whoami(args: { [key: string]: unknown; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__omegav2_team_memory__list_memory_proposals",
+      "contract": "\n```ts\ndeclare const tools: { mcp__omegav2_team_memory__list_memory_proposals(args: { status?: \"proposed\" | \"pending-review-authorization\" | \"accepted\" | \"rejected\"; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__omegav2_team_memory__list_superseded_memory",
+      "contract": "\n```ts\ndeclare const tools: { mcp__omegav2_team_memory__list_superseded_memory(args: { [key: string]: unknown; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__omegav2_team_memory__memory_status",
+      "contract": "\n```ts\ndeclare const tools: { mcp__omegav2_team_memory__memory_status(args: { [key: string]: unknown; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__omegav2_team_memory__open_memory",
+      "contract": "\n```ts\ndeclare const tools: { mcp__omegav2_team_memory__open_memory(args: { ids: Array<string>; includeNonAccepted?: boolean; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__omegav2_team_memory__propose_memory",
+      "contract": "\n```ts\ndeclare const tools: { mcp__omegav2_team_memory__propose_memory(args: { claimLabel: \"CLAIMED\" | \"UNKNOWN\"; factId: string; kind: string; proposalId: string; proposedAt: string; sourceAuthor: string; sourcePath: string; sourceSha256: string; subject: string; summary: string; supersedes?: string | null; validFrom: string; validTo?: string | null; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__omegav2_team_memory__search_memory",
+      "contract": "\n```ts\ndeclare const tools: { mcp__omegav2_team_memory__search_memory(args: { includeNonAccepted?: boolean; labels?: Array<\"CLAIMED\" | \"OBSERVED\" | \"VERIFIED\" | \"DECISION\" | \"UNKNOWN\">; limit?: number; query: string; }): Promise<CallToolResult>; };\n```"
+    },
+    {
+      "name": "mcp__omegav2_team_memory__temporal_memory",
+      "contract": "\n```ts\ndeclare const tools: { mcp__omegav2_team_memory__temporal_memory(args: { at: string; includeNonAccepted?: boolean; subject: string; }): Promise<CallToolResult>; };\n```"
+    }
+  ],
+  "read_probes": {
+    "signed_hive": [
+      "whoami",
+      "scopes",
+      "board",
+      "permits",
+      "federation",
+      "search"
+    ],
+    "team_memory": [
+      "memory_status",
+      "search_memory"
+    ]
+  },
+  "writes": "exposed contracts only; not exercised",
+  "local_omegahive": {
+    "auth_methods": 200,
+    "templates": 401,
+    "service_catalogue": 401
+  },
+  "identity_boundary": "signed-room Hive seat is not an OmegaHive mind; team memory is a separate frozen projection",
+  "request_scope": "OUT OF SCOPE for corrected request: separate connectors, not OmegaDot native tool availability"
+}

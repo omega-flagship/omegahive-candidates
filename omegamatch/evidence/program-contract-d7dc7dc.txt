@@ -1,0 +1,4 @@
+contract 0.1 (checker 0.1); 1 kinds, 0 relations, actions: none
+views valid in every stage: unfold, map, compare, detail
+ids stable across views (revision admission-candidate-v1, 1 items)
+COMPATIBLE with program contract 0.1

@@ -1,0 +1,493 @@
+{
+  "schema": "hiveconnect.conformance-plan/0.1",
+  "scope": "local OmegaDot MCP S3/S4 only",
+  "status": "specification_not_executed",
+  "schema_binding": "platform seam draft through r2.10; S3/S4 pending build",
+  "cases": [
+    {
+      "id": "HC01",
+      "name": "identity-existing",
+      "area": "identity",
+      "arrange_and_action": "Use a designated fixture member credential",
+      "assertion": "Identity matches that member and swarm; no new member created",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "initialize",
+        "hive_whoami"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC02",
+      "name": "identity-revoked",
+      "area": "identity",
+      "arrange_and_action": "Use invalid, expired and revoked disposable credentials",
+      "assertion": "Requests are refused without access or effects",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "initialize",
+        "hive_whoami"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC03",
+      "name": "invite-concurrent",
+      "area": "identity",
+      "arrange_and_action": "Redeem one disposable invitation concurrently",
+      "assertion": "At most one active identity created; losers do not retain authority",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "initialize",
+        "hive_whoami"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately",
+      "host_route": "existing disposable harness invitation redemption; no new S3 enrollment API"
+    },
+    {
+      "id": "HC04",
+      "name": "inventory-load",
+      "area": "discovery",
+      "arrange_and_action": "Discover fixture member capabilities",
+      "assertion": "Receipt binds boot/process, source and inventory freshness; callable is structural and does not establish provider, budget or successful execution. Dynamic flow-skill definitions carry registry_revision separately from boot-registered skills; fixed Flow tool set.",
+      "dependency": "S4",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_capabilities"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC05",
+      "name": "inventory-states",
+      "area": "discovery",
+      "arrange_and_action": "Compare declared, loaded, callable, denied and unavailable fixtures",
+      "assertion": "Configured/imported/callable/unknown and policy states stay distinct; no boot receipt means null inventory_revision and loaded_at, no-boot-receipt availability and all skills unknown.",
+      "dependency": "S4",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_capabilities"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC06",
+      "name": "inventory-private",
+      "area": "discovery",
+      "arrange_and_action": "Ask member A for member B or operator-only inventory",
+      "assertion": "Refuse or filter private resources; credentials never returned",
+      "dependency": "S4",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_capabilities"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC07",
+      "name": "query-scope",
+      "area": "query",
+      "arrange_and_action": "Query own, granted and ungranted fixture commons",
+      "assertion": "Only permitted scope returned; client cannot select another actor",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_evidence_query"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC08",
+      "name": "query-envelope",
+      "area": "query",
+      "arrange_and_action": "Query observed, derived and unknown-TV fixtures",
+      "assertion": "Host returns one validated Atom snapshot per granted scope with complete lineage closure, including nonmatching premises; pages split closure groups, at most 200 records, explicit completeness and terminal cursor markers. R2.6: host reuses Atom project_pages; include withdrawal controls and controls on controls; oversized complete group refuses the call, never partial lineage.",
+      "dependency": "Atom envelope",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_evidence_query"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC09",
+      "name": "query-repeated",
+      "area": "query",
+      "arrange_and_action": "Repeat an identical fixture query",
+      "assertion": "Evidence IDs stable; repeated reads do not add evidence or inflate confidence Cited evidence must be an exact stamp member; wildcard and pattern identities refused.",
+      "dependency": "Atom envelope",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_evidence_query"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC10",
+      "name": "result-data",
+      "area": "bound_result",
+      "arrange_and_action": "Finish a held bound goal with typed structured data",
+      "assertion": "Bound goal requires top-level binding_digest, current claimant and declared result schema; exact full-payload retry is idempotent, conflicting nested binding refused.",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_goal_get",
+        "hive_goal_result"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC11",
+      "name": "result-wrong-binding",
+      "area": "bound_result",
+      "arrange_and_action": "Change binding or submit as wrong assignee",
+      "assertion": "Refused; goal remains without unauthorized result",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_goal_get",
+        "hive_goal_result"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC12",
+      "name": "result-retry",
+      "area": "bound_result",
+      "arrange_and_action": "Retry identical then differing completed result",
+      "assertion": "Identical recovery succeeds without duplicate effect; differing payload refused",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_goal_get",
+        "hive_goal_result"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately",
+      "draft_fields": [
+        "goal_id",
+        "status",
+        "result",
+        "data",
+        "binding_digest"
+      ]
+    },
+    {
+      "id": "HC13",
+      "name": "heartbeat-holder",
+      "area": "lease",
+      "arrange_and_action": "Renew a valid held goal then renew as another member",
+      "assertion": "Heartbeat cannot reopen terminal work or extend source grant; effective deadline is minimum of source, requested and granted deadline.",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_goal_get",
+        "hive_goal_heartbeat",
+        "hive_goal_cancel_ack"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC14",
+      "name": "lease-deadline",
+      "area": "lease",
+      "arrange_and_action": "Advance fixture time across lease and hard deadline",
+      "assertion": "Matches internal expiry/reopen behaviour; hard deadline cannot be bypassed",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_goal_get",
+        "hive_goal_heartbeat",
+        "hive_goal_cancel_ack"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC15",
+      "name": "cancel-ack",
+      "area": "lease",
+      "arrange_and_action": "Cancel held goal, acknowledge and send late result",
+      "assertion": "Ack recorded; revoked exhibits denied; late result refused",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_goal_get",
+        "hive_goal_heartbeat",
+        "hive_goal_cancel_ack"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC16",
+      "name": "read-resource-scope",
+      "area": "resource",
+      "arrange_and_action": "Read own, granted and foreign exhibit/artifact fixtures",
+      "assertion": "Authenticate identity and grant before digest mismatch details; expected_digest required; no read creates derive/share authority.",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_exhibit_read",
+        "hive_artifact_read"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC17",
+      "name": "read-pages-digest",
+      "area": "resource",
+      "arrange_and_action": "Read paged exhibit and digest-addressed artifact",
+      "assertion": "Exact retained revision remains readable when latest changes; require_current optionally refuses stale; digest and cursor binding maintained across bounded pages and assets.",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_exhibit_read",
+        "hive_artifact_read"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC18",
+      "name": "read-revoked",
+      "area": "resource",
+      "arrange_and_action": "Revoke fixture grant after first page",
+      "assertion": "Revocation is rechecked on every page, asset and cached resource access; opaque cursor expires at 10 minutes or earlier grant expiry.",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_exhibit_read",
+        "hive_artifact_read"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC19",
+      "name": "publish-identity",
+      "area": "evidence",
+      "arrange_and_action": "Submit evidence with spoofed owner/scope",
+      "assertion": "Host issues evidence identity and authenticates publisher/scope; personal/health publication into S1 shared commons refused.",
+      "dependency": "S1 and S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_evidence_publish",
+        "hive_evidence_query"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC20",
+      "name": "publish-envelope",
+      "area": "evidence",
+      "arrange_and_action": "Submit malformed, derived and absent-TV envelopes",
+      "assertion": "Use accepted OmegaAtom 0.1 validator; unknown true omits f/c, null or truth plus unknown refused; host projects admitted premise closure; atomic batch add-as-data, stamp, envelope and aggregate. Host uses stage_append and lineage_delta; actor issues only under own evidence:write/token; canonical Atom and Learn hashes labelled separately.",
+      "dependency": "Atom envelope and S1",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_evidence_publish",
+        "hive_evidence_query"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC21",
+      "name": "publish-duplicate",
+      "area": "evidence",
+      "arrange_and_action": "Repeat source and submit overlapping evidence",
+      "assertion": "Canonical payload retry retains one host-issued stamp across restart; changed payload with same idempotency key conflicts; overlapping support is not independent; retraction and retraction-of-retraction preserve lineage.",
+      "dependency": "Atom envelope and S1",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_evidence_publish",
+        "hive_evidence_query"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC22",
+      "name": "planner-request",
+      "area": "planner",
+      "arrange_and_action": "Submit a synthetic versioned plan through declared route",
+      "assertion": "Typed service/swarm destination; request_id and goal_id returned; exact revision/digest bound and Planner result schema referenced. Required from_goal, title and idempotency_key; optional exact contract; retry creates no second receiving goal or budget allocation.",
+      "dependency": "Planner and S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_request",
+        "hive_goal_get",
+        "hive_goal_result"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately",
+      "kind": "plan-check",
+      "subject_fields": [
+        "artifact_id",
+        "revision",
+        "digest"
+      ]
+    },
+    {
+      "id": "HC23",
+      "name": "planner-return",
+      "area": "planner",
+      "arrange_and_action": "Read typed plan-check result",
+      "assertion": "Result preserves request/revision/digest and separates transport validation from semantic acceptance Findings include whole, scene/element and page targets bound to exact revision. Enabled validator is selected only by host-stored request binding.validate; reviewer context is read-only. Missing/disabled hook permits whole only; async timeout/exception refuses with validator_unavailable.",
+      "dependency": "Planner and S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_request",
+        "hive_goal_get",
+        "hive_goal_result"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately",
+      "kind": "plan-check",
+      "subject_fields": [
+        "artifact_id",
+        "revision",
+        "digest"
+      ]
+    },
+    {
+      "id": "HC24",
+      "name": "planner-stale",
+      "area": "planner",
+      "arrange_and_action": "Change plan revision before result returns",
+      "assertion": "Old result cannot promote or approve new revision",
+      "dependency": "Planner and S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_request",
+        "hive_goal_get",
+        "hive_goal_result"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately",
+      "kind": "plan-check",
+      "subject_fields": [
+        "artifact_id",
+        "revision",
+        "digest"
+      ]
+    },
+    {
+      "id": "HC25",
+      "name": "policy-parity",
+      "area": "policy",
+      "arrange_and_action": "Exercise same allowed/ask/denied fixture action via MCP and internal route",
+      "assertion": "Full actor, capability, resource, binding, grant, approval and effect policy context yields equivalent authority decisions over MCP and native route. Security regressions: later Never overrides earlier Always; equally specific ties are restrictive; high-risk standing Always refused by server.",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_capabilities",
+        "hive_request",
+        "hive_evidence_query"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately",
+      "policy_mapping": "r2.4 native policy-name table; parity requires full context"
+    },
+    {
+      "id": "HC26",
+      "name": "approval-binding",
+      "area": "policy",
+      "arrange_and_action": "Alter connection, resource, capability or input after fixture approval",
+      "assertion": "Previous approval cannot authorize modified action Bundle import cannot grant authority or alter another mind; memory must be atoms only. Narrowed code capability cannot widen through input, and unknown fields refused.",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_capabilities",
+        "hive_request",
+        "hive_evidence_query"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC27",
+      "name": "read-only-no-effects",
+      "area": "policy",
+      "arrange_and_action": "Perform identity, discovery and query calls",
+      "assertion": "No publication, subscriptions, execution, approvals or new grants",
+      "dependency": "S3 and S4",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "hive_whoami",
+        "hive_capabilities",
+        "hive_evidence_query"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC28",
+      "name": "malformed-limits",
+      "area": "protocol",
+      "arrange_and_action": "Send malformed JSON, wrong argument types and oversized inputs",
+      "assertion": "Structured bounded refusals without partial action",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "initialize",
+        "tools/list",
+        "tools/call"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC29",
+      "name": "schema-drift",
+      "area": "protocol",
+      "arrange_and_action": "Use incompatible host/tool schema version or changed capability version",
+      "assertion": "Protocol 2025-06-18, server version 0.2.0 and tools/list result._meta x-hive-schema s3-r1 checked against build-published full schemas before dispatch.",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "initialize",
+        "tools/list",
+        "tools/call"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    },
+    {
+      "id": "HC30",
+      "name": "timeout-reconcile",
+      "area": "protocol",
+      "arrange_and_action": "Lose response after fixture mutating operation committed",
+      "assertion": "Client reconciles by request identity; no blind repeat or fabricated success",
+      "dependency": "S3",
+      "status": "bound_to_draft_not_host_executed",
+      "execution_receipt": null,
+      "draft_tools": [
+        "initialize",
+        "tools/list",
+        "tools/call"
+      ],
+      "acceptance_level_required": "L1 disposable host; later L2 separately"
+    }
+  ],
+  "draft_source": "an owner workspace record (not included)",
+  "draft_source_sha256": "0c0409daf73edfe0ce5bb58d0c86ba31e048c37edff7db58b0dd4d558eef2806"
+}

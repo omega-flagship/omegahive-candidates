@@ -1,0 +1,47 @@
+{
+  "schema": "omegalearn/package/1",
+  "id": "prerequisite-check",
+  "version": "1",
+  "kind": "skill",
+  "owner": "learn-owner",
+  "scope": "learn",
+  "source_events": [
+    "learn/prerequisite-development-1"
+  ],
+  "evidence_refs": [
+    "ev:source-owner:1"
+  ],
+  "provenance_refs": [],
+  "evaluation_refs": [],
+  "runtime": {
+    "requires": [
+      "omegalearn:0.1"
+    ],
+    "entrypoint": "prerequisites.check"
+  },
+  "rollback": null,
+  "content": {
+    "rules": [
+      "(= (prerequisite-for publish) approval)",
+      "(= (prerequisite-for publish) review)"
+    ],
+    "procedure": {
+      "id": "check-learned-prerequisites",
+      "steps": [
+        "validate-vocabulary",
+        "resolve-known-actions",
+        "subtract-available",
+        "return-sorted-missing"
+      ],
+      "prerequisites": [
+        "explicit-owner-episodes",
+        "current-source-eligibility",
+        "supported-action-vocabulary"
+      ]
+    },
+    "track_record_refs": [
+      "ev:source-owner:1"
+    ]
+  },
+  "digest": "66d961bf88ccbd883d2273cf4238dd81cc3bbf8e4fe538e1eb1a329a48283658"
+}

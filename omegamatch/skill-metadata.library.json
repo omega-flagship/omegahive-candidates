@@ -1,0 +1,34 @@
+{
+  "id": "omegamatch.skill-metadata",
+  "version": "0.1.1-candidate",
+  "deployment": "library",
+  "provides": [
+    "literal-skill-metadata",
+    "module-declaration-metadata",
+    "configured-loader-metadata"
+  ],
+  "consumes": [
+    "host-selected-source-text",
+    "host-selected-module-id"
+  ],
+  "effects": [],
+  "entrypoints": {
+    "python": "skill_metadata.py",
+    "functions": [
+      "project_skill_metadata",
+      "project_module_metadata",
+      "project_loader_selection"
+    ]
+  },
+  "source_pins": {
+    "skill_metadata.py": "c8b4a4c59621678b8b5c544b20ebd0149ebddae004e03ea44f0c4c5dc1a43ca0",
+    "tests/test_skill_metadata.py": "1d9903b079cd09e8665ec1831d8eae7365cc6bd90e41420e0d067162bc456fd7"
+  },
+  "registration": "candidate-not-registered; Root slot mapping pending",
+  "limitations": [
+    "not-runtime-load-proof",
+    "not-policy-authorization",
+    "syntactic-rule-heads-not-complete-typed-signatures",
+    "no-import-or-evaluation"
+  ]
+}

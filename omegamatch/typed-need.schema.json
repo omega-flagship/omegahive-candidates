@@ -1,0 +1,185 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "alternatives": {
+      "items": {
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "maxItems": 64,
+      "minItems": 0,
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "maxItems": 64,
+      "minItems": 0,
+      "type": "array"
+    },
+    "binding": {
+      "additionalProperties": false,
+      "properties": {
+        "catalogue_digest": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "need_digest": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "need_revision": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "policy_revision": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "request_id": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "rule_version": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        }
+      },
+      "required": [
+        "catalogue_digest",
+        "need_digest",
+        "need_revision",
+        "policy_revision",
+        "request_id",
+        "rule_version"
+      ],
+      "type": "object"
+    },
+    "hard_constraints": {
+      "maxProperties": 32,
+      "type": "object"
+    },
+    "inputs": {
+      "items": {
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "maxItems": 64,
+      "minItems": 1,
+      "type": "array"
+    },
+    "interpretation_status": {
+      "const": "proposed",
+      "type": "string"
+    },
+    "kind": {
+      "const": "typed-need",
+      "type": "string"
+    },
+    "operation": {
+      "maxLength": 512,
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "preferences": {
+      "maxProperties": 32,
+      "type": "object"
+    },
+    "prerequisites": {
+      "items": {
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "maxItems": 64,
+      "minItems": 0,
+      "type": "array"
+    },
+    "required_outputs": {
+      "items": {
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "maxItems": 64,
+      "minItems": 1,
+      "type": "array"
+    },
+    "source_refs": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "digest": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "id": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "digest"
+        ],
+        "type": "object"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "type": "array"
+    },
+    "unknowns": {
+      "items": {
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "maxItems": 64,
+      "minItems": 0,
+      "type": "array"
+    }
+  },
+  "required": [
+    "kind",
+    "binding",
+    "operation",
+    "inputs",
+    "required_outputs",
+    "hard_constraints",
+    "preferences",
+    "prerequisites",
+    "assumptions",
+    "unknowns",
+    "alternatives",
+    "source_refs",
+    "interpretation_status"
+  ],
+  "title": "OmegaMatch proposed typed need v0.1",
+  "type": "object"
+}

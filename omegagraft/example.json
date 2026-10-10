@@ -1,0 +1,874 @@
+{
+  "qualification": "synthetic L0 only",
+  "slots": [
+    {
+      "id": "lookup",
+      "family": "synthetic",
+      "input_schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "result_schema": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "suite": "lab.synthetic.lookup"
+    },
+    {
+      "id": "summary",
+      "family": "synthetic",
+      "input_schema": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "result_schema": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "suite": "lab.synthetic.summary"
+    }
+  ],
+  "manifests": [
+    {
+      "schema": "omegagraft-plug/0.1",
+      "id": "old",
+      "version": "1.0",
+      "provides": [
+        {
+          "slot": "lookup",
+          "contract": "a14df3c73261a4dee7df91c4e068d837d83e6cc4e684e5b48978ab290b0af869"
+        }
+      ],
+      "consumes": [],
+      "effects": [],
+      "entrypoints": {
+        "library": "synthetic.module"
+      },
+      "source_pins": {
+        "synthetic.py": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "licence": "MIT",
+      "adaptor": false
+    },
+    {
+      "schema": "omegagraft-plug/0.1",
+      "id": "backup",
+      "version": "1.0",
+      "provides": [
+        {
+          "slot": "lookup",
+          "contract": "a14df3c73261a4dee7df91c4e068d837d83e6cc4e684e5b48978ab290b0af869"
+        }
+      ],
+      "consumes": [],
+      "effects": [],
+      "entrypoints": {
+        "library": "synthetic.module"
+      },
+      "source_pins": {
+        "synthetic.py": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "licence": "MIT",
+      "adaptor": false
+    },
+    {
+      "schema": "omegagraft-plug/0.1",
+      "id": "new",
+      "version": "1.0",
+      "provides": [
+        {
+          "slot": "lookup",
+          "contract": "a14df3c73261a4dee7df91c4e068d837d83e6cc4e684e5b48978ab290b0af869"
+        }
+      ],
+      "consumes": [],
+      "effects": [],
+      "entrypoints": {
+        "library": "synthetic.module"
+      },
+      "source_pins": {
+        "synthetic.py": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "licence": "MIT",
+      "adaptor": true
+    },
+    {
+      "schema": "omegagraft-plug/0.1",
+      "id": "required",
+      "version": "1.0",
+      "provides": [
+        {
+          "slot": "summary",
+          "contract": "125699d669b3267e1077edc462133596cd505710238fc4e8fa709ab0da5a0204"
+        }
+      ],
+      "consumes": [
+        {
+          "slot": "lookup",
+          "contract": "a14df3c73261a4dee7df91c4e068d837d83e6cc4e684e5b48978ab290b0af869",
+          "mode": "required",
+          "primary": "old",
+          "fallbacks": []
+        }
+      ],
+      "effects": [],
+      "entrypoints": {
+        "library": "synthetic.module"
+      },
+      "source_pins": {
+        "synthetic.py": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "licence": "MIT",
+      "adaptor": false
+    },
+    {
+      "schema": "omegagraft-plug/0.1",
+      "id": "degrade",
+      "version": "1.0",
+      "provides": [],
+      "consumes": [
+        {
+          "slot": "lookup",
+          "contract": "a14df3c73261a4dee7df91c4e068d837d83e6cc4e684e5b48978ab290b0af869",
+          "mode": "degrade",
+          "primary": "old",
+          "fallbacks": [
+            "backup"
+          ]
+        }
+      ],
+      "effects": [],
+      "entrypoints": {
+        "library": "synthetic.module"
+      },
+      "source_pins": {
+        "synthetic.py": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "licence": "MIT",
+      "adaptor": false
+    },
+    {
+      "schema": "omegagraft-plug/0.1",
+      "id": "optional",
+      "version": "1.0",
+      "provides": [],
+      "consumes": [
+        {
+          "slot": "lookup",
+          "contract": "a14df3c73261a4dee7df91c4e068d837d83e6cc4e684e5b48978ab290b0af869",
+          "mode": "optional",
+          "primary": "old",
+          "fallbacks": []
+        }
+      ],
+      "effects": [],
+      "entrypoints": {
+        "library": "synthetic.module"
+      },
+      "source_pins": {
+        "synthetic.py": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "licence": "MIT",
+      "adaptor": false
+    },
+    {
+      "schema": "omegagraft-plug/0.1",
+      "id": "downstream",
+      "version": "1.0",
+      "provides": [],
+      "consumes": [
+        {
+          "slot": "summary",
+          "contract": "125699d669b3267e1077edc462133596cd505710238fc4e8fa709ab0da5a0204",
+          "mode": "required",
+          "primary": "required",
+          "fallbacks": []
+        }
+      ],
+      "effects": [],
+      "entrypoints": {
+        "library": "synthetic.module"
+      },
+      "source_pins": {
+        "synthetic.py": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "licence": "MIT",
+      "adaptor": false
+    }
+  ],
+  "snapshot": {
+    "version": "0.1",
+    "owner": "synthetic",
+    "scope": "synthetic",
+    "revision": 1,
+    "records": [
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          1
+        ],
+        "statement": [
+          "Plug",
+          "old",
+          "1.0",
+          "9824becd35f40bb1378367de5cba4430bd8180c1b1c58cccab57e882936aaa4c",
+          "module"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "680d1825d2ecd9eadaa2a4ba6ff5775b6bb87274cfd4783ed45d1570ecfa6dcf"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            1
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          2
+        ],
+        "statement": [
+          "Provides",
+          "old",
+          "lookup",
+          "a14df3c73261a4dee7df91c4e068d837d83e6cc4e684e5b48978ab290b0af869"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "51112c758558ba1eea98d1b7930be9afb3d92da7da00961c3b867cedb518bd01"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            2
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          3
+        ],
+        "statement": [
+          "Conforms",
+          "old",
+          "lookup",
+          "1.0",
+          "9824becd35f40bb1378367de5cba4430bd8180c1b1c58cccab57e882936aaa4c",
+          "lab.synthetic.lookup",
+          "pass"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "4300f0bd9765366dde2cb4ffbad843792653372ef878456a30cd0c13727ff00b"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            3
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          4
+        ],
+        "statement": [
+          "Plug",
+          "backup",
+          "1.0",
+          "dfae92a508329d40cd5bfcdb90a2898cdbbddbc515283fd89bc163c985f3f861",
+          "module"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "065645d8faa7cf3dba73fdd0c27dfde489110840cbbf615d653f2ab855faad7b"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            4
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          5
+        ],
+        "statement": [
+          "Provides",
+          "backup",
+          "lookup",
+          "a14df3c73261a4dee7df91c4e068d837d83e6cc4e684e5b48978ab290b0af869"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "a50f1f421b54bb8d4601088d7e827b203bcfeafdcac67c211df07e027888666d"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            5
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          6
+        ],
+        "statement": [
+          "Conforms",
+          "backup",
+          "lookup",
+          "1.0",
+          "dfae92a508329d40cd5bfcdb90a2898cdbbddbc515283fd89bc163c985f3f861",
+          "lab.synthetic.lookup",
+          "pass"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "8b8fa621f67a8b6f1e32cf01a9768a69330b2dc0826bdfb483b44954a99a0aff"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            6
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          7
+        ],
+        "statement": [
+          "Plug",
+          "new",
+          "1.0",
+          "71cfd25ef8bd407f80630f2192902804f7b095753cdf4e925b201c0b9d2a41b1",
+          "adaptor"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "998507dc73f67080bad1220343ba711c4936aff886902dc9146b97c8dc9418c1"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            7
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          8
+        ],
+        "statement": [
+          "Provides",
+          "new",
+          "lookup",
+          "a14df3c73261a4dee7df91c4e068d837d83e6cc4e684e5b48978ab290b0af869"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "9d5809b67fb0dbaa66edd400ac98c8e99a5c3be9612b3cbd5717cf06ec01a70b"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            8
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          9
+        ],
+        "statement": [
+          "Conforms",
+          "new",
+          "lookup",
+          "1.0",
+          "71cfd25ef8bd407f80630f2192902804f7b095753cdf4e925b201c0b9d2a41b1",
+          "lab.synthetic.lookup",
+          "pass"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "93ad63042871699bcafe16a01153ec108d27d17d4fc441b48a4bdb084172d221"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            9
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          10
+        ],
+        "statement": [
+          "Plug",
+          "required",
+          "1.0",
+          "3f71a93e789d1346f69430f4a404077fe080112be953905335dd98514dccbda4",
+          "module"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "f6275691f46056206ed8c2be95ba060627e83b8f10765a50bd800b3fca4df989"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            10
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          11
+        ],
+        "statement": [
+          "Provides",
+          "required",
+          "summary",
+          "125699d669b3267e1077edc462133596cd505710238fc4e8fa709ab0da5a0204"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "856c93b21e3baac51ea3efb5d21ebcdf55132b046dae9b740f46bf7b89872418"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            11
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          12
+        ],
+        "statement": [
+          "Needs",
+          "required",
+          "lookup",
+          "a14df3c73261a4dee7df91c4e068d837d83e6cc4e684e5b48978ab290b0af869",
+          "required",
+          "old",
+          []
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "6f0b72b1bbd94d56ddcdf3fab09d3efcae6aa5b327f31322c7e780ea9d29c878"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            12
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          13
+        ],
+        "statement": [
+          "Conforms",
+          "required",
+          "summary",
+          "1.0",
+          "3f71a93e789d1346f69430f4a404077fe080112be953905335dd98514dccbda4",
+          "lab.synthetic.summary",
+          "pass"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "2690f48c57d5651e6f1c317264881966214251359b146d18d20c4cfaa4e02459"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            13
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          14
+        ],
+        "statement": [
+          "Plug",
+          "degrade",
+          "1.0",
+          "ce61b2ebb0ae10ee70793b735ef6749868f16f59ad1825d32c7b3e40f9358108",
+          "module"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "9edc2e7e08edf963d1cde9d93366b3aa283dc61067c3e9c5864f89e1074dc984"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            14
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          15
+        ],
+        "statement": [
+          "Needs",
+          "degrade",
+          "lookup",
+          "a14df3c73261a4dee7df91c4e068d837d83e6cc4e684e5b48978ab290b0af869",
+          "degrade",
+          "old",
+          [
+            "backup"
+          ]
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "1aa1ce388ee8f3d30404411acbf0cefbcb99bd32094ef93c6264107d5b0fa87b"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            15
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          16
+        ],
+        "statement": [
+          "Plug",
+          "optional",
+          "1.0",
+          "54e34ce4f38e5673fd9aeaa2d05bf280ecb5c734a678dcd923f978e1073f41c0",
+          "module"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "6905d4b5906f163440d77f9c009f87e88992b1a40112e1d0647174afdb12c664"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            16
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          17
+        ],
+        "statement": [
+          "Needs",
+          "optional",
+          "lookup",
+          "a14df3c73261a4dee7df91c4e068d837d83e6cc4e684e5b48978ab290b0af869",
+          "optional",
+          "old",
+          []
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "25281c1a8ff7b3d48df6f14f630d3e9caf50e161af583870b92e760c2da77010"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            17
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          18
+        ],
+        "statement": [
+          "Plug",
+          "downstream",
+          "1.0",
+          "dc6e43b5452d0790eeaea2aadd6d866cfd2f45f25bcf5f00fd5ab1995e273f83",
+          "module"
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "68b0a7423c6c4a1445b4f7eccab969e92287ecc0142cdcb9e419ed72483b005c"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            18
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      },
+      {
+        "id": [
+          "ev",
+          "synthetic",
+          19
+        ],
+        "statement": [
+          "Needs",
+          "downstream",
+          "summary",
+          "125699d669b3267e1077edc462133596cd505710238fc4e8fa709ab0da5a0204",
+          "required",
+          "required",
+          []
+        ],
+        "source": {
+          "owner": "synthetic",
+          "subject": "fixture",
+          "revision": 1,
+          "digest": "ae3c40169c43d7c3cbde621d84171bcad54b0a4a74335224153de845a0408ce8"
+        },
+        "status": "simulated",
+        "scope": "synthetic",
+        "stamp": [
+          [
+            "ev",
+            "synthetic",
+            19
+          ]
+        ],
+        "unknown": false,
+        "truth": [
+          "stv",
+          1,
+          0.5
+        ]
+      }
+    ]
+  }
+}

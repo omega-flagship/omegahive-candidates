@@ -1,0 +1,27 @@
+{
+  "status": "program-hook-candidate",
+  "tests_passed": 55,
+  "program_contract": "0.1 read-only checker compatible",
+  "checker_host_pin": "d7dc7dc33a9bd62418fe2e58ac25a90bd234ae75",
+  "host_api": "synchronous ctx.validation observed; generic method supported; catalogue and viewer absent",
+  "same_transaction_host_enforcement": "not installed or qualified",
+  "activation": "none",
+  "service": "match connection-only proposed configuration; public services empty",
+  "pins": {
+    "program/plugin.json": "1d8d38c5a939ffe088f0a7f5967d72e1d374f2877dc19cac5c3a0e0cf0ed1840",
+    "program/program.py": "59645775a8190f7508b18ebc2b391bc6c7b71f0f9bcce46b531733e720185f27",
+    "tests/test_program.py": "4c365fa7864d81566577c49a5e26a7e9bd23af715e6d53976a1133d83f8f04db",
+    "protocol.py": "3c47b4b4ef7e029956e6285df3684275a8432c85b3065a40e7b9f14b54ff180f",
+    "swarm.py": "0ed15707a7e680721e16474caeb0d894e0786d33970c1df9bac09c97fa4d6208",
+    "swarm-blueprint.json": "ab18e6f0407b8d7bab63aa84414653aac64a34ec58af7fe8e507cea7c4c6b53f",
+    "evidence/program-contract-d7dc7dc.txt": "59afdebe8f969527f2fdb3bd39e9ef52480980e9fb7f38e402f57733f2ad997c",
+    "evidence/protocol-tests-20261004.txt": "0964cd415915464197e0c121cb7a5a3d1febe112d98e35e337d0c511a01aaa03",
+    "README.md": "62a491c38e8182151f7091ffeaa9062ec1bfb6984ff8ef05ff4a7c297041fa6e",
+    "program/HOST_CONTEXT_CONTRACT.md": "800046567697173e47a1e43ff4a54915f413f53e79155fb520b8594a8594d669",
+    "tests/host_transport_probes.py": "099b9ead0d8d40c6ea9760cca8adfe2d4628651310b6dca0da647853965133dc",
+    "evidence/host-transport-program-candidate.txt": "d989db246273ed15df6d61126bd40e2bf2f9174830e3ab2fd5cca607bea742fd",
+    "program/protocol.py": "e9deebd1b637d68014318b69d91b8d09841d4bac9051b44a134e48e551af9e12"
+  },
+  "transport_diagnostic_probes": 4,
+  "standalone_load": "passed with Python isolated imports; no workspace PYTHONPATH"
+}

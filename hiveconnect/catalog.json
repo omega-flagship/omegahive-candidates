@@ -1,0 +1,1109 @@
+{
+  "contract": "hiveconnect.catalog.proposal/0.1",
+  "working_name": "HiveConnect",
+  "name_status": "undecided",
+  "research_date": "2026-10-04",
+  "status": "planning_only",
+  "priority_meanings": {
+    "P0": "First common contract and everyday-work slice",
+    "P1": "Follow-on collaboration, coverage and early creative track",
+    "P2": "Demand-led business, social, data and module expansion",
+    "P3": "Specialist discovery before implementation"
+  },
+  "evidence": {
+    "zapier_popularity": {
+      "source": "https://zapier.com/apps",
+      "limit": "Vendor ordering, no comparable usage counts. Microsoft calendars are a workflow expansion of Outlook coverage."
+    },
+    "cross_catalog_presence": {
+      "sources": [
+        "https://zapier.com/apps",
+        "https://n8n.io/integrations",
+        "https://docs.composio.dev/toolkits"
+      ],
+      "limit": "Family coverage varies. Local files are a workflow requirement rather than a ranked app."
+    },
+    "n8n_popularity": {
+      "source": "https://n8n.io/integrations",
+      "limit": "Vendor ordering, no comparable usage counts."
+    },
+    "github_interest": {
+      "sources": [
+        "https://github.com/microsoft/playwright-mcp",
+        "https://github.com/ahujasid/mcp-for-blender"
+      ],
+      "limit": "Stars indicate interest, not verified reliability or Hive compatibility."
+    },
+    "official_server": {
+      "source": "https://developers.figma.com/docs/figma-mcp-server/",
+      "limit": "Official documentation establishes a route; Hive compatibility is unqualified."
+    },
+    "catalog_signal": {
+      "sources": [
+        "https://zapier.com/apps",
+        "https://docs.composio.dev/toolkits",
+        "https://apps.make.com/"
+      ],
+      "limit": "Presence or popularity signal varies by app; no global rank."
+    },
+    "library_family": {
+      "sources": [
+        "https://docs.langchain.com/oss/python/integrations/providers/overview",
+        "https://developers.llamaindex.ai/python/framework/module_guides/loading/connector/"
+      ],
+      "limit": "Family evidence only; individual dependency selection remains open."
+    },
+    "coverage_choice": {
+      "limit": "Product recommendation; no direct popularity ranking established."
+    },
+    "workflow_choice": {
+      "limit": "Workflow recommendation; no direct popularity ranking established."
+    },
+    "infrastructure_requirement": {
+      "limit": "Architecture recommendation; no application popularity claim."
+    },
+    "user_example": {
+      "source": "https://docs.x.com/x-api/getting-started/pricing",
+      "limit": "Requested product example; source establishes pricing model, not popularity."
+    },
+    "unverified_expansion": {
+      "limit": "Demand-led expansion; specific APIs and modules have not been researched or selected."
+    }
+  },
+  "adapters": [
+    {
+      "id": "gmail",
+      "name": "Gmail",
+      "priority": "P0",
+      "family": "email",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "zapier_popularity",
+      "proposed_actions": [
+        "messages.search",
+        "drafts.create",
+        "messages.send"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "outlook",
+      "name": "Microsoft Outlook",
+      "priority": "P0",
+      "family": "email",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "zapier_popularity",
+      "proposed_actions": [
+        "messages.search",
+        "drafts.create",
+        "messages.send"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "google-calendar",
+      "name": "Google Calendar",
+      "priority": "P0",
+      "family": "calendar",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "zapier_popularity",
+      "proposed_actions": [
+        "events.list",
+        "availability.query",
+        "events.create"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "microsoft-calendar",
+      "name": "Microsoft Calendar",
+      "priority": "P0",
+      "family": "calendar",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "workflow_choice",
+      "proposed_actions": [
+        "events.list",
+        "availability.query",
+        "events.create"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "google-drive",
+      "name": "Google Drive",
+      "priority": "P0",
+      "family": "files",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "cross_catalog_presence",
+      "proposed_actions": [
+        "files.search",
+        "files.read",
+        "files.create"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "google-docs",
+      "name": "Google Docs",
+      "priority": "P0",
+      "family": "files",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "cross_catalog_presence",
+      "proposed_actions": [
+        "documents.read",
+        "documents.create",
+        "documents.edit"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "google-sheets",
+      "name": "Google Sheets",
+      "priority": "P0",
+      "family": "files",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "cross_catalog_presence",
+      "proposed_actions": [
+        "ranges.read",
+        "ranges.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "local-files",
+      "name": "Local files",
+      "priority": "P0",
+      "family": "files",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "workflow_choice",
+      "proposed_actions": [
+        "files.read",
+        "files.write"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "slack",
+      "name": "Slack",
+      "priority": "P0",
+      "family": "collaboration",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "cross_catalog_presence",
+      "proposed_actions": [
+        "messages.search",
+        "messages.post",
+        "events.subscribe"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "priority": "P0",
+      "family": "collaboration",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "cross_catalog_presence",
+      "proposed_actions": [
+        "pages.search",
+        "pages.read",
+        "pages.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "priority": "P0",
+      "family": "collaboration",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "cross_catalog_presence",
+      "proposed_actions": [
+        "issues.read",
+        "issues.create",
+        "pulls.read"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "mcp",
+      "name": "MCP client",
+      "priority": "P0",
+      "family": "transport",
+      "proposed_route": "host_adapter",
+      "evidence_basis": "infrastructure_requirement",
+      "proposed_actions": [
+        "servers.discover",
+        "tools.list",
+        "tools.call"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "http-openapi",
+      "name": "HTTP and OpenAPI",
+      "priority": "P0",
+      "family": "transport",
+      "proposed_route": "host_adapter",
+      "evidence_basis": "infrastructure_requirement",
+      "proposed_actions": [
+        "schemas.import",
+        "requests.execute"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "webhooks",
+      "name": "Webhooks",
+      "priority": "P0",
+      "family": "transport",
+      "proposed_route": "host_adapter",
+      "evidence_basis": "infrastructure_requirement",
+      "proposed_actions": [
+        "subscriptions.create",
+        "events.receive",
+        "events.recover"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "onedrive-sharepoint",
+      "name": "OneDrive and SharePoint",
+      "priority": "P1",
+      "family": "microsoft",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "files.search",
+        "files.read",
+        "files.write"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "excel",
+      "name": "Microsoft Excel",
+      "priority": "P1",
+      "family": "microsoft",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "ranges.read",
+        "ranges.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "teams",
+      "name": "Microsoft Teams",
+      "priority": "P1",
+      "family": "microsoft",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "messages.read",
+        "messages.post"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "telegram",
+      "name": "Telegram",
+      "priority": "P1",
+      "family": "messaging",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "n8n_popularity",
+      "proposed_actions": [
+        "messages.receive",
+        "messages.send"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "discord",
+      "name": "Discord",
+      "priority": "P1",
+      "family": "messaging",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "n8n_popularity",
+      "proposed_actions": [
+        "messages.read",
+        "messages.send"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "calendly",
+      "name": "Calendly",
+      "priority": "P1",
+      "family": "scheduling",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "zapier_popularity",
+      "proposed_actions": [
+        "bookings.list",
+        "events.receive"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "airtable",
+      "name": "Airtable",
+      "priority": "P1",
+      "family": "records",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "cross_catalog_presence",
+      "proposed_actions": [
+        "records.list",
+        "records.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "jira",
+      "name": "Jira",
+      "priority": "P1",
+      "family": "tasks",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "workflow_choice",
+      "proposed_actions": [
+        "issues.search",
+        "issues.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "priority": "P1",
+      "family": "tasks",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "workflow_choice",
+      "proposed_actions": [
+        "issues.search",
+        "issues.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "trello",
+      "name": "Trello",
+      "priority": "P1",
+      "family": "tasks",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "workflow_choice",
+      "proposed_actions": [
+        "cards.list",
+        "cards.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "playwright",
+      "name": "Playwright MCP",
+      "priority": "P1",
+      "family": "browser",
+      "proposed_route": "isolated_mcp",
+      "evidence_basis": "github_interest",
+      "proposed_actions": [
+        "pages.inspect",
+        "pages.navigate",
+        "pages.interact"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "blender",
+      "name": "Blender",
+      "priority": "P1",
+      "family": "creative",
+      "proposed_route": "local_plugin",
+      "evidence_basis": "github_interest",
+      "proposed_actions": [
+        "scene.inspect",
+        "scene.modify",
+        "render.create"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "priority": "P1",
+      "family": "creative",
+      "proposed_route": "official_mcp",
+      "evidence_basis": "official_server",
+      "proposed_actions": [
+        "designs.read",
+        "designs.write"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "python",
+      "name": "Sandboxed Python",
+      "priority": "P1",
+      "family": "compute",
+      "proposed_route": "isolated_module",
+      "evidence_basis": "workflow_choice",
+      "proposed_actions": [
+        "code.execute",
+        "artifacts.create"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "pandas",
+      "name": "pandas",
+      "priority": "P1",
+      "family": "compute",
+      "proposed_route": "isolated_module",
+      "evidence_basis": "workflow_choice",
+      "proposed_actions": [
+        "tables.transform",
+        "tables.summarize"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "hubspot",
+      "name": "HubSpot",
+      "priority": "P2",
+      "family": "crm",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "zapier_popularity",
+      "proposed_actions": [
+        "contacts.search",
+        "contacts.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "priority": "P2",
+      "family": "crm",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "zapier_popularity",
+      "proposed_actions": [
+        "records.query",
+        "records.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "zendesk",
+      "name": "Zendesk",
+      "priority": "P2",
+      "family": "support",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "tickets.read",
+        "tickets.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "intercom",
+      "name": "Intercom",
+      "priority": "P2",
+      "family": "support",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "conversations.read",
+        "conversations.reply"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "priority": "P2",
+      "family": "commerce",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "catalog_signal",
+      "proposed_actions": [
+        "payments.read"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "shopify",
+      "name": "Shopify",
+      "priority": "P2",
+      "family": "commerce",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "catalog_signal",
+      "proposed_actions": [
+        "orders.read",
+        "products.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "woocommerce",
+      "name": "WooCommerce",
+      "priority": "P2",
+      "family": "commerce",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "catalog_signal",
+      "proposed_actions": [
+        "orders.read",
+        "products.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "x",
+      "name": "X",
+      "priority": "P2",
+      "family": "social",
+      "proposed_route": "provider_api_or_bridge",
+      "evidence_basis": "user_example",
+      "proposed_actions": [
+        "posts.search",
+        "posts.create"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn",
+      "priority": "P2",
+      "family": "social",
+      "proposed_route": "provider_api_or_bridge",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "posts.create"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "instagram",
+      "name": "Instagram",
+      "priority": "P2",
+      "family": "social",
+      "proposed_route": "provider_api_or_bridge",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "media.publish"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "priority": "P2",
+      "family": "social",
+      "proposed_route": "provider_api_or_bridge",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "videos.read",
+        "videos.upload"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "reddit",
+      "name": "Reddit",
+      "priority": "P2",
+      "family": "social",
+      "proposed_route": "provider_api_or_bridge",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "posts.read",
+        "posts.create"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "wordpress",
+      "name": "WordPress",
+      "priority": "P2",
+      "family": "social",
+      "proposed_route": "provider_api_or_bridge",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "posts.draft",
+        "posts.publish"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "mailchimp",
+      "name": "Mailchimp",
+      "priority": "P2",
+      "family": "marketing",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "zapier_popularity",
+      "proposed_actions": [
+        "audiences.read",
+        "campaigns.draft"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "facebook-lead-ads",
+      "name": "Facebook Lead Ads",
+      "priority": "P2",
+      "family": "marketing",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "zapier_popularity",
+      "proposed_actions": [
+        "leads.read"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "google-forms",
+      "name": "Google Forms",
+      "priority": "P2",
+      "family": "marketing",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "zapier_popularity",
+      "proposed_actions": [
+        "responses.read"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "typeform",
+      "name": "Typeform",
+      "priority": "P2",
+      "family": "marketing",
+      "proposed_route": "native_or_bridge",
+      "evidence_basis": "zapier_popularity",
+      "proposed_actions": [
+        "responses.read"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "postgres",
+      "name": "Postgres",
+      "priority": "P2",
+      "family": "data",
+      "proposed_route": "isolated_adapter",
+      "evidence_basis": "n8n_popularity",
+      "proposed_actions": [
+        "queries.read",
+        "rows.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "priority": "P2",
+      "family": "data",
+      "proposed_route": "isolated_adapter",
+      "evidence_basis": "n8n_popularity",
+      "proposed_actions": [
+        "queries.read",
+        "rows.update"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "s3",
+      "name": "S3 compatible storage",
+      "priority": "P2",
+      "family": "data",
+      "proposed_route": "isolated_adapter",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "objects.read",
+        "objects.write"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "model-providers",
+      "name": "Hosted and local model providers",
+      "priority": "P2",
+      "family": "models",
+      "proposed_route": "provider_adapter",
+      "evidence_basis": "library_family",
+      "proposed_actions": [
+        "inference.call",
+        "embeddings.create"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "search-retrieval",
+      "name": "Search and retrieval",
+      "priority": "P2",
+      "family": "retrieval",
+      "proposed_route": "isolated_module",
+      "evidence_basis": "library_family",
+      "proposed_actions": [
+        "search.query",
+        "documents.ingest",
+        "index.query"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "numpy-scipy",
+      "name": "NumPy and SciPy",
+      "priority": "P2",
+      "family": "compute",
+      "proposed_route": "isolated_module",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "arrays.compute",
+        "statistics.compute"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "sympy",
+      "name": "SymPy",
+      "priority": "P2",
+      "family": "compute",
+      "proposed_route": "isolated_module",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "expressions.solve"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "media",
+      "name": "OCR speech and media tools",
+      "priority": "P2",
+      "family": "compute",
+      "proposed_route": "isolated_module",
+      "evidence_basis": "coverage_choice",
+      "proposed_actions": [
+        "text.extract",
+        "audio.transcribe",
+        "media.convert"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "adobe",
+      "name": "Selected Adobe applications",
+      "priority": "P3",
+      "family": "specialist",
+      "proposed_route": "evaluate_route",
+      "evidence_basis": "unverified_expansion",
+      "proposed_actions": [
+        "projects.inspect",
+        "assets.modify"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "cad-gis",
+      "name": "CAD and GIS",
+      "priority": "P3",
+      "family": "specialist",
+      "proposed_route": "evaluate_route",
+      "evidence_basis": "unverified_expansion",
+      "proposed_actions": [
+        "projects.inspect",
+        "models.modify"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    },
+    {
+      "id": "simulation",
+      "name": "Simulation and optimisation",
+      "priority": "P3",
+      "family": "specialist",
+      "proposed_route": "evaluate_route",
+      "evidence_basis": "unverified_expansion",
+      "proposed_actions": [
+        "experiments.run"
+      ],
+      "qualification": "proposed",
+      "owner": null,
+      "selected_implementation": null,
+      "provider_scopes_verified": false,
+      "license_verified": false,
+      "live_receipt": null
+    }
+  ]
+}

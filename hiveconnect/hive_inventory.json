@@ -1,0 +1,1155 @@
+{
+  "scope": "local OmegaDot / OmegaHive only",
+  "observed_date": "2026-10-04",
+  "platform_head": "99c2d740322b5c14f728dc2a8a4c5b99c5f84633",
+  "local_mcp": {
+    "source": "<omegahive checkout>/hive/core/mcp.py",
+    "tools": [
+      {
+        "name": "hive_whoami",
+        "description": "Who you are in the hive: your name, swarm, role and the instructions your role gives you. Read this first.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "hive_inbox",
+        "description": "New messages for you (from people and minds), after a cursor. Pass the highest seq you have seen as 'after'.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "after": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "hive_send",
+        "description": "Reply in a conversation. Use the conversation_id of the message you are answering.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "maxLength": 8000
+            },
+            "conversation_id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "text"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "hive_goals",
+        "description": "Your swarm's goals. status: open (default), claimed, done, or all.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "open",
+                "claimed",
+                "waiting",
+                "done",
+                "failed",
+                "all"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "hive_goal_claim",
+        "description": "Claim an open goal so others know you are on it. A claim is a lease: report a result before it lapses.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "goal_id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "goal_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "hive_goal_result",
+        "description": "Report on a goal you hold: done with a result, failed with why, or waiting on a person.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "goal_id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "done",
+                "failed",
+                "waiting"
+              ]
+            },
+            "result": {
+              "type": "string",
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "goal_id",
+            "status",
+            "result"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "hive_goal_create",
+        "description": "Propose a new goal (or a subgoal of one you hold) for your swarm.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "detail": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "parent_id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "title"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "hive_publish",
+        "description": "Publish a belief to your swarm's commons as a MeTTa statement with frequency f and confidence c, e.g. (--> sky blue), 0.9, 0.8. Only claim what you have evidence for.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "statement": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "f": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "c": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1
+            }
+          },
+          "required": [
+            "statement",
+            "f",
+            "c"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "hive_query",
+        "description": "Search your swarm's commons with a MeTTa pattern, e.g. (Current (--> sky $x) $tv $stamp).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "pattern": {
+              "type": "string",
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "pattern"
+          ],
+          "additionalProperties": false
+        }
+      }
+    ],
+    "authenticated_discovery": false,
+    "callable_in_this_session": false
+  },
+  "runtime_checks": {
+    "listener": "observed at 127.0.0.1:8700",
+    "GET /mcp": 405,
+    "GET /api/programs": 401,
+    "GET /api/services": 401,
+    "browser": "operator login visible; OFFLINE label",
+    "current_enabled_catalog": "unknown"
+  },
+  "program_manifest_inventory": [
+    {
+      "manifest": "<workspace>/programs/omegapurple/plugin.json",
+      "id": "omegapurple",
+      "name": "OmegaPurple",
+      "version": "0.1.0",
+      "declared_capabilities": [
+        "commons:read",
+        "goals:read",
+        "goals:write"
+      ],
+      "status": "observed_manifest_only",
+      "live_enabled": "unknown"
+    },
+    {
+      "manifest": "<omegahive checkout>/hive/plugins/omegaevolve/plugin.json",
+      "id": "omegaevolve",
+      "name": "OmegaEvolve",
+      "version": "0.3.0",
+      "declared_capabilities": [
+        "evolve:read",
+        "evolve:write"
+      ],
+      "status": "observed_manifest_only",
+      "live_enabled": "unknown"
+    },
+    {
+      "manifest": "<omegahive checkout>/hive/plugins/contract_fixture/plugin.json",
+      "id": "contract-fixture",
+      "name": "Contract fixture",
+      "version": "0.1.0",
+      "declared_capabilities": [
+        "goals:write"
+      ],
+      "status": "observed_manifest_only",
+      "live_enabled": "unknown"
+    },
+    {
+      "manifest": "<omegahive checkout>/hive/plugins/commons_explorer/plugin.json",
+      "id": "commons-explorer",
+      "name": "Commons Explorer",
+      "version": "0.1.0",
+      "declared_capabilities": [
+        "commons:read",
+        "goals:write"
+      ],
+      "status": "observed_manifest_only",
+      "live_enabled": "unknown"
+    },
+    {
+      "manifest": "<workspace>/omegadesign/program/plugin.json",
+      "id": "omegadesign",
+      "name": "OmegaDesign",
+      "version": "0.3.2",
+      "declared_capabilities": [
+        "sandbox:run",
+        "goals:read",
+        "artifacts:read",
+        "artifacts:write"
+      ],
+      "status": "observed_manifest_only",
+      "live_enabled": "unknown"
+    },
+    {
+      "manifest": "<workspace>/omegaplanner/program/plugin.json",
+      "id": "omegaplanner",
+      "name": "OmegaPlanner plan checker",
+      "version": "0.2.0",
+      "declared_capabilities": [],
+      "status": "observed_manifest_only",
+      "live_enabled": "unknown"
+    },
+    {
+      "manifest": "<workspace>/omegafusion/programs/omegafusion/plugin.json",
+      "id": "omegafusion",
+      "name": "OmegaFusion",
+      "version": "0.1.0",
+      "declared_capabilities": [],
+      "status": "observed_manifest_only",
+      "live_enabled": "unknown"
+    }
+  ],
+  "native_module_inventory": [
+    {
+      "module": "agentverse",
+      "source": "<omegahive checkout>/modules/agentverse/skills.metta",
+      "defined_equation_heads": [
+        "initAgentverseOrgan",
+        "agentverse-status",
+        "agentverse-listener-status",
+        "agentverse-listener-start",
+        "agentverse-listener-stop",
+        "agentverse-discover",
+        "agentverse-remote-agents",
+        "agentverse-register-agent",
+        "agentverse-call",
+        "agentverse-ask",
+        "agentverse-trace",
+        "agentverse-inbox"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "assume",
+      "source": "<omegahive checkout>/modules/assume/skills.metta",
+      "defined_equation_heads": [
+        "assume-atoms",
+        "assume-review",
+        "assume-work",
+        "assume-clear-work",
+        "assume-atomize-list",
+        "assume-atomize-bundle",
+        "assume-observe-bundle",
+        "assume-clear-work-predict",
+        "assume-clear-work-audit",
+        "assume-clear-work-evidence",
+        "assume-clear-work-growth-pressure",
+        "assume-clear-work-adjustment",
+        "assume-clear-work-growth-proposals",
+        "assume-status",
+        "assume-state",
+        "assume-load",
+        "assume-reload",
+        "assume-demo-list",
+        "assume-demo-load",
+        "assume-demo-predict",
+        "assume-demo-audit",
+        "assume-demo-learn",
+        "assume-demo-writeback",
+        "assume-import-demo",
+        "assume-situation-status",
+        "assume-init-situation",
+        "assume-add-context-feature",
+        "assume-add-action",
+        "assume-add-feature-edge",
+        "assume-reload-situation",
+        "assume-predict",
+        "assume-observe-predict",
+        "assume-audit",
+        "assume-observe-audit",
+        "assume-outcome",
+        "assume-error",
+        "assume-learn",
+        "assume-learn-from-atoms",
+        "assume-evidence-summary",
+        "assume-observe-evidence-summary",
+        "assume-growth-pressure",
+        "assume-observe-growth-pressure",
+        "assume-adjustment-pressure",
+        "assume-observe-adjustment-pressure",
+        "assume-growth-proposals",
+        "assume-observe-growth-proposals",
+        "assume-growth-decision",
+        "assume-atom-id",
+        "assume-symbolic-growth-review",
+        "assume-review-growth",
+        "assume-review-growth-native",
+        "assume-observe-growth-review",
+        "assume-observe-growth-review-native",
+        "assume-adjustment-direction-ok",
+        "assume-adjustment-direction-frequency",
+        "assume-symbolic-mutation-truth",
+        "assume-adjustment-decision",
+        "assume-adjustment-review-reason",
+        "assume-symbolic-adjustment-review",
+        "assume-review-adjustment",
+        "assume-review-adjustment-native",
+        "assume-symbolic-adjustment-review-detail",
+        "assume-fabric-verdict-decision",
+        "assume-fabric-symbolic-agreement",
+        "assume-symbolic-mutation-comparison",
+        "assume-review-mutation",
+        "assume-review-mutation-native",
+        "assume-review-adjustment-detail",
+        "assume-review-adjustment-detail-native",
+        "assume-accept-growth-edge",
+        "assume-accept-growth",
+        "assume-accept-growth-native",
+        "assume-accept-adjustment-edge",
+        "assume-accept-adjustment",
+        "assume-accept-adjustment-native",
+        "assume-writeback",
+        "assume-observe-writeback",
+        "assume-trace",
+        "assume-apply-writeback-edge",
+        "assume-apply-writeback"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "body_container",
+      "source": "<omegahive checkout>/modules/body_container/skills.metta",
+      "defined_equation_heads": [
+        "initBodyContainerOrgan",
+        "body-container-status",
+        "body-container-self",
+        "body-container-launcher",
+        "body-container-last-trace"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "channel_irc",
+      "source": "<omegahive checkout>/modules/channel_irc/skills.metta",
+      "defined_equation_heads": [],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "channel_mattermost",
+      "source": "<omegahive checkout>/modules/channel_mattermost/skills.metta",
+      "defined_equation_heads": [],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "channel_mock",
+      "source": "<omegahive checkout>/modules/channel_mock/skills.metta",
+      "defined_equation_heads": [],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "channel_router",
+      "source": "<omegahive checkout>/modules/channel_router/skills.metta",
+      "defined_equation_heads": [
+        "IRC_channel",
+        "IRC_server",
+        "IRC_port",
+        "IRC_user",
+        "commchannel",
+        "OMEGACLAW_PRIMARY_CHANNEL",
+        "MM_URL",
+        "MM_CHANNEL_ID",
+        "MM_BOT_TOKEN",
+        "TG_BOT_TOKEN",
+        "TG_CHAT_ID",
+        "TG_POLL_TIMEOUT",
+        "OMEGACLAW_AUTH_SECRET",
+        "WA_TARGET_JID",
+        "WA_PORT",
+        "WA_PREFIX",
+        "WA_PRIMARY_JID",
+        "SL_BOT_TOKEN",
+        "SL_CHANNEL_ID",
+        "SL_POLL_INTERVAL",
+        "HIVE_WS_URL",
+        "HIVE_WS_TOKEN",
+        "initChannels",
+        "receive",
+        "send",
+        "send-control",
+        "send-control-base64",
+        "send-file",
+        "send-file-caption",
+        "list-inbox",
+        "channel-status"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "channel_slack",
+      "source": "<omegahive checkout>/modules/channel_slack/skills.metta",
+      "defined_equation_heads": [],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "channel_telegram",
+      "source": "<omegahive checkout>/modules/channel_telegram/skills.metta",
+      "defined_equation_heads": [
+        "TG_BOT_TOKEN",
+        "TG_CHAT_ID",
+        "TG_POLL_TIMEOUT",
+        "send-telegram",
+        "send-telegram-base64",
+        "telegram-status"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "channel_web_control",
+      "source": "<omegahive checkout>/modules/channel_web_control/skills.metta",
+      "defined_equation_heads": [
+        "send-web-control",
+        "send-web-control-base64"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "channel_whatsapp",
+      "source": "<omegahive checkout>/modules/channel_whatsapp/skills.metta",
+      "defined_equation_heads": [
+        "WA_TARGET_JID",
+        "WA_PORT",
+        "WA_PREFIX",
+        "WA_PRIMARY_JID",
+        "send-whatsapp",
+        "send-whatsapp-base64",
+        "send-family",
+        "send-primary-operator",
+        "send-primary-operator-base64",
+        "send-whatsapp-mention",
+        "send-whatsapp-mention-to",
+        "send-family-mention",
+        "send-whatsapp-file",
+        "send-whatsapp-file-caption",
+        "send-whatsapp-file-to",
+        "send-whatsapp-file-caption-to",
+        "reply-whatsapp-file-to",
+        "reply-whatsapp-file-caption-to",
+        "send-family-file",
+        "send-family-file-caption",
+        "whatsapp-chats",
+        "whatsapp-inbox",
+        "read-whatsapp-chat",
+        "read-whatsapp-chat-recent",
+        "read-whatsapp-chat-full",
+        "mark-whatsapp-read",
+        "mark-whatsapp-unread",
+        "set-whatsapp-primary",
+        "send-whatsapp-to",
+        "send-whatsapp-to-base64",
+        "reply-whatsapp-to",
+        "reply-whatsapp-to-base64",
+        "reply-whatsapp-to-message",
+        "reply-whatsapp-to-message-base64",
+        "react-whatsapp-message",
+        "unreact-whatsapp-message",
+        "edit-whatsapp-message",
+        "edit-whatsapp-message-base64",
+        "delete-whatsapp-message",
+        "whatsapp-status"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "code",
+      "source": "<omegahive checkout>/modules/code/skills.metta",
+      "defined_equation_heads": [
+        "code-repos",
+        "code-open",
+        "code-tools",
+        "code-read",
+        "code-search",
+        "code-replace",
+        "code-exec",
+        "code-status",
+        "code-changes",
+        "code-check",
+        "code-runs",
+        "code-verifications",
+        "code-output",
+        "code-diagnostics",
+        "code-create",
+        "code-move",
+        "code-remove",
+        "code-git",
+        "code-review",
+        "code-hunks",
+        "code-hunk-bytes",
+        "code-select",
+        "code-git-export",
+        "code-git-export-state",
+        "code-git-patch",
+        "code-merge-preview",
+        "code-merge-files",
+        "code-merge-bytes",
+        "code-merge-apply"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "codex_code",
+      "source": "<omegahive checkout>/modules/codex_code/skills.metta",
+      "defined_equation_heads": [
+        "codex-code-status",
+        "codex-code-atoms",
+        "codex-code-containment-check",
+        "codex-code",
+        "codex-code-readonly",
+        "codex-code-start",
+        "codex-code-readonly-start",
+        "codex-code-jobs",
+        "codex-code-job-status",
+        "codex-code-result",
+        "codex-code-cancel",
+        "codex-code-events",
+        "codex-code-last-trace"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "gameboy",
+      "source": "<omegahive checkout>/modules/gameboy/skills.metta",
+      "defined_equation_heads": [
+        "gb-status",
+        "gb-load",
+        "gb-observe",
+        "gb-step",
+        "gb-screenshot",
+        "gb-save-state",
+        "gb-load-state",
+        "gb-stop",
+        "gb-last-trace"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "health_glucose",
+      "source": "<omegahive checkout>/modules/health_glucose/skills.metta",
+      "defined_equation_heads": [
+        "glucose-app-status",
+        "observe-glucose",
+        "glucose-history",
+        "set-glucose-watch",
+        "glucose-watch-status",
+        "clear-glucose-watch",
+        "glucose-rings"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "hive",
+      "source": "<omegahive checkout>/modules/hive/skills.metta",
+      "defined_equation_heads": [
+        "hive-publish",
+        "hive-query",
+        "hive-belief",
+        "hive-goals",
+        "hive-goal-claim",
+        "hive-goal-done",
+        "hive-goal-fail",
+        "hive-goal-create",
+        "hive-goal-get",
+        "hive-goal-propose",
+        "hive-goal-cancel-ack",
+        "hive-shares",
+        "hive-share-request",
+        "hive-share-grant",
+        "hive-share-deny",
+        "hive-share-offer",
+        "hive-shared",
+        "hive-lifecycle-start",
+        "hive-lifecycle-stop",
+        "hive-lifecycle-status",
+        "hive-request",
+        "hive-artifact-create",
+        "hive-revision",
+        "hive-revision-read",
+        "hive-finding",
+        "hive-review-complete",
+        "hive-asset-put",
+        "hive-asset-get",
+        "hive-review-receipts",
+        "hive-goal-review",
+        "hive-rooms",
+        "hive-room-post",
+        "hive-health",
+        "hive-shared-body",
+        "hive-shared-page",
+        "hive-exhibit",
+        "hive-exhibit-space",
+        "hive-mode?",
+        "hive-report-trace",
+        "hive-apply-ops",
+        "hive-apply-op",
+        "hive-run-control",
+        "hive-plan-return",
+        "hive-findings-read",
+        "hive-plan-review-context",
+        "hive-finding-response",
+        "hive-finding-disposition"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "home_assistant",
+      "source": "<omegahive checkout>/modules/home_assistant/skills.metta",
+      "defined_equation_heads": [
+        "observe-house",
+        "observe-house-full",
+        "observe-room",
+        "observe-device",
+        "observe-house-affordances",
+        "use-house-affordance",
+        "record-house-outcome",
+        "house-action-log"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "media_imagegen",
+      "source": "<omegahive checkout>/modules/media_imagegen/skills.metta",
+      "defined_equation_heads": [
+        "generate-image",
+        "generate-image-quality"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "media_videogen",
+      "source": "<omegahive checkout>/modules/media_videogen/skills.metta",
+      "defined_equation_heads": [
+        "generate-video",
+        "video-config-status"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "omega_vm",
+      "source": "<omegahive checkout>/modules/omega_vm/skills.metta",
+      "defined_equation_heads": [
+        "vm-status",
+        "vm-boot",
+        "vm-shell",
+        "vm-last-trace"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "publishing",
+      "source": "<omegahive checkout>/modules/publishing/skills.metta",
+      "defined_equation_heads": [
+        "write-web-page",
+        "list-web-pages",
+        "public-web-url",
+        "webhost-status",
+        "publish-artifact",
+        "artifact-id",
+        "unpublish-artifact",
+        "list-published-artifacts"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "scheduler_reminders",
+      "source": "<omegahive checkout>/modules/scheduler_reminders/skills.metta",
+      "defined_equation_heads": [
+        "reminder-add",
+        "reminder-list",
+        "reminder-cancel",
+        "reminder-due"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "scratch_space",
+      "source": "<omegahive checkout>/modules/scratch_space/skills.metta",
+      "defined_equation_heads": [
+        "initScratchOrgan",
+        "scratch-default-ttl",
+        "scratch-list-count",
+        "scratch-hash",
+        "scratch-clear-meta",
+        "scratch-contains",
+        "scratch-status",
+        "scratch-add",
+        "scratch-remove",
+        "scratch-touch",
+        "scratch-find",
+        "scratch-examples",
+        "scratch-all-with-ttl",
+        "scratch-count",
+        "scratch-pressure",
+        "scratch-gc-entry",
+        "scratch-gc-entries",
+        "scratch-gc",
+        "scratch-promote",
+        "promote-scratch"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "sense_audio",
+      "source": "<omegahive checkout>/modules/sense_audio/skills.metta",
+      "defined_equation_heads": [
+        "observe-audio",
+        "inspect-audio",
+        "audio-observation-log"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "sense_router",
+      "source": "<omegahive checkout>/modules/sense_router/skills.metta",
+      "defined_equation_heads": [
+        "observe"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "sense_vision",
+      "source": "<omegahive checkout>/modules/sense_vision/skills.metta",
+      "defined_equation_heads": [
+        "observe-image",
+        "inspect-image",
+        "media-observation-log"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "sense_webcam",
+      "source": "<omegahive checkout>/modules/sense_webcam/skills.metta",
+      "defined_equation_heads": [
+        "webcam-status",
+        "capture-webcam",
+        "inspect-webcam",
+        "webcam-observation-log"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "vm_policy",
+      "source": "<omegahive checkout>/modules/vm_policy/skills.metta",
+      "defined_equation_heads": [
+        "initVMPolicyOrgan",
+        "vm-policy-status",
+        "vm-policy-exits",
+        "vm-policy-atoms",
+        "vm-policy-connections",
+        "vm-policy-metrics",
+        "vm-policy-audit",
+        "vm-policy-enforcement-plan",
+        "vm-policy-maintenance-window",
+        "vm-policy-record-exit",
+        "vm-policy-exit-history",
+        "vm-policy-exit-summary",
+        "vm-policy-last-trace"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    },
+    {
+      "module": "web_search",
+      "source": "<omegahive checkout>/modules/web_search/skills.metta",
+      "defined_equation_heads": [
+        "web-search",
+        "search"
+      ],
+      "status": "observed_source_only",
+      "enabled_for_this_session": false
+    }
+  ],
+  "cognitive_tools": {
+    "package": "<omega-tools checkout>",
+    "package_status": "prepared sample candidates; no install/activation established",
+    "families": [
+      {
+        "id": "atom-recall",
+        "name": "Exact AtomSpace recall",
+        "skills": [
+          "tools-atom-recall"
+        ],
+        "sample_scope": "Exact-key candidate recall; no semantic retrieval or whole-history context builder.",
+        "claim_ceiling": "Native sample tested separately; neither whole-memory retrieval nor truth/authority.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "attention",
+        "name": "Attention Bank and Focus",
+        "skills": [
+          "tools-attention-select",
+          "tools-attention-event"
+        ],
+        "sample_scope": "Native rank/tie-break and wage/rent state proposals; no continuing attention daemon.",
+        "claim_ceiling": "Historical component evidence; continuing resident attention economy remains unproven.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "goal-compass",
+        "name": "Goal Weaver",
+        "skills": [
+          "tools-goal-step"
+        ],
+        "sample_scope": "Native lifecycle transition appraisal; existing Hive Goals retain orchestration.",
+        "claim_ceiling": "Native sample advisory only; no scheduler or authenticated completion.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "living-intent",
+        "name": "LivingIntent and commitment continuity",
+        "skills": [
+          "tools-intent-bind",
+          "tools-intent-return"
+        ],
+        "sample_scope": "Current projection binding and stale-return refusal; no autonomous goal creation.",
+        "claim_ceiling": "Historical component evidence; enduring multi-goal agency remains unproven.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "standing-values",
+        "name": "Standing values and retention covenants",
+        "skills": [
+          "tools-value-transition",
+          "tools-retention-check"
+        ],
+        "sample_scope": "Value-transition appraisal and content/access/retention checks; no authenticated adoption or deletion.",
+        "claim_ceiling": "Adoption must bind a real owner decision; identifiers and hashes alone do not authenticate.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "ethical-appraisal",
+        "name": "Flourishing and protected floors",
+        "skills": [
+          "tools-ethical-compare"
+        ],
+        "sample_scope": "Finite constituency dominance/incomparability and floor-conflict reporting; no universal ethics engine.",
+        "claim_ceiling": "Fixture impacts and constituency coverage are incomplete; protected floors need accountable adoption.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "belief-governance",
+        "name": "Epistemic immune system",
+        "skills": [
+          "tools-belief-appraise",
+          "tools-provenance-revise"
+        ],
+        "sample_scope": "Coherence/support classification and overlap-aware revision; no proof of truth or canonical admission.",
+        "claim_ceiling": "Experimental component contracts; governed memory is not necessarily truthful memory.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "self-observation",
+        "name": "Revisable self-observation",
+        "skills": [
+          "tools-self-readback"
+        ],
+        "sample_scope": "Current-turn/focus receipt readback; no consciousness or identity claim.",
+        "claim_ceiling": "Current evidence and stale/duplicate refusal needed; not consciousness evidence.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "ensemble",
+        "name": "Formal reasoning ensemble",
+        "skills": [
+          "tools-ensemble-compare"
+        ],
+        "sample_scope": "Typed claim-coordinate relationship classification; no reasoner activation or TV fusion.",
+        "claim_ceiling": "NAL/PLN donor interfaces and bounded components; calibration/integration outstanding.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "predictive-learning",
+        "name": "Predictive coding and concept formation",
+        "skills": [
+          "tools-prediction-score"
+        ],
+        "sample_scope": "Prediction-before-target binary Brier scoring; no trained world model or concept learner.",
+        "claim_ceiling": "Prototype contracts; not a demonstrated lifelong learner.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "scratch-plans",
+        "name": "Scratch AtomSpaces and planning",
+        "skills": [
+          "tools-scratch-promote"
+        ],
+        "sample_scope": "Scope/version/expiry-bound promotion proposal; no persistent scratch manager or full planner.",
+        "claim_ceiling": "Scratch separation is not effect isolation; plugin must not start a second coordinator.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "novelty",
+        "name": "Curiosity and autonomous research",
+        "skills": [
+          "tools-novelty-genesis",
+          "tools-novelty-inspect"
+        ],
+        "sample_scope": "Source/quota/expiry-bound inspect-only opportunity proposal; no research executor or external permission.",
+        "claim_ceiling": "Research nomination cannot grant network, spending or publication authority.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "dream-consolidation",
+        "name": "Sleep and dream consolidation",
+        "skills": [
+          "tools-consolidation-propose"
+        ],
+        "sample_scope": "Protected-reference-aware deduplication candidate for wake review; no dream generation or destructive consolidation.",
+        "claim_ceiling": "Sleep-related paths have narrow evidence; dream organ remains an experimental proposal.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "energy",
+        "name": "Cognitive economics and resource reserves",
+        "skills": [
+          "tools-energy-reserve",
+          "tools-energy-close"
+        ],
+        "sample_scope": "Native cognitive-energy reservation/settlement proposals; no spending or provider permission.",
+        "claim_ceiling": "Typed accounting components; money/energy labels do not enforce external budgets by themselves.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "affect",
+        "name": "Affect, rest and proactivity",
+        "skills": [
+          "tools-rest-appraise"
+        ],
+        "sample_scope": "Debt/energy/availability-based rest/quiet-work suggestion; no complete affect or motivation controller.",
+        "claim_ceiling": "Controller remains unassembled; affect cannot authorize an external action.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "skill-affordance",
+        "name": "Capability discovery and affordance",
+        "skills": [
+          "tools-skill-nominate"
+        ],
+        "sample_scope": "Versioned descriptor/prerequisite nomination; no installer or automatic execution grant.",
+        "claim_ceiling": "Discovery is not permission; installation must remain distinct from grants.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "substrates",
+        "name": "AtomSpace substrate adapters",
+        "skills": [
+          "tools-substrate-check"
+        ],
+        "sample_scope": "Declared feature-fit inspection; no backend migration, MORK/Jetta implementation or automatic runtime discovery.",
+        "claim_ceiling": "PeTTa current target; MORK/Jetta remain separate port/research work.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "habitat-snapshot",
+        "name": "Habitat snapshot inspection",
+        "skills": [
+          "tools-habitat-room"
+        ],
+        "sample_scope": "Room inspection over supplied synthetic snapshots; no real sensing.",
+        "claim_ceiling": "Synthetic native example; no sensor connection or physical control.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "home-assistant",
+        "name": "Home Assistant body module",
+        "skills": [
+          "tools-home-propose"
+        ],
+        "sample_scope": "Fresh target/revision-bound on/off service proposal plus dormant donor mapper; no live device action.",
+        "claim_ceiling": "Existing optional module, disabled by default; port and exact effect policy review required.",
+        "stage": "prepared-sample-candidate"
+      },
+      {
+        "id": "living-home",
+        "name": "Aware Habitat to Living Home",
+        "skills": [
+          "tools-habitat-stage"
+        ],
+        "sample_scope": "Staged readiness guidance preserving awareness/relationships/control destination; no household surveillance or management daemon.",
+        "claim_ceiling": "Staged theory/product scope; relationships never authenticate users or grant authority.",
+        "stage": "prepared-sample-candidate"
+      }
+    ],
+    "composition_sets": [
+      {
+        "id": "pln",
+        "label": "PLN",
+        "status": "composition-template; no engine activation implied"
+      },
+      {
+        "id": "nal",
+        "label": "NAL",
+        "status": "composition-template; no engine activation implied"
+      },
+      {
+        "id": "temporal",
+        "label": "Temporal reasoning",
+        "status": "composition-template; no engine activation implied"
+      },
+      {
+        "id": "multi-step",
+        "label": "Multi-step reasoning",
+        "status": "composition-template; no engine activation implied"
+      },
+      {
+        "id": "motivation",
+        "label": "Motivation",
+        "status": "composition-template; no engine activation implied"
+      },
+      {
+        "id": "memory",
+        "label": "Memory and continuity",
+        "status": "composition-template; no engine activation implied"
+      },
+      {
+        "id": "epistemic",
+        "label": "Beliefs and evidence",
+        "status": "composition-template; no engine activation implied"
+      },
+      {
+        "id": "learning",
+        "label": "Learning",
+        "status": "composition-template; no engine activation implied"
+      },
+      {
+        "id": "ethics",
+        "label": "Values and ethics",
+        "status": "composition-template; no engine activation implied"
+      },
+      {
+        "id": "self",
+        "label": "Self and attention",
+        "status": "composition-template; no engine activation implied"
+      },
+      {
+        "id": "habitat",
+        "label": "Habitat and home",
+        "status": "composition-template; no engine activation implied"
+      },
+      {
+        "id": "substrates",
+        "label": "Substrates and capabilities",
+        "status": "composition-template; no engine activation implied"
+      }
+    ]
+  },
+  "activation_performed": false,
+  "platform_owner_report": {
+    "status": "claimed_not_independently_reproduced",
+    "source": "an owner workspace record (not included)",
+    "reported_time": "2026-10-04 15:30Z",
+    "build": "99c2d74",
+    "enabled_apps": 9,
+    "default_modules": 16,
+    "registered_services": [
+      "OmegaCode"
+    ],
+    "root_tools": "not merged, not loaded",
+    "fabricpc": "cannot start; JAX/FabricPC absent"
+  }
+}

@@ -1,0 +1,28 @@
+; Invented contextual observations. Reports only: no imports, grants or effects.
+(StateEvidence provider generation-1 skill configured supported config-ref)
+(StateEvidence provider generation-1 skill loaded supported old-import-ref)
+(StateEvidence provider generation-2 skill configured supported config-ref-2)
+(StateEvidence provider generation-2 skill policy contradicted revoked-ref)
+(StateEvidence provider generation-2 skill callable supported binding-ref)
+(StateEvidence provider generation-2 skill callable contradicted failure-ref)
+
+(= (report-state $provider $generation $skill $axis)
+   (let $facts
+      (collapse (match &self (StateEvidence $provider $generation $skill $axis $status $ref)
+         (StateReport $provider $generation $skill $axis $status $ref)))
+      (if (== $facts ())
+          (StateReport $provider $generation $skill $axis unknown no-record)
+          (superpose $facts))))
+
+!(test (collapse (report-state provider generation-2 skill configured))
+       ((StateReport provider generation-2 skill configured supported config-ref-2)))
+!(test (collapse (report-state provider generation-2 skill loaded))
+       ((StateReport provider generation-2 skill loaded unknown no-record)))
+!(test (collapse (report-state provider generation-1 skill loaded))
+       ((StateReport provider generation-1 skill loaded supported old-import-ref)))
+!(test (collapse (report-state provider generation-2 skill policy))
+       ((StateReport provider generation-2 skill policy contradicted revoked-ref)))
+!(test (collapse (report-state provider generation-2 skill callable))
+       ((StateReport provider generation-2 skill callable supported binding-ref)
+        (StateReport provider generation-2 skill callable contradicted failure-ref)))
+!(test (collapse (match &self (ExecutionGrant $provider $skill) $provider)) ())

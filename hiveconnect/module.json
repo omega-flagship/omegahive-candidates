@@ -1,0 +1,44 @@
+{
+  "id": "omegahive.hiveconnect.readonly-client",
+  "version": "0.1.3",
+  "status": "L0 only; unfrozen draft prototype; unregistered",
+  "provides": [
+    "external-client:baseline-identity-read",
+    "external-client:baseline-commons-query",
+    "external-client:draft-capability-read",
+    "external-client:draft-goal-read",
+    "external-client:draft-evidence-query",
+    "external-client:draft-artifact-read",
+    "external-client:draft-exhibit-read"
+  ],
+  "consumes": [
+    "platform:baseline-mcp",
+    "caller-supplied-authorized-transport",
+    "platform:S3-r2-draft",
+    "platform:S4-r2-draft",
+    "omegaatom:envelope-validator"
+  ],
+  "effects": [
+    "query designated host through injected transport; not exercised on network here"
+  ],
+  "entrypoints": {
+    "library": "hiveconnect.client.ReadOnlyClient",
+    "draft_library": "hiveconnect.draft_client.DraftReadClient"
+  },
+  "runtime_requirements": [
+    "Python 3 standard library"
+  ],
+  "source_pins": {
+    "client.py": "9c8ba23d269a9988f0064124c27cf3ae8ec9683c0ee8574af20374d04a7dac5f",
+    "draft_client.py": "e1db61cccafaf52328d9eca01a660034b325d27dcce3dc1a0cb2dd51cd729451",
+    "tests/test_client.py": "337231887c1d12539d1062d72199c7b1604e4dbfbc4a78609cbb339b0c4ee49d",
+    "tests/test_draft_client.py": "f70cba9cea497d1c0dafeb247d10b90e9f25dea472015604ad2304ffbfd8ca31",
+    "baseline_schema.json": "9f51d2554e0ad4f87354d933fbfee361ce519b6396261ba16b58bbe5d349bee6",
+    "conformance_cases.json": "d5b75dddd9d1e07dbc8e1c41c713cb31c8d659214345fa9e10645eab1ec787d3",
+    "s3_field_coverage.json": "66141fc7b699fa190900aa4f25a1a0a47ee809cae561df338f83dec63bfca176"
+  },
+  "qualification_receipt": "evidence/draft-r26-client-l0.json",
+  "catalog_registration": "not registered; reuse Root capability-slot registry when host contract is agreed",
+  "effects_authorized": false,
+  "planning_review_receipt": "evidence/security-source-review.json"
+}

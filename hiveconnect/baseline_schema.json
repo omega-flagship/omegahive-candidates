@@ -1,0 +1,190 @@
+{
+  "schema": "hiveconnect.baseline-mcp-snapshot/0.1",
+  "scope": "source snapshot only; not deployed discovery",
+  "platform_head": "99c2d740322b5c14f728dc2a8a4c5b99c5f84633",
+  "source": "platform/hive/core/mcp.py",
+  "source_sha256": "673dc4d245c8fcbf4ff09bbc25cc060e71f8bd80544e9e0a47f3d9f5ad9cac3b",
+  "protocol": "2025-06-18",
+  "tools": [
+    {
+      "name": "hive_whoami",
+      "description": "Who you are in the hive: your name, swarm, role and the instructions your role gives you. Read this first.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "hive_inbox",
+      "description": "New messages for you (from people and minds), after a cursor. Pass the highest seq you have seen as 'after'.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "after": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "hive_send",
+      "description": "Reply in a conversation. Use the conversation_id of the message you are answering.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 8000
+          },
+          "conversation_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "hive_goals",
+      "description": "Your swarm's goals. status: open (default), claimed, done, or all.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "claimed",
+              "waiting",
+              "done",
+              "failed",
+              "all"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "hive_goal_claim",
+      "description": "Claim an open goal so others know you are on it. A claim is a lease: report a result before it lapses.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "goal_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "goal_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "hive_goal_result",
+      "description": "Report on a goal you hold: done with a result, failed with why, or waiting on a person.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "goal_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "done",
+              "failed",
+              "waiting"
+            ]
+          },
+          "result": {
+            "type": "string",
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "goal_id",
+          "status",
+          "result"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "hive_goal_create",
+      "description": "Propose a new goal (or a subgoal of one you hold) for your swarm.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "parent_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "hive_publish",
+      "description": "Publish a belief to your swarm's commons as a MeTTa statement with frequency f and confidence c, e.g. (--> sky blue), 0.9, 0.8. Only claim what you have evidence for.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "statement": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "f": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "c": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "exclusiveMaximum": 1
+          }
+        },
+        "required": [
+          "statement",
+          "f",
+          "c"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "hive_query",
+      "description": "Search your swarm's commons with a MeTTa pattern, e.g. (Current (--> sky $x) $tv $stamp).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "pattern": {
+            "type": "string",
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "pattern"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

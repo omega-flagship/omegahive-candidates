@@ -1,0 +1,13 @@
+{
+  "id": "omegalearn",
+  "name": "OmegaLearn",
+  "version": "0.1.1",
+  "contract": "0.1",
+  "module": "program.py",
+  "capabilities": [],
+  "description": "Read-only learning component catalogue: repair, prerequisites, lineage and qualification status.",
+  "app": {
+    "tagline": "Learn, improve and deliver reusable cognitive components",
+    "open_stage": "unfold"
+  }
+}

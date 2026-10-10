@@ -1,0 +1,53 @@
+{
+  "id": "omegareason",
+  "version": "0.1.0",
+  "deployment": "owner-local-library-candidate",
+  "provides": [
+    "bounded-nal-inference",
+    "bounded-pln-inference"
+  ],
+  "consumes": [
+    "lib_nars",
+    "lib_pln",
+    "omegaatom.envelope-0.1",
+    "existing-bound-goal-and-exhibit-route",
+    "omegaatom-canonical-evidence-refs",
+    "existing-exact-typed-review-request",
+    "omegaatom-project-pages-with-withdrawal-controls"
+  ],
+  "effects": [],
+  "entrypoints": {
+    "python": "omegareason.adapter:run",
+    "atom_snapshot": "omegareason.atom_bridge:infer_snapshot",
+    "bound_prepare": "omegareason.bound_worker:prepare",
+    "bound_finalize": "omegareason.bound_worker:finalize",
+    "publication_plan": "omegareason.publication_plan:prepare_batch",
+    "review_export": "omegareason.review_export:seal",
+    "review_read": "omegareason.review_export:open_revision",
+    "query_projection": "omegareason.query_projection:project_and_reason"
+  },
+  "source_pins": {
+    "omegareason/adapter.py": "c494ddcf806f71a9861636bbc8146a73f947d70c3aedc75a7c137041b708f45f",
+    "$PETTA_PATH/lib/lib_nars.metta": "f2a1ab3be59c59128894367a2f52a12c0fafdf1fb26b4affedd48270b47d4b43",
+    "platform/lib_pln.metta": "05b63266ad79c3cd0b32a83a4596ad47923e612e746303628da7500bbcffa7ae",
+    "an owner workspace record (not included)": "d13e59342efb96d4fd631c15eff918d32ff54ef10c505806b32f90e385725515",
+    "an owner workspace record (not included)": "f329fffbd56613a9156481750652159b627864f95a3a20e802f09346f917f9fe",
+    "omegareason/atom_bridge.py": "10d06b0bc1db1525e8fc1f96a8512a32629232c1658f6da70cef17a1165c2f92",
+    "omegaatom/envelope.py": "861f02c24185bb5595f746bfab521224dc24a3fd25da21e1c8c9d545b60caffa",
+    "an owner workspace record (not included)": "fc6b1479092b4472bd654427c6ff701c0c80565780a3d7c41afb42e3288cbd7a",
+    "omegareason/bound_worker.py": "1be32715f6ca4ae259ac778f5ae84df53b78d364ea9c92e592b6f7abe6f9f714",
+    "platform/hive/core/goals.py": "7c99369b3c36ced6f3b7ca7580e6de86eb4a7b6305df6b5180470efd47bf1fc6",
+    "platform/hive/core/shares.py": "457caeeaae2cc9834891ad6a4154068fe8b4f90b56a43d23fa34e38465e07261",
+    "an owner workspace record (not included)": "b4ea74ca0a6996dcc7098641d73a9e9f12989a7a541faba55c01d9cb0d38a26d",
+    "omegareason/publication_plan.py": "e0a03c51ac2629961c999e0b00c2b928f769360b64bb58fafcda521bc4e00a55",
+    "omegareason/review_export.py": "86aad3aaaaf2a46b9972acb777526e7022a8ff627816e642e26cef3d3d817176",
+    "an owner workspace record (not included)": "0c0409daf73edfe0ce5bb58d0c86ba31e048c37edff7db58b0dd4d558eef2806",
+    "platform/hive/core/collab.py": "63e524167d652cedd447c12a7fa3567d38ee14553495ef49fd667c189187cd7f",
+    "omegareason/query_projection.py": "197115c6ee0775fbcc68cff0aa9582982ce13f83e4541af110ffb9b462c5c07f",
+    "omegaatom/projection.py": "27412b45d048776bbe8faaab04278dcd4b8a9d4cb5add978591b8c749435c589",
+    "omegaatom/transitions.py": "f82719ddbc8ad6c323115abe1761c834d9c3681d3ed7c3ccbb7982e6f0bac9f3",
+    "an owner workspace record (not included)": "4141bc8dcc5378d5fd997c77141f7fe2114c881bbb50bed36f7ef2072afd69e4"
+  },
+  "acceptance_level": "L0 preparation; L1 disposable bound reasoning and retained-review routes",
+  "registration": "pending existing capability catalogue; no new registry"
+}

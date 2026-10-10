@@ -1,0 +1,37 @@
+{
+  "id": "omegaalignment.correction-learning",
+  "version": "0.1.0",
+  "provides": [
+    "alignment.correction-proposal"
+  ],
+  "consumes": [
+    "omegalearn/event/1",
+    "trusted-host-governance-resolver",
+    "trusted-review-assurance-resolver",
+    "omegalearn-admission-validator",
+    "omegaatom.envelope/0.1",
+    "omegaatom-canonical-reference-api"
+  ],
+  "effects": [],
+  "entrypoints": {
+    "library": "omegaalignment.learning:propose_correction",
+    "review": "omegaalignment.learning:reviewed_correction",
+    "export": "omegaalignment.learning:export_to_learn",
+    "atom_eligibility": "omegaalignment.atom_bridge:governance_sources",
+    "governance_encoder": "omegaalignment.atom_bridge:governance_learning_event"
+  },
+  "source_pins": {
+    "omegaalignment/learning.py": "sha256:28f54903999741049b93ad560cd26e52a0fc1de86f2a78139700c95b33fdf9f1",
+    "omegaalignment/tests/test_learning.py": "sha256:f4d33166a5b9775dc6c9fe41c102fef63a1fa740d0b21f88d8ae2828af16b41e",
+    "an owner workspace record (not included)": "sha256:3fb61221f2e9ef6d735a3d8d2348a35bb39811ed27fc116cdaa215f30ae77838",
+    "an owner workspace record (not included)": "sha256:168d5ba63ac3b0aabb25a83009d86dd1a4e9566ad92c8ec8ad12ab59a95ebd8c",
+    "omegaalignment/tests/test_learning_interop.py": "sha256:b40e9c427ec0d670480850a22055ace21135cb41eae67f9942c54e1102e23fd7",
+    "omegalearn/core.py": "sha256:d43a5887b7b5a7be431047dbc934cfb254f83244d370afeba0eead5ced8948da",
+    "omegaatom/envelope.py": "sha256:5d76fc77a53eab11f3e31014e1543032c3ee1f1d8c63b31d9d65957509db2a17",
+    "an owner workspace record (not included)": "sha256:a768bea4f1566695a8632e720ddd80b624720a796456968544c637fb6ee75a94",
+    "omegaalignment/atom_bridge.py": "sha256:918d6805be735d5e03f52b4dc718fe128e8fbc5041ef2136ab03f67af3b6d849",
+    "omegaalignment/tests/test_atom_bridge.py": "sha256:ea4e05974c638a3be5cd7c6b656e518f76f13dbb1c619209f2e2a35067b75046",
+    "an owner workspace record (not included)": "sha256:4f927a14ada6e424bc19f49989d0a8a124671fd5617f64dd6aa0b7e341b4d4d6",
+    "omegaatom/projection.py": "sha256:27412b45d048776bbe8faaab04278dcd4b8a9d4cb5add978591b8c749435c589"
+  }
+}

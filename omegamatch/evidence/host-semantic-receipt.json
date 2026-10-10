@@ -1,0 +1,38 @@
+{
+  "classification": "invented-disposable-ASGI-fake-supervisor",
+  "source_base": "d9e2c8109e285650187430fb91d54e7c13923fa5",
+  "source_status": "base plus captured uncommitted working-tree patch, not clean release",
+  "patch_sha256": "1b4cd3cba207cc5e5d8312a5a59687291b8d6342bae8f34ba49135644e83d0df",
+  "pure_tests_passed": 55,
+  "host_refusal_probes_passed": 3,
+  "qualified": [
+    "host invokes named Match validator",
+    "missing catalogue refuses completion",
+    "evidence promotion cannot bypass missing context refusal",
+    "unknown validator refuses",
+    "claimed status and failed attempt preserved"
+  ],
+  "unqualified": [
+    "successful semantic admission",
+    "catalogue resolver",
+    "transactional validation and persistence",
+    "revocation/drift/cancel races",
+    "live native cognition"
+  ],
+  "pins": {
+    "program/program.py": "59645775a8190f7508b18ebc2b391bc6c7b71f0f9bcce46b531733e720185f27",
+    "program/protocol.py": "e9deebd1b637d68014318b69d91b8d09841d4bac9051b44a134e48e551af9e12",
+    "program/HOST_CONTEXT_CONTRACT.md": "800046567697173e47a1e43ff4a54915f413f53e79155fb520b8594a8594d669",
+    "README.md": "62a491c38e8182151f7091ffeaa9062ec1bfb6984ff8ef05ff4a7c297041fa6e",
+    "tests/host_semantic_probes.py": "67b1fc43d7961b8596757a45dd199c7000e9f1423a9c632fb1bc67999ca55ddd",
+    "tests/host_transport_probes.py": "099b9ead0d8d40c6ea9760cca8adfe2d4628651310b6dca0da647853965133dc",
+    "evidence/host-semantic-candidate.txt": "31bd7c7db0a86beec7c76d35babbc6bfb646800ceac47227c0148f52ff21f75f",
+    "evidence/protocol-tests-20261004.txt": "0964cd415915464197e0c121cb7a5a3d1febe112d98e35e337d0c511a01aaa03"
+  },
+  "host_files": {
+    "hive/core/programs.py": "8de33b7fdc9351332cc513f34a2319c807900089de577000d79ac714b3028e1d",
+    "hive/core/goals.py": "b8d15ca153dacc9818cb45abf331cb34975a47a7b7da032c44955d520b55cfd6",
+    "hive/core/db.py": "70e0c8d35cb0914df11c8cd7533aa8d4383c5b87b10a6756452aef1954dfd4b5",
+    "hive/core/app.py": "a2e0e2050900e1013ff92a10652212622b94eeed38f950d893e643780c004b18"
+  }
+}

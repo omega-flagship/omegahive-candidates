@@ -1,0 +1,266 @@
+--- a/hive/core/collab.py
++++ b/hive/core/collab.py
+@@ -94,17 +94,38 @@
+             self.db.execute(statement)
+         if "connection_id" not in {r["name"] for r in self.db.all("PRAGMA table_info(requests)")}:
+             self.db.execute("ALTER TABLE requests ADD COLUMN connection_id TEXT")
++        if "connection_only" not in {r["name"] for r in self.db.all("PRAGMA table_info(swarm_services)")}:
++            self.db.execute("ALTER TABLE swarm_services ADD COLUMN connection_only TEXT NOT NULL DEFAULT '[]'")
+         columns = {r["name"] for r in self.db.all("PRAGMA table_info(findings)")}
+         if "history" not in columns:
+             self.db.execute("ALTER TABLE findings ADD COLUMN history TEXT NOT NULL DEFAULT '[]'")
+ 
+     # ---- services: what a swarm accepts ----------------------------------------------------------
+ 
+-    def set_services(self, swarm_id, kinds, by):
++    def set_services(self, swarm_id, kinds, by, *, connection_only=None):
+         self.hive.swarm(swarm_id)
+-        kinds = sorted({str(k).strip() for k in kinds or [] if str(k).strip()})
+-        self.db.execute("INSERT OR REPLACE INTO swarm_services VALUES (?, ?, ?, ?)", (swarm_id, _j(kinds), by, now()))
+-        return {"swarm_id": swarm_id, "kinds": kinds}
++        def names(values):
++            if (not isinstance(values, list) or len(values) > 100
++                    or not all(isinstance(k, str) and k.strip() and len(k) <= 100 for k in values)):
++                raise self.hive.error(400, "bad_services", "service kinds must be a bounded list of names")
++            return sorted({k.strip() for k in values})
++        kinds = names(kinds)
++        if connection_only is None:
++            private = self.service_config(swarm_id)["connection_only"]
++        else:
++            private = names(connection_only)
++        if not set(private).issubset(kinds):
++            raise self.hive.error(400, "bad_services", "connection_only kinds must be offered; clear explicitly before removal")
++        self.db.execute("INSERT OR REPLACE INTO swarm_services "
++                        "(swarm_id, kinds, set_by, updated_at, connection_only) VALUES (?, ?, ?, ?, ?)",
++                        (swarm_id, _j(kinds), by, now(), _j(private)))
++        return self.service_config(swarm_id)
++
++    def service_config(self, swarm_id):
++        row = self.db.one("SELECT kinds, connection_only, set_by, updated_at FROM swarm_services WHERE swarm_id = ?", (swarm_id,))
++        return {"swarm_id": swarm_id, "kinds": json.loads(row["kinds"]) if row else [],
++                "connection_only": json.loads(row["connection_only"]) if row else [],
++                "set_by": row["set_by"] if row else None, "updated_at": row["updated_at"] if row else None}
+ 
+     def services(self, swarm_id):
+         row = self.db.one("SELECT kinds FROM swarm_services WHERE swarm_id = ?", (swarm_id,))
+@@ -152,11 +173,12 @@
+             raise hive.error(400, "bad_request", "a request goes to another swarm (use goals inside your own)")
+         hive.swarm(to_swarm)
+         connection = None
+-        if kind not in self.services(to_swarm):
++        private = kind in self.service_config(to_swarm)["connection_only"]
++        if private or kind not in self.services(to_swarm):
+             connection = hive.agreements.allows_request(agent["swarm_id"], to_swarm, kind)
+             if connection is None:
+-                raise hive.error(403, "not_offered", f"that swarm does not accept {kind!r} requests, and no active "
+-                                                     "connection allows them")
++                code = "connection_required" if private else "not_offered"
++                raise hive.error(403, code, "an active scoped connection is required for this service")
+         if not from_goal:
+             raise hive.error(400, "bad_request", "from_goal is required: a request is made for a goal you hold")
+         goal = hive.goals.get(from_goal)
+--- a/hive/core/connections.py
++++ b/hive/core/connections.py
+@@ -257,6 +257,9 @@
+         for c in self.db.all("SELECT * FROM connections WHERE status = 'active' AND "
+                              "((from_swarm = ? AND to_swarm = ?) OR (from_swarm = ? AND to_swarm = ?))",
+                              (from_swarm, to_swarm, to_swarm, from_swarm)):
++            moment = now()
++            if any(c.get(k) and c[k] <= moment for k in ("ends_at", "review_at")):
++                continue
+             for s in json.loads(c["scopes"]):
+                 if s["kind"] != "requests" or kind not in s["kinds"]:
+                     continue
+--- a/hive/core/app.py
++++ b/hive/core/app.py
+@@ -1444,17 +1444,21 @@
+     @app.put("/api/swarms/{swarm_id}/services")
+     async def set_swarm_services(swarm_id: str, request: Request):
+         session = admin(request)
+-        return hive.collab.set_services(swarm_id, (await body(request)).get("kinds") or [], session.get("principal") or "user:operator")
++        data = await body(request)
++        if "connection_only" in data and data["connection_only"] is None:
++            raise HiveError(400, "bad_services", "connection_only must be a list when supplied")
++        return hive.collab.set_services(swarm_id, data.get("kinds", []), session.get("principal") or "user:operator",
++                                       connection_only=data.get("connection_only"))
+ 
+     @app.get("/api/swarms/{swarm_id}/services")
+     async def swarm_services(swarm_id: str, request: Request):
+         operator(request)
+-        return {"swarm_id": swarm_id, "kinds": hive.collab.services(swarm_id)}
++        return hive.collab.service_config(swarm_id)
+ 
+     @app.get("/api/agent/services/{swarm_id}")
+     async def agent_swarm_services(swarm_id: str, request: Request):
+         agent_from(request)
+-        return {"swarm_id": swarm_id, "kinds": hive.collab.services(swarm_id)}
++        return hive.collab.service_config(swarm_id)
+ 
+     def named_admin(request):
+         """A signed-in admin person (never the loopback operator password)."""
+--- a/hive/core/hive.py
++++ b/hive/core/hive.py
+@@ -118,11 +118,12 @@
+         coordinator = row.get("coordinator_id") if row.get("coordinator_id") in members else None
+         parent = self.db.one("SELECT swarm_id FROM agents WHERE id = ? AND deleted = 0", (row["parent_mind_id"],)) if row.get("parent_mind_id") else None
+         children = [r["id"] for r in self.db.all("SELECT id FROM swarms WHERE parent_mind_id IN (SELECT id FROM agents WHERE swarm_id = ? AND deleted = 0)", (row["id"],))] if members else []
+-        services = self.db.one("SELECT kinds FROM swarm_services WHERE swarm_id = ?", (row["id"],)) if self.db.one("SELECT name FROM sqlite_master WHERE name = 'swarm_services'") else None
++        services = self.db.one("SELECT * FROM swarm_services WHERE swarm_id = ?", (row["id"],)) if self.db.one("SELECT name FROM sqlite_master WHERE name = 'swarm_services'") else None
+         return dict(row, shared_with=json.loads(row.get("shared_with") or "[]"), visibility=row.get("visibility") or "public",
+                     member_ids=members, coordinator_id=coordinator, parent_mind_id=row.get("parent_mind_id") if parent else None,
+                     parent_swarm_id=parent["swarm_id"] if parent else None, child_swarm_ids=children,
+-                    services=json.loads(services["kinds"]) if services else [])
++                    services=json.loads(services["kinds"]) if services else [],
++                    connection_only=json.loads(services.get("connection_only", "[]")) if services else [])
+ 
+     def update_swarm(self, swarm_id, data):
+         """Name, description, the coordinating mind (a member) and the parent mind (a mind elsewhere that contains
+--- a/hive/ui/src/api/types.ts
++++ b/hive/ui/src/api/types.ts
+@@ -173,6 +173,7 @@
+   child_swarm_ids?: string[]
+   /** Request kinds this swarm accepts from other swarms (C39). */
+   services?: string[]
++  connection_only?: string[]
+   owner?: string | null
+   visibility?: Visibility
+   shared_with?: string[]
+--- a/hive/ui/src/features/swarm/SwarmTeam.tsx
++++ b/hive/ui/src/features/swarm/SwarmTeam.tsx
+@@ -29,7 +29,7 @@
+     <section aria-label="Offered services" className="space-y-2">
+       <h2 className="text-small font-semibold">Services for other swarms</h2>
+       {swarm.services === undefined ? <p className="text-small text-ink-3">Service information unavailable.</p> : !swarm.services.length ? <p className="text-small text-ink-3">No public services offered.</p> : (
+-        <ul className="flex flex-wrap gap-2">{swarm.services.map((kind) => <li key={kind} className="max-w-full break-all rounded-lg border border-line-2 px-2 py-1 font-mono text-meta">{kind}</li>)}</ul>
++        <ul className="flex flex-wrap gap-2">{swarm.services.map((kind) => <li key={kind} className="max-w-full break-all rounded-lg border border-line-2 px-2 py-1 font-mono text-meta">{kind}{swarm.connection_only?.includes(kind) ? ' · by connection' : ''}</li>)}</ul>
+       )}
+     </section>
+   )
+--- /dev/null
++++ b/hive/tests/test_connection_only_services.py
+@@ -0,0 +1,125 @@
++"""Run only against the separate host candidate named in the handoff."""
++import pytest
++from hive.tests.test_core_api import agent_headers, client  # noqa: F401
++from hive.core.collab import Collab
++
++
++def setup(client, private=True):
++    A, B = [client.post('/api/swarms', json={'name': n}).json() for n in ('Synthetic requester', 'Synthetic alignment')]
++    response = client.post('/api/roles', json={'name': 'Synthetic drift', 'prompt': 'Synthetic role only', 'mandate': {'id': 'alignment-drift', 'version': '1'}})
++    assert response.status_code == 200, response.text
++    role = response.json()
++    a = client.post('/api/agents', json={'name': 'Synthetic asker', 'kind': 'module', 'swarm_id': A['id']}).json()
++    b = client.post('/api/agents', json={'name': 'Synthetic assessor', 'kind': 'module', 'swarm_id': B['id'], 'role_id': role['id']}).json()
++    service = {'kinds': ['review'], 'connection_only': ['review'] if private else []}
++    r = client.put(f"/api/swarms/{B['id']}/services", json=service)
++    assert r.status_code == 200, r.text
++    goal = client.post(f"/api/swarms/{A['id']}/goals", json={'title': 'Synthetic review', 'assignee': a['name']}).json()
++    claim = client.post(f"/api/agent/goals/{goal['id']}/claim", headers=agent_headers(a))
++    assert claim.status_code == 200
++    payload = {'kind': 'review', 'to_swarm': B['id'], 'title': 'Synthetic assessment', 'from_goal': goal['id'],
++               'budget_usd': 0, 'constraints': {'mandates': [{'id': 'alignment-drift', 'version': '1'}]}}
++    agreement = {'from_swarm': A['id'], 'to_swarm': B['id'], 'from_coordinator': a['id'], 'to_coordinator': b['id'],
++                 'purpose': 'Synthetic bounded assessment', 'deliverable': 'Advisory receipt', 'days': 1, 'budget_usd': 1,
++                 'scopes': [{'kind': 'requests', 'direction': 'from->to', 'kinds': ['review']}]}
++    return A, B, a, b, payload, agreement
++
++
++def ask(client, a, payload):
++    return client.post('/api/agent/requests', headers=agent_headers(a), json=payload)
++
++
++def test_advertised_private_service_needs_connection_and_readback_preserves_mode(client):
++    _, B, a, _, payload, _ = setup(client)
++    r = ask(client, a, payload)
++    assert r.status_code == 403 and r.json()['error']['code'] == 'connection_required'
++    assert client.get(f"/api/swarms/{B['id']}/services").json()['connection_only'] == ['review']
++    config = client.get(f"/api/swarms/{B['id']}/services").json()
++    assert config['set_by'] and config['updated_at']
++    assert client.get(f"/api/swarms/{B['id']}").json()['connection_only'] == ['review']
++    assert client.get(f"/api/agent/services/{B['id']}", headers=agent_headers(a)).json()['connection_only'] == ['review']
++    hive = client.app.state.hive
++    assert hive.db.one('SELECT COUNT(*) AS n FROM requests')['n'] == 0
++    assert not any(c[0] == 'start' for c in client.supervisor.calls)
++
++
++def test_public_service_remains_compatible(client):
++    _, _, a, _, payload, _ = setup(client, private=False)
++    r = ask(client, a, payload)
++    assert r.status_code == 200 and r.json()['connection_id'] is None
++
++
++def test_private_request_records_connection_and_budget(client):
++    _, _, a, _, payload, agreement = setup(client)
++    connection = client.post('/api/connections', json=agreement)
++    assert connection.status_code == 200, connection.text
++    payload['budget_usd'] = 0.4
++    r = ask(client, a, payload)
++    assert r.status_code == 200, r.text
++    assert r.json()['connection_id'] == connection.json()['id']
++    stored = client.get('/api/connections/' + connection.json()['id']).json()
++    assert stored['allocated_usd'] == 0.4
++    assert ask(client, a, {**payload, 'budget_usd': 0.7}).status_code == 402
++
++
++@pytest.mark.parametrize('case', ['expired', 'review-due', 'paused', 'revoked', 'reverse', 'wrong-kind'])
++def test_invalid_agreement_cannot_bypass_private_advertisement(client, case):
++    _, _, a, _, payload, agreement = setup(client)
++    if case == 'reverse': agreement['scopes'][0]['direction'] = 'to->from'
++    if case == 'wrong-kind': agreement['scopes'][0]['kinds'] = ['plan']
++    r = client.post('/api/connections', json=agreement)
++    assert r.status_code == 200, r.text
++    hive = client.app.state.hive
++    if case in {'expired', 'review-due'}:
++        hive.db.update('connections', r.json()['id'], {'ends_at' if case == 'expired' else 'review_at': '2000-01-01T00:00:00.000Z'})
++    if case in {'paused', 'revoked'}:
++        hive.db.update('connections', r.json()['id'], {'status': case})
++    denied = ask(client, a, payload)
++    assert denied.status_code == 403, denied.text
++    assert hive.db.one('SELECT COUNT(*) AS n FROM requests')['n'] == 0
++
++
++def test_legacy_update_cannot_silently_erase_private_gate(client):
++    _, B, a, _, payload, _ = setup(client)
++    r = client.put(f"/api/swarms/{B['id']}/services", json={'kinds': ['review']})
++    assert r.status_code == 200 and r.json()['connection_only'] == ['review']
++    assert ask(client, a, payload).status_code == 403
++    hive = client.app.state.hive
++    Collab(hive)
++    assert hive.collab.service_config(B['id'])['connection_only'] == ['review']
++
++
++@pytest.mark.parametrize('private', [None, 'review', [True], ['unknown'], [None]])
++def test_bad_modes_refuse_without_resetting_private_gate(client, private):
++    _, B, _, _, _, _ = setup(client)
++    r = client.put(f"/api/swarms/{B['id']}/services", json={'kinds': ['review'], 'connection_only': private})
++    assert r.status_code == 400, r.text
++    assert client.get(f"/api/swarms/{B['id']}/services").json()['connection_only'] == ['review']
++
++
++def test_agent_cannot_change_service_mode(client):
++    _, B, a, _, _, _ = setup(client)
++    r = client.put(f"/api/swarms/{B['id']}/services", headers=agent_headers(a), json={'kinds': ['review'], 'connection_only': []})
++    assert r.status_code in {401, 403}
++    assert client.get(f"/api/swarms/{B['id']}/services").json()['connection_only'] == ['review']
++
++
++def test_removing_private_kind_requires_explicit_gate_clear(client):
++    _, B, _, _, _, _ = setup(client)
++    r = client.put(f"/api/swarms/{B['id']}/services", json={'kinds': []})
++    assert r.status_code == 400
++    assert client.get(f"/api/swarms/{B['id']}/services").json()['connection_only'] == ['review']
++    r = client.put(f"/api/swarms/{B['id']}/services", json={'kinds': [], 'connection_only': []})
++    assert r.status_code == 200 and r.json()['connection_only'] == []
++
++
++def test_legacy_service_schema_migrates_as_public(client):
++    hive = client.app.state.hive
++    swarm = client.post('/api/swarms', json={'name': 'Synthetic legacy service'}).json()
++    hive.db.execute('ALTER TABLE swarm_services DROP COLUMN connection_only')
++    hive.db.execute('INSERT INTO swarm_services VALUES (?, ?, ?, ?)',
++                    (swarm['id'], '["plan"]', 'synthetic-admin', '2026-10-04T00:00:00.000Z'))
++    Collab(hive)
++    config = hive.collab.service_config(swarm['id'])
++    assert config['kinds'] == ['plan'] and config['connection_only'] == []
++    assert config['set_by'] == 'synthetic-admin'
